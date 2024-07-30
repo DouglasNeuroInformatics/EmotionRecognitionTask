@@ -11,6 +11,9 @@ importers:
       '@jspsych/plugin-audio-button-response':
         specifier: ^2.0.1
         version: 2.0.1(jspsych@8.0.1)
+      '@jspsych/plugin-audio-keyboard-response':
+        specifier: ^2.0.0
+        version: 2.0.0(jspsych@8.0.1)
       '@jspsych/plugin-html-keyboard-response':
         specifier: ^2.0.0
         version: 2.0.0(jspsych@8.0.1)
@@ -21,6 +24,9 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0(jspsych@8.0.1)
       '@jspsych/plugin-video-button-response':
+        specifier: ^2.0.0
+        version: 2.0.0(jspsych@8.0.1)
+      '@jspsych/plugin-video-keyboard-response':
         specifier: ^2.0.0
         version: 2.0.0(jspsych@8.0.1)
       jspsych:
@@ -349,6 +355,11 @@ packages:
     peerDependencies:
       jspsych: '>=7.1.0'
 
+  '@jspsych/plugin-audio-keyboard-response@2.0.0':
+    resolution: {integrity: sha512-+AxBAtQpAzae33PKIThZbs9a3ZYjzpIF9Grzbx0t4YAsD6pyLyBtQEP3J4zeeBhgfEUhgNMSeSeEGpSJKSadTg==}
+    peerDependencies:
+      jspsych: '>=7.1.0'
+
   '@jspsych/plugin-html-keyboard-response@2.0.0':
     resolution: {integrity: sha512-O4tfd91ve4RJr0ilHmnk6rdxWX7IwGnOKbFpi85p1t0POUNm21Kfq39pUnyoSZTWr2anibIS3OuHP2IvUtIoMA==}
     peerDependencies:
@@ -366,6 +377,11 @@ packages:
 
   '@jspsych/plugin-video-button-response@2.0.0':
     resolution: {integrity: sha512-pKkiK0w7ZYO6ZhBVcdJNK2rAKAFC1REMw+vlGuaiaz8lFqurhKU2+0JOnaE1PZnHVP6pTl0dIw7LP8jzuuWTiw==}
+    peerDependencies:
+      jspsych: '>=7.1.0'
+
+  '@jspsych/plugin-video-keyboard-response@2.0.0':
+    resolution: {integrity: sha512-VK2pyCGeoM5aksosP6CQrtAfLD2VNpKmWR5cNLNuSrZk0Z0b1ieV+weh6id0pvjeVo1JPFVuwFOH0Bs3KU8fwA==}
     peerDependencies:
       jspsych: '>=7.1.0'
 
@@ -1417,6 +1433,10 @@ snapshots:
     dependencies:
       jspsych: 8.0.1
 
+  '@jspsych/plugin-audio-keyboard-response@2.0.0(jspsych@8.0.1)':
+    dependencies:
+      jspsych: 8.0.1
+
   '@jspsych/plugin-html-keyboard-response@2.0.0(jspsych@8.0.1)':
     dependencies:
       jspsych: 8.0.1
@@ -1430,6 +1450,10 @@ snapshots:
       jspsych: 8.0.1
 
   '@jspsych/plugin-video-button-response@2.0.0(jspsych@8.0.1)':
+    dependencies:
+      jspsych: 8.0.1
+
+  '@jspsych/plugin-video-keyboard-response@2.0.0(jspsych@8.0.1)':
     dependencies:
       jspsych: 8.0.1
 
