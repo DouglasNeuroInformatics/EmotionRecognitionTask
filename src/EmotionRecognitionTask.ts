@@ -8,6 +8,10 @@ import audioButtonResponse from '@jspsych/plugin-audio-button-response';
 import audioKeyboardResponse from '@jspsych/plugin-audio-button-response';
 import VideoKeyboardResponsePlugin from "@jspsych/plugin-video-keyboard-response";
 
+var jsPsych = initJsPsych();
+
+/* create timeline */
+var timeline = [];
 
 const preload = {
     type: PreloadPlugin,
