@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@jspsych/plugin-audio-button-response": "^2.0.1",
     "@jspsych/plugin-html-keyboard-response": "^2.0.0",
     "@jspsych/plugin-preload": "^2.0.0",
     "@jspsych/plugin-survey-html-form": "^2.0.0",

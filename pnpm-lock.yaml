@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@jspsych/plugin-audio-button-response':
+        specifier: ^2.0.1
+        version: 2.0.1(jspsych@8.0.1)
       '@jspsych/plugin-html-keyboard-response':
         specifier: ^2.0.0
         version: 2.0.0(jspsych@8.0.1)
@@ -340,6 +343,11 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
+
+  '@jspsych/plugin-audio-button-response@2.0.1':
+    resolution: {integrity: sha512-KinMXEcXR4vpoyjlw7xhpgFSfERnqblN/l5t7AnrYGTkPZQvBbSHylcxUKvO4KsxTmPPMsOuKEDy8IJ+O2ILtQ==}
+    peerDependencies:
+      jspsych: '>=7.1.0'
 
   '@jspsych/plugin-html-keyboard-response@2.0.0':
     resolution: {integrity: sha512-O4tfd91ve4RJr0ilHmnk6rdxWX7IwGnOKbFpi85p1t0POUNm21Kfq39pUnyoSZTWr2anibIS3OuHP2IvUtIoMA==}
@@ -1404,6 +1412,10 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
+
+  '@jspsych/plugin-audio-button-response@2.0.1(jspsych@8.0.1)':
+    dependencies:
+      jspsych: 8.0.1
 
   '@jspsych/plugin-html-keyboard-response@2.0.0(jspsych@8.0.1)':
     dependencies:
