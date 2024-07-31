@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
-import emotionRecogntionTask from './EmotionRecognitionTask'
+import emotionRecognitionTask from './EmotionRecognitionTask'
 
 
-emotionRecogntionTask()
+emotionRecognitionTask()
 

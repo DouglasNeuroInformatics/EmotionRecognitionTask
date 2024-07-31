@@ -5,7 +5,7 @@ import SurveyHtmlFormPlugin from "@jspsych/plugin-survey-html-form";
 import videoButtonResponse from '@jspsych/plugin-video-button-response';
 import PreloadPlugin from "@jspsych/plugin-preload";
 import audioButtonResponse from '@jspsych/plugin-audio-button-response';
-import audioKeyboardResponse from '@jspsych/plugin-audio-button-response';
+import audioKeyboardResponse from '@jspsych/plugin-audio-keyboard-response';
 import VideoKeyboardResponsePlugin from "@jspsych/plugin-video-keyboard-response";
 
 var jsPsych = initJsPsych();
@@ -29,7 +29,7 @@ const videoEmotionChoice = {
 
 
 
-export default function emotionRecogntionTask() {
+export default function emotionRecognitionTask() {
     let timeline = [];
 
     const preload = {
