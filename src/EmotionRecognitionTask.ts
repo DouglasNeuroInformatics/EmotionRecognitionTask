@@ -11,29 +11,6 @@ import VideoKeyboardResponsePlugin from "@jspsych/plugin-video-keyboard-response
 var jsPsych = initJsPsych();
 
 /* create timeline */
-var timeline = [];
-
-const preload = {
-    type: PreloadPlugin,
-    auto_preload: true,
-    show_progress_bar: true,
-    message: `<p>loading media</p>`,
-};
-
-
-const audioCheck = {
-    type: audioKeyboardResponse,
-    stimulus: 'sound/tone.mp3',
-    prompt: "<p>Press any key to continue</p>",
-    response_ends_trial: true
-};
-
-const audioEmotionChoice = {
-    type: audioButtonResponse,
-    stimulus: 'sound/tone.mp3',
-    choices: ['Joy', 'Anger', 'Relief'],
-    prompt: "<p>Select the most accurate emotion </p>"
-}
 
 const videoCheck = {
     type: VideoKeyboardResponsePlugin,
@@ -47,4 +24,39 @@ const videoEmotionChoice = {
     stimulus: 'video/video.mp4',
     choices: ['Joy', 'Anger', 'Relief'],
     prompt: "<p> Select the most accurate emotion </p>"
+}
+
+
+
+
+export default function emotionRecogntionTask() {
+    let timeline = [];
+
+    const preload = {
+        type: PreloadPlugin,
+        auto_preload: true,
+        show_progress_bar: true,
+        message: `<p>loading media</p>`,
+    };
+
+
+    const audioCheck = {
+        type: audioKeyboardResponse,
+        stimulus: '../audio/hello-there.mp3',
+        prompt: "<p>Press any key to continue</p>",
+        response_ends_trial: true
+    };
+
+    const audioEmotionChoice = {
+        type: audioButtonResponse,
+        stimulus: '../audio/hello-there.mp3',
+        choices: ['Joy', 'Anger', 'Relief'],
+        prompt: "<p>Select the most accurate emotion </p>"
+    }
+
+    timeline.push(preload)
+    timeline.push(audioCheck)
+    timeline.push(audioEmotionChoice)
+
+    jsPsych.run(timeline);
 }
