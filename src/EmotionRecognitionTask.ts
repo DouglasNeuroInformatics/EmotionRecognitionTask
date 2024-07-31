@@ -39,6 +39,11 @@ export default function emotionRecognitionTask() {
         message: `<p>loading media</p>`,
     };
 
+    const instructions = {
+        type: HtmlKeyboardResponsePlugin,
+        stimulus: `<p>Hello this is a test. The audio will play twice. please select the most accurate emotion displayed after</p>`
+    }
+
 
     const audioCheck = {
         type: audioKeyboardResponse,
@@ -55,6 +60,7 @@ export default function emotionRecognitionTask() {
     }
 
     timeline.push(preload)
+    timeline.push(instructions)
     timeline.push(audioCheck)
     timeline.push(audioEmotionChoice)
 
