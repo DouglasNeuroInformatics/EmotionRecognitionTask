@@ -12,20 +12,6 @@ var jsPsych = initJsPsych();
 
 /* create timeline */
 
-const videoCheck = {
-    type: VideoKeyboardResponsePlugin,
-    stimulus: 'video/video.mp4',
-    prompt: "<p>Press any key to continue</p>",
-    response_ends_trial: true
-}
-
-const videoEmotionChoice = {
-    type: videoButtonResponse,
-    stimulus: 'video/video.mp4',
-    choices: ['Joy', 'Anger', 'Relief'],
-    prompt: "<p> Select the most accurate emotion </p>"
-}
-
 
 
 
@@ -59,10 +45,27 @@ export default function emotionRecognitionTask() {
         prompt: "<p>Select the most accurate emotion </p>"
     }
 
+    const videoCheck = {
+        type: VideoKeyboardResponsePlugin,
+        stimulus: ['../video/Hello-There.mp4'],
+        prompt: "<p>Press any key to continue</p>",
+        response_ends_trial: true
+    }
+    
+    const videoEmotionChoice = {
+        type: videoButtonResponse,
+        stimulus: ['../video/Hello-There.mp4'],
+        choices: ['Joy', 'Anger', 'Relief'],
+        prompt: "<p> Select the most accurate emotion </p>"
+    }
+    
+
     timeline.push(preload)
     timeline.push(instructions)
     timeline.push(audioCheck)
     timeline.push(audioEmotionChoice)
+    timeline.push(videoCheck)
+    timeline.push(videoEmotionChoice)
 
     jsPsych.run(timeline);
 }
