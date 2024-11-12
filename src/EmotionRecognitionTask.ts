@@ -6,6 +6,7 @@ import PreloadPlugin from "@jspsych/plugin-preload";
 import audioButtonResponse from "@jspsych/plugin-audio-button-response";
 import audioKeyboardResponse from "@jspsych/plugin-audio-keyboard-response";
 import VideoKeyboardResponsePlugin from "@jspsych/plugin-video-keyboard-response";
+import { renderToStaticMarkup } from "react-dom/server";
 
 var jsPsych = initJsPsych();
 
@@ -40,13 +41,17 @@ export default function emotionRecognitionTask() {
     prompt: "<p>Select the most accurate emotion </p>",
   };
 
+  const videoInstructions = {
+    type: HtmlKeyboardResponsePlugin,
+    stimulus: `<p>Now onto video tasks, the video will be played twice for the subject to determine the emotion displayed.  Press any key to continue to the videos</p>`,
+  };
+
   const videoCheck = {
     type: VideoKeyboardResponsePlugin,
     stimulus: ["../video/Hello-There.mp4"],
     prompt: "<p>Press any key to continue</p>",
     response_ends_trial: true,
-    autoplay: false,
-    controls: true,
+    autoplay: true,
     response_allowed_while_playing: false,
   };
 
@@ -62,6 +67,7 @@ export default function emotionRecognitionTask() {
   timeline.push(instructions);
   timeline.push(audioCheck);
   timeline.push(audioEmotionChoice);
+  timeline.push(videoInstructions);
   timeline.push(videoCheck);
   timeline.push(videoEmotionChoice);
 
