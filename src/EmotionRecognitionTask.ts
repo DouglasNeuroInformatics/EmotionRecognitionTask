@@ -6,7 +6,6 @@ import PreloadPlugin from "@jspsych/plugin-preload";
 import audioButtonResponse from "@jspsych/plugin-audio-button-response";
 import audioKeyboardResponse from "@jspsych/plugin-audio-keyboard-response";
 import VideoKeyboardResponsePlugin from "@jspsych/plugin-video-keyboard-response";
-import { renderToStaticMarkup } from "react-dom/server";
 
 var jsPsych = initJsPsych();
 
