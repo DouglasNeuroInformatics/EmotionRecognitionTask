@@ -6,6 +6,7 @@ import PreloadPlugin from "@jspsych/plugin-preload";
 import audioButtonResponse from "@jspsych/plugin-audio-button-response";
 import audioKeyboardResponse from "@jspsych/plugin-audio-keyboard-response";
 import VideoKeyboardResponsePlugin from "@jspsych/plugin-video-keyboard-response";
+import { JsPsych } from "/runtime/v1/jspsych@8.x";
 
 var jsPsych = initJsPsych();
 
@@ -45,6 +46,12 @@ export default function emotionRecognitionTask() {
     stimulus: `<p>Now onto video tasks, the video will be played twice for the subject to determine the emotion displayed.  Press any key to continue to the videos</p>`,
   };
 
+  const videoCover = {
+
+  }
+
+  const clickHandler = () => simulateKeyPress(jsPsych, 'a')
+
   const videoCheck = {
     type: VideoKeyboardResponsePlugin,
     stimulus: ["../video/Hello-There.mp4"],
@@ -71,4 +78,9 @@ export default function emotionRecognitionTask() {
   timeline.push(videoEmotionChoice);
 
   jsPsych.run(timeline);
+
+  function simulateKeyPress(jsPsych: JsPsych, key: string) {
+    jsPsych.pluginAPI.keyDown(key);
+    jsPsych.pluginAPI.keyUp(key);
+  }
 }

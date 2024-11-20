@@ -19,9 +19,14 @@
     "@jspsych/plugin-video-keyboard-response": "^2.0.0",
     "jspsych": "^8.0.1",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "@opendatacapture/runtime-v1": "latest",
+    "docsify": "^4.13.1"
   },
   "devDependencies": {
+    "@douglasneuroinformatics/eslint-config": "^4.3.0",
+    "@douglasneuroinformatics/tsconfig": "^1.0.1",
+    "@types/node": "^20.14.12",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^7.15.0",
