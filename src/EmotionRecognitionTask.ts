@@ -13,6 +13,15 @@ var jsPsych = initJsPsych();
 /* create timeline */
 
 export default function emotionRecognitionTask() {
+
+
+  const clickHandler = () => { document.addEventListener(
+    "click",
+    () => simulateKeyPress(jsPsych, "a"),
+    { once: true },
+  )};
+
+
   let timeline = [];
 
   const preload = {
@@ -29,8 +38,15 @@ export default function emotionRecognitionTask() {
 
   const audioCheck = {
     type: audioKeyboardResponse,
+    on_start: function () {
+      document.addEventListener(
+        "click",
+        () => simulateKeyPress(jsPsych, "a"),
+        { once: true },
+      );
+    },
     stimulus: "../audio/hello-there.mp3",
-    prompt: "<p>Press any key to continue</p>",
+    prompt: "<p>Press any key to continue after video is completed</p>",
     response_ends_trial: true,
   };
 
@@ -47,15 +63,20 @@ export default function emotionRecognitionTask() {
   };
 
   const videoCover = {
-
+    on_start: clickHandler,
+    type: HtmlKeyboardResponsePlugin,
+    stimulus: "",
+    prompt: `<div style="background-color:black; width:854px; height:364px">
+      <p></p>
+    </div>`
   }
 
-  const clickHandler = () => simulateKeyPress(jsPsych, 'a')
+
 
   const videoCheck = {
     type: VideoKeyboardResponsePlugin,
     stimulus: ["../video/Hello-There.mp4"],
-    prompt: "<p>Press any key to continue</p>",
+    prompt: "<p>Press any key to continue after video has completed</p>",
     response_ends_trial: true,
     autoplay: true,
     response_allowed_while_playing: false,
@@ -74,6 +95,7 @@ export default function emotionRecognitionTask() {
   timeline.push(audioCheck);
   timeline.push(audioEmotionChoice);
   timeline.push(videoInstructions);
+  timeline.push(videoCover)
   timeline.push(videoCheck);
   timeline.push(videoEmotionChoice);
 
