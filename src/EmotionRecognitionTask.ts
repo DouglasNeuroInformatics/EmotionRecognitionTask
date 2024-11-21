@@ -74,11 +74,74 @@ export default function emotionRecognitionTask() {
 
 
   const videoCheck = {
-    type: VideoKeyboardResponsePlugin,
-    stimulus: ["../video/Hello-There.mp4"],
+    type: HtmlKeyboardResponsePlugin,
+    stimulus: function() {
+      
+      let html = `
+       <style>
+    /* Style for the video container */
+    .video-container {
+      position: relative;
+      width: 640px;
+      height: 360px;
+      overflow: hidden;
+    }
+
+    /* The black overlay */
+    .video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    /* The video element */
+    video {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  </style>
+      
+
+    <div class="video-container">
+        <div class="video-overlay" id="overlay">
+           <p>Click to play</p>
+        </div>
+        <video height="auto" preload="none" src="../video/Hello-There.mp4">
+        </video>
+        
+    </div>
+    
+    <script>
+    // Get references to the video and overlay elements
+    const video = document.getElementById("video");
+    const overlay = document.getElementById("overlay");
+
+    // Add a click event listener to the overlay
+    overlay.addEventListener("click", function() {
+      // Hide the overlay
+      console.log('here')
+      overlay.style.display = "none";
+
+      // Play the video
+      video.play();
+    });
+
+  </script>
+    `;
+      return html
+    },
     prompt: "<p>Press any key to continue after video has completed</p>",
     response_ends_trial: true,
-    autoplay: true,
     response_allowed_while_playing: false,
   };
 
