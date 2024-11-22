@@ -7,6 +7,7 @@ import audioButtonResponse from "@jspsych/plugin-audio-button-response";
 import audioKeyboardResponse from "@jspsych/plugin-audio-keyboard-response";
 import VideoKeyboardResponsePlugin from "@jspsych/plugin-video-keyboard-response";
 import { JsPsych } from "/runtime/v1/jspsych@8.x";
+import test from "node:test";
 
 var jsPsych = initJsPsych();
 
@@ -71,7 +72,22 @@ export default function emotionRecognitionTask() {
     </div>`
   }
 
-
+  const testTrial = {
+    type: HtmlKeyboardResponsePlugin,
+    stimulus: `
+      <div>
+        <p>Press any key to continue.</p>
+      </div>
+    `,
+    choices: "ALL",
+    prompt: "Hi",
+    on_load: () => {
+      // Add an event listener for key presses
+      document.addEventListener("keydown", () => {
+        document.body.style.backgroundColor = "lightblue"; // Change background color
+      });
+    },
+  };
 
   const videoCheck = {
     type: HtmlKeyboardResponsePlugin,
@@ -116,33 +132,42 @@ export default function emotionRecognitionTask() {
         <div class="video-overlay" id="overlay">
            <p>Click to play</p>
         </div>
-        <video height="auto" preload="none" src="../video/Hello-There.mp4">
+        <video height="auto" id="video" preload="none" src="../video/Hello-There.mp4">
         </video>
         
     </div>
-    
-    <script>
-    // Get references to the video and overlay elements
-    const video = document.getElementById("video");
-    const overlay = document.getElementById("overlay");
-
-    // Add a click event listener to the overlay
-    overlay.addEventListener("click", function() {
-      // Hide the overlay
-      console.log('here')
-      overlay.style.display = "none";
-
-      // Play the video
-      video.play();
-    });
-
-  </script>
     `;
       return html
     },
     prompt: "<p>Press any key to continue after video has completed</p>",
     response_ends_trial: true,
     response_allowed_while_playing: false,
+    on_load: () => {
+      // Add an event listener for key presses
+      
+       // Get references to the video and overlay elements
+      const video = document.getElementById("video");
+      const overlay = document.getElementById("overlay");
+
+     // Add a click event listener to the overlay
+     if(overlay){
+      overlay.addEventListener("click", function() {
+        // Hide the overlay
+        overlay.style.display = "none";
+  
+        // Play the video
+        if(video){
+          console.log('here')
+          video.play().catch((err) => {
+            console.error("Error playing video:", err);
+          });
+        }
+      });
+
+     }
+     
+    },
+
   };
 
   const videoEmotionChoice = {
@@ -158,7 +183,7 @@ export default function emotionRecognitionTask() {
   timeline.push(audioCheck);
   timeline.push(audioEmotionChoice);
   timeline.push(videoInstructions);
-  timeline.push(videoCover)
+  timeline.push(videoCover);
   timeline.push(videoCheck);
   timeline.push(videoEmotionChoice);
 
