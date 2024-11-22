@@ -98,8 +98,8 @@ export default function emotionRecognitionTask() {
     /* Style for the video container */
     .video-container {
       position: relative;
-      width: 640px;
-      height: 360px;
+      width: 75vw;
+      height: 50vh;
       overflow: hidden;
     }
 
@@ -121,18 +121,20 @@ export default function emotionRecognitionTask() {
 
     /* The video element */
     video {
+      position: absolute;
+      object-fit: cover;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
-      display: block;
     }
   </style>
       
 
     <div class="video-container">
         <div class="video-overlay" id="overlay">
-           <p>Click to play</p>
         </div>
-        <video height="auto" id="video" preload="none" src="../video/Hello-There.mp4">
+        <video id="video" preload="none" src="../video/Hello-There.mp4">
         </video>
         
     </div>
@@ -156,8 +158,7 @@ export default function emotionRecognitionTask() {
         overlay.style.display = "none";
   
         // Play the video
-        if(video){
-          console.log('here')
+        if(video && video instanceof HTMLVideoElement){
           video.play().catch((err) => {
             console.error("Error playing video:", err);
           });
