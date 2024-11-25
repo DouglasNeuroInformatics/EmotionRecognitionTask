@@ -166,9 +166,9 @@ export default function emotionRecognitionTask() {
   };
 
   timeline.push(preload);
-  // timeline.push(instructions);
-  // timeline.push(audioCheck);
-  // timeline.push(audioEmotionChoice);
+  timeline.push(instructions);
+  timeline.push(audioCheck);
+  timeline.push(audioEmotionChoice);
   timeline.push(videoInstructions);
   timeline.push(videoCover);
   timeline.push(videoCheck);
