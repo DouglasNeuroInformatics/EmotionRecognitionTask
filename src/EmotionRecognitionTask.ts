@@ -112,13 +112,11 @@ export default function emotionRecognitionTask() {
       height: 100%;
     }
   </style>
-      
-
     <div class="video-container">
         <div class="video-overlay" id="overlay">
-          <svg height="200" width="300" xmlns="http://www.w3.org/2000/svg">
-            <line x1="125" y1="55" x2="125" y2="145" style="stroke:white;stroke-width:20" />
-            <line x1="75" y1="100" x2="175" y2="100" style="stroke:white;stroke-width:20" />
+          <svg height="100" width="100" xmlns="http://www.w3.org/2000/svg">
+            <line x1="50" y1="0" x2="50" y2="100" style="stroke:white;stroke-width:18" />
+            <line x1="0" y1="50" x2="100" y2="50" style="stroke:white;stroke-width:18" />
              Sorry, your browser does not support inline SVG.
           </svg>
         </div>
