@@ -116,6 +116,11 @@ export default function emotionRecognitionTask() {
 
     <div class="video-container">
         <div class="video-overlay" id="overlay">
+          <svg height="200" width="300" xmlns="http://www.w3.org/2000/svg">
+            <line x1="125" y1="55" x2="125" y2="145" style="stroke:white;stroke-width:20" />
+            <line x1="75" y1="100" x2="175" y2="100" style="stroke:white;stroke-width:20" />
+             Sorry, your browser does not support inline SVG.
+          </svg>
         </div>
         <video id="video" preload="none" src="../video/Hello-There.mp4">
         </video>
@@ -163,9 +168,9 @@ export default function emotionRecognitionTask() {
   };
 
   timeline.push(preload);
-  timeline.push(instructions);
-  timeline.push(audioCheck);
-  timeline.push(audioEmotionChoice);
+  // timeline.push(instructions);
+  // timeline.push(audioCheck);
+  // timeline.push(audioEmotionChoice);
   timeline.push(videoInstructions);
   timeline.push(videoCover);
   timeline.push(videoCheck);
