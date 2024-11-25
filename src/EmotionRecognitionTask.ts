@@ -72,23 +72,6 @@ export default function emotionRecognitionTask() {
     </div>`
   }
 
-  const testTrial = {
-    type: HtmlKeyboardResponsePlugin,
-    stimulus: `
-      <div>
-        <p>Press any key to continue.</p>
-      </div>
-    `,
-    choices: "ALL",
-    prompt: "Hi",
-    on_load: () => {
-      // Add an event listener for key presses
-      document.addEventListener("keydown", () => {
-        document.body.style.backgroundColor = "lightblue"; // Change background color
-      });
-    },
-  };
-
   const videoCheck = {
     type: HtmlKeyboardResponsePlugin,
     stimulus: function() {
