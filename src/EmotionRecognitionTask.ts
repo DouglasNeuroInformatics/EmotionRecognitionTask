@@ -112,7 +112,7 @@ export default function emotionRecognitionTask() {
              Sorry, your browser does not support inline SVG.
           </svg>
         </div>
-        <video id="video" preload="none" src="../video/Hello-There.mp4">
+        <video id="video" preload="auto" src="../video/Hello-There.mp4">
         </video>
         
     </div>
@@ -141,16 +141,19 @@ export default function emotionRecognitionTask() {
         
 
         // Hide the overlay
-        overlay.style.opacity = "0";
-
         setTimeout(() => {
-          if(video && video instanceof HTMLVideoElement){
-            video.play().catch((err) => {
-              console.error("Error playing video:", err);
-            });
-          }
-          
-        }, 300);
+          overlay.style.opacity = "0";
+          setTimeout(() => {
+            if(video && video instanceof HTMLVideoElement){
+              video.play().catch((err) => {
+                console.error("Error playing video:", err);
+              });
+            }
+            
+          }, 550);
+        }, 1400)
+
+       
 
         videoCount++
       });
