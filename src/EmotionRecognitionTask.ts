@@ -1,6 +1,7 @@
 import { initJsPsych } from "jspsych";
 import "jspsych/css/jspsych.css";
 import HtmlKeyboardResponsePlugin from "@jspsych/plugin-html-keyboard-response";
+import HtmlButtonResponse from '@jspsych/plugin-html-button-response';
 import videoButtonResponse from "@jspsych/plugin-video-button-response";
 import PreloadPlugin from "@jspsych/plugin-preload";
 import audioButtonResponse from "@jspsych/plugin-audio-button-response";
@@ -69,54 +70,54 @@ export default function emotionRecognitionTask() {
       
       let html = `
        <style>
-    /* Style for the video container */
-    .video-container {
-      position: relative;
-      width: 50vw;
-      height: 40vh;
-      overflow: hidden;
-    }
+        /* Style for the video container */
+        .video-container {
+          position: relative;
+          width: 50vw;
+          height: 40vh;
+          overflow: hidden;
+        }
 
-    /* The black overlay */
-    .video-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: black;
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      z-index: 2;
-      transition: .5s ease;
-    }
+        /* The black overlay */
+        .video-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: black;
+          color: white;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+          z-index: 2;
+          transition: .5s ease;
+        }
 
-    /* The video element */
-    video {
-      position: absolute;
-      object-fit: cover;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-  </style>
-    <div class="video-container">
-        <div class="video-overlay" id="overlay">
-          <svg id="overlay-cross" height="100" width="100" xmlns="http://www.w3.org/2000/svg">
-            <line x1="50" y1="0" x2="50" y2="100" style="stroke:white;stroke-width:18" />
-            <line x1="0" y1="50" x2="100" y2="50" style="stroke:white;stroke-width:18" />
-             Sorry, your browser does not support inline SVG.
-          </svg>
-        </div>
-        <video id="video" preload="auto" src="../video/Hello-There.mp4">
-        </video>
-        
-    </div>
-    `;
+        /* The video element */
+        video {
+          position: absolute;
+          object-fit: cover;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+        }
+      </style>
+      <div class="video-container">
+          <div class="video-overlay" id="overlay">
+            <svg id="overlay-cross" height="100" width="100" xmlns="http://www.w3.org/2000/svg">
+              <line x1="50" y1="0" x2="50" y2="100" style="stroke:white;stroke-width:18" />
+              <line x1="0" y1="50" x2="100" y2="50" style="stroke:white;stroke-width:18" />
+              Sorry, your browser does not support inline SVG.
+            </svg>
+          </div>
+          <video id="video" preload="auto" src="../video/Hello-There.mp4">
+          </video>
+          
+      </div>
+      `;
       return html
     },
     prompt: "<p>Press any key to continue after video has completed</p>",
@@ -133,11 +134,11 @@ export default function emotionRecognitionTask() {
       let videoCount = 0
 
      // Add a click event listener to the overlay
-     if(overlay && cross){
-      overlay.addEventListener("click", function() {
-        if(videoCount > 0){
-          return
-        }
+      if(overlay && cross){
+       overlay.addEventListener("click", function() {
+         if(videoCount > 0){
+           return
+         }
         
 
         // Hide the overlay
@@ -166,9 +167,190 @@ export default function emotionRecognitionTask() {
         overlay.style.opacity = "1"
         cross.style.display = "none"
         video.style.display = "none"
+        });
+      } 
+    }
+     
+    },
+
+  };
+
+
+  const videoCheckWithButtons = {
+    type: HtmlButtonResponse,
+    stimulus: function() {
+      
+      let html = `
+        <head>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        </head>
+       <style>
+        /* Style for the video container */
+        .video-container {
+          position: relative;
+          width: 50vw;
+          height: 40vh;
+          overflow: hidden;
+        }
+
+        /* The black overlay */
+        .video-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: black;
+          color: white;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+          z-index: 2;
+          transition: .5s ease;
+        }
+
+        /* The video element */
+        video {
+          position: absolute;
+          object-fit: cover;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+        }
+
+        .spacedButtons {
+          padding: 10px
+        }
+
+      </style>
+      <div class="video-container">
+          <div class="video-overlay" id="overlay">
+            <svg id="overlay-cross" height="100" width="100" xmlns="http://www.w3.org/2000/svg">
+              <line x1="50" y1="0" x2="50" y2="100" style="stroke:white;stroke-width:18" />
+              <line x1="0" y1="50" x2="100" y2="50" style="stroke:white;stroke-width:18" />
+              Sorry, your browser does not support inline SVG.
+            </svg>
+          </div>
+          <video id="video" preload="auto" src="../video/Hello-There.mp4">
+          </video>
+      </div>
+      `;
+      return html
+    },
+    choices: ["Joy", "Anger", "Madness"],
+    button_html: () => {
+      return `<div name='custom-button' style="padding:10px; display:none"><button class="btn btn-primary">%choice%</button></div>`;
+    } ,
+    prompt: "<p>Press any key to continue after video has completed</p>",
+    response_ends_trial: true,
+    response_allowed_while_playing: false,
+    
+    
+    on_load: () => {
+      // Add an event listener for key presses
+      
+       // Get references to the video and overlay elements
+      
+      const video = document.getElementById("video");
+      const overlay = document.getElementById("overlay");
+      const cross = document.getElementById("overlay-cross")
+
+      // let buttonOption1 = document.getElementById('label1')
+      // let buttonOption2 = document.getElementById('label2')
+      // let buttonOption3 = document.getElementById('label3')
+
+      /*
+       <div style="padding:20px">
+         <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-primary" id="label1">
+            <input type="radio" name="options" id="option1" autocomplete="off"> Joy
+          </label>
+          <label class="btn btn-primary" id="label2">
+            <input type="radio" name="options" id="option2" autocomplete="off"> Anger
+          </label>
+          <label class="btn btn-primary" id="label3">
+            <input type="radio" name="options" id="option3" autocomplete="off"> Sadness
+          </label>
+        </div>
+      </div>
+      */
+
+      // if(buttonOption1 && buttonOption2 && buttonOption3) {
+      //   const resetButtons = () => {
+      //     buttonOption1.className = "btn btn-primary"
+      //     buttonOption2.className = "btn btn-primary"
+      //     buttonOption3.className = "btn btn-primary"
+      //   }
+
+      //   buttonOption1.addEventListener("click", () => {
+      //     resetButtons()
+      //     buttonOption1.className = "btn btn-primary active"
+          
+      //   })
+      //   buttonOption2.addEventListener("click", () => {
+      //     resetButtons()
+      //     buttonOption2.className = "btn btn-primary active"
+          
+      //   })
+      //   buttonOption3.addEventListener("click", () => {
+      //     resetButtons()
+      //     buttonOption3.className = "btn btn-primary active"
+          
+      //   })
+      // }
+
+      let videoCount = 0
+
+     // Add a click event listener to the overlay
+      if(overlay && cross){
+       overlay.addEventListener("click", function() {
+        console.log('stuff')
+         if(videoCount > 0){
+           return
+         }
+        // Hide the overlay
+        setTimeout(() => {
+          overlay.style.opacity = "0";
+          setTimeout(() => {
+            if(video && video instanceof HTMLVideoElement){
+              video.play().catch((err) => {
+                console.error("Error playing video:", err);
+              });
+            }
+            
+          }, 550);
+        }, 1400)
+
+
+        videoCount++
       });
-     } 
-  }
+
+      // Add an event listener to show the overlay when the video ends
+      if (video && video instanceof HTMLVideoElement) {
+        video.addEventListener("ended", function() {
+      // Show the overlay again
+        overlay.style.display = "flex"; 
+        overlay.style.opacity = "1"
+        cross.style.display = "none"
+        video.style.display = "none"
+
+        let emotionButtons = document.getElementsByName('custom-button')
+
+          for(let i = 0 ; i < emotionButtons.length; i ++){
+            emotionButtons[i].style.display = 'flex'
+          
+          }
+
+
+       });
+      } 
+    }
      
     },
 
@@ -184,11 +366,12 @@ export default function emotionRecognitionTask() {
   };
 
   timeline.push(preload);
-  timeline.push(instructions);
-  timeline.push(audioCheck);
-  timeline.push(audioEmotionChoice);
-  timeline.push(videoInstructions);
-  timeline.push(videoCheck);
+  // timeline.push(instructions);
+  // timeline.push(audioCheck);
+  // timeline.push(audioEmotionChoice);
+  // timeline.push(videoInstructions);
+  // timeline.push(videoCheck);
+  timeline.push(videoCheckWithButtons);
   timeline.push(videoEmotionChoice);
 
   jsPsych.run(timeline);
