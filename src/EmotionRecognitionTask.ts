@@ -63,15 +63,6 @@ export default function emotionRecognitionTask() {
     stimulus: `<p>Now onto video tasks, the video will be played twice for the subject to determine the emotion displayed.  Press any key to continue to the videos</p>`,
   };
 
-  const videoCover = {
-    on_start: clickHandler,
-    type: HtmlKeyboardResponsePlugin,
-    stimulus: "",
-    prompt: `<div style="background-color:black; width:854px; height:364px">
-      <p></p>
-    </div>`
-  }
-
   const videoCheck = {
     type: HtmlKeyboardResponsePlugin,
     stimulus: function() {
@@ -81,8 +72,8 @@ export default function emotionRecognitionTask() {
     /* Style for the video container */
     .video-container {
       position: relative;
-      width: 75vw;
-      height: 50vh;
+      width: 50vw;
+      height: 40vh;
       overflow: hidden;
     }
 
@@ -151,7 +142,19 @@ export default function emotionRecognitionTask() {
         }
       });
 
+      // Add an event listener to show the overlay when the video ends
+      if (video && video instanceof HTMLVideoElement) {
+        video.addEventListener("ended", function() {
+      // Show the overlay again
+        overlay.style.display = "flex"; // Set it back to flex to maintain centering
+        setTimeout(() => {
+          overlay.style.opacity = "1";
+        }, 500);
+      });
      }
+
+      
+  }
      
     },
 
@@ -163,6 +166,7 @@ export default function emotionRecognitionTask() {
     choices: ["Joy", "Anger", "Relief"],
     prompt: "<p> Select the most accurate emotion </p>",
     response_allowed_while_playing: false,
+
   };
 
   timeline.push(preload);
@@ -170,7 +174,6 @@ export default function emotionRecognitionTask() {
   timeline.push(audioCheck);
   timeline.push(audioEmotionChoice);
   timeline.push(videoInstructions);
-  timeline.push(videoCover);
   timeline.push(videoCheck);
   timeline.push(videoEmotionChoice);
 
