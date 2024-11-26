@@ -6,9 +6,7 @@ import videoButtonResponse from "@jspsych/plugin-video-button-response";
 import PreloadPlugin from "@jspsych/plugin-preload";
 import audioButtonResponse from "@jspsych/plugin-audio-button-response";
 import audioKeyboardResponse from "@jspsych/plugin-audio-keyboard-response";
-import VideoKeyboardResponsePlugin from "@jspsych/plugin-video-keyboard-response";
 import { JsPsych } from "/runtime/v1/jspsych@8.x";
-import test from "node:test";
 
 var jsPsych = initJsPsych();
 
@@ -245,11 +243,13 @@ export default function emotionRecognitionTask() {
     },
     choices: ["Joy", "Anger", "Madness"],
     button_html: () => {
-      return `<div name='custom-button' style="padding:10px; display:none"><button class="btn btn-primary">%choice%</button></div>`;
-    } ,
+      return videoCheckWithButtons.choices.map(choice => `<button name='custom-button' class="btn btn-primary" style="margin: 10px; display:none">${choice}</button>`).join('')
+      // return `<div name='custom-button' style="padding:10px; "><button class="btn btn-primary"></button></div>`;
+    },
+
     prompt: "<p>Press any key to continue after video has completed</p>",
     response_ends_trial: true,
-    response_allowed_while_playing: false,
+    response_allowed_while_playing: true,
     
     
     on_load: () => {
