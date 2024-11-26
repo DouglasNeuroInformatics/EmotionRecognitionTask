@@ -261,49 +261,6 @@ export default function emotionRecognitionTask() {
       const overlay = document.getElementById("overlay");
       const cross = document.getElementById("overlay-cross")
 
-      // let buttonOption1 = document.getElementById('label1')
-      // let buttonOption2 = document.getElementById('label2')
-      // let buttonOption3 = document.getElementById('label3')
-
-      /*
-       <div style="padding:20px">
-         <div class="btn-group" data-toggle="buttons">
-          <label class="btn btn-primary" id="label1">
-            <input type="radio" name="options" id="option1" autocomplete="off"> Joy
-          </label>
-          <label class="btn btn-primary" id="label2">
-            <input type="radio" name="options" id="option2" autocomplete="off"> Anger
-          </label>
-          <label class="btn btn-primary" id="label3">
-            <input type="radio" name="options" id="option3" autocomplete="off"> Sadness
-          </label>
-        </div>
-      </div>
-      */
-
-      // if(buttonOption1 && buttonOption2 && buttonOption3) {
-      //   const resetButtons = () => {
-      //     buttonOption1.className = "btn btn-primary"
-      //     buttonOption2.className = "btn btn-primary"
-      //     buttonOption3.className = "btn btn-primary"
-      //   }
-
-      //   buttonOption1.addEventListener("click", () => {
-      //     resetButtons()
-      //     buttonOption1.className = "btn btn-primary active"
-          
-      //   })
-      //   buttonOption2.addEventListener("click", () => {
-      //     resetButtons()
-      //     buttonOption2.className = "btn btn-primary active"
-          
-      //   })
-      //   buttonOption3.addEventListener("click", () => {
-      //     resetButtons()
-      //     buttonOption3.className = "btn btn-primary active"
-          
-      //   })
-      // }
 
       let videoCount = 0
 
