@@ -91,6 +91,7 @@ export default function emotionRecognitionTask() {
       align-items: center;
       cursor: pointer;
       z-index: 2;
+      transition: .5s ease;
     }
 
     /* The video element */
@@ -105,7 +106,7 @@ export default function emotionRecognitionTask() {
   </style>
     <div class="video-container">
         <div class="video-overlay" id="overlay">
-          <svg height="100" width="100" xmlns="http://www.w3.org/2000/svg">
+          <svg id="overlay-cross" height="100" width="100" xmlns="http://www.w3.org/2000/svg">
             <line x1="50" y1="0" x2="50" y2="100" style="stroke:white;stroke-width:18" />
             <line x1="0" y1="50" x2="100" y2="50" style="stroke:white;stroke-width:18" />
              Sorry, your browser does not support inline SVG.
@@ -127,19 +128,31 @@ export default function emotionRecognitionTask() {
        // Get references to the video and overlay elements
       const video = document.getElementById("video");
       const overlay = document.getElementById("overlay");
+      const cross = document.getElementById("overlay-cross")
+
+      let videoCount = 0
 
      // Add a click event listener to the overlay
-     if(overlay){
+     if(overlay && cross){
       overlay.addEventListener("click", function() {
-        // Hide the overlay
-        overlay.style.display = "none";
-  
-        // Play the video
-        if(video && video instanceof HTMLVideoElement){
-          video.play().catch((err) => {
-            console.error("Error playing video:", err);
-          });
+        if(videoCount > 0){
+          return
         }
+        
+
+        // Hide the overlay
+        overlay.style.opacity = "0";
+
+        setTimeout(() => {
+          if(video && video instanceof HTMLVideoElement){
+            video.play().catch((err) => {
+              console.error("Error playing video:", err);
+            });
+          }
+          
+        }, 300);
+
+        videoCount++
       });
 
       // Add an event listener to show the overlay when the video ends
@@ -147,13 +160,11 @@ export default function emotionRecognitionTask() {
         video.addEventListener("ended", function() {
       // Show the overlay again
         overlay.style.display = "flex"; // Set it back to flex to maintain centering
-        setTimeout(() => {
-          overlay.style.opacity = "1";
-        }, 500);
+        overlay.style.opacity = "1"
+        cross.style.display = "none"
+        video.style.display = "none"
       });
-     }
-
-      
+     } 
   }
      
     },
