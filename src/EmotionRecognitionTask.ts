@@ -242,13 +242,12 @@ export default function emotionRecognitionTask() {
       return html
     },
     choices: ["Joy", "Anger", "Madness"],
-    button_html: () => {
-      return videoCheckWithButtons.choices.map(choice => `<button name='custom-button' class="btn btn-primary" style="margin: 10px; display:none">${choice}</button>`).join('')
-      // return `<div name='custom-button' style="padding:10px; "><button class="btn btn-primary"></button></div>`;
+    button_html: (choice: string) => {
+      return `<div name='custom-button' data-toggle="buttons" style="padding:10px; display:none; justify-content: center; align-items: center;  width: 100%"><button class="btn btn-primary" style="width:100%">${choice}</button></div>`;
     },
 
-    prompt: "<p>Press any key to continue after video has completed</p>",
-    response_ends_trial: true,
+    prompt: `<p>Press any key to continue after video has completed</p>`,
+    response_ends_trial: false,
     response_allowed_while_playing: true,
     
     
@@ -267,7 +266,6 @@ export default function emotionRecognitionTask() {
      // Add a click event listener to the overlay
       if(overlay && cross){
        overlay.addEventListener("click", function() {
-        console.log('stuff')
          if(videoCount > 0){
            return
          }
