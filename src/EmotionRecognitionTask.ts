@@ -9,6 +9,7 @@ import audioKeyboardResponse from "@jspsych/plugin-audio-keyboard-response";
 import { JsPsych } from "/runtime/v1/jspsych@8.x";
 
 var jsPsych = initJsPsych();
+let response: string, rt;
 
 /* create timeline */
 
@@ -167,7 +168,7 @@ export default function emotionRecognitionTask() {
         video.style.display = "none"
         });
       } 
-    }
+     }
      
     },
 
@@ -243,10 +244,11 @@ export default function emotionRecognitionTask() {
     },
     choices: ["Joy", "Anger", "Madness"],
     button_html: (choice: string) => {
-      return `<div name='custom-button' data-toggle="buttons" style="padding:10px; display:none; justify-content: center; align-items: center;  width: 100%"><button class="btn btn-primary" style="width:100%">${choice}</button></div>`;
+      return `<div name='custom-button-div' data-toggle="buttons" style="padding:10px; display:none; justify-content: center; align-items: center;  width: 100%"><button name="custom-button" class="btn btn-primary" style="width:100%">${choice}</button></div>`;
     },
 
-    prompt: `<p>Press any key to continue after video has completed</p>`,
+    prompt: `<p>Once the video completes and the emotion selection displays. PLease select the most accurate emotion displayed.
+    <br>Once you are satisfied with your answer press the "Enter" key to continue</p>`,
     response_ends_trial: false,
     response_allowed_while_playing: true,
     
@@ -262,6 +264,7 @@ export default function emotionRecognitionTask() {
 
 
       let videoCount = 0
+      let start_time = 0
 
      // Add a click event listener to the overlay
       if(overlay && cross){
@@ -295,17 +298,47 @@ export default function emotionRecognitionTask() {
         cross.style.display = "none"
         video.style.display = "none"
 
-        let emotionButtons = document.getElementsByName('custom-button')
+        let emotionButtons = document.getElementsByName('custom-button-div')
 
           for(let i = 0 ; i < emotionButtons.length; i ++){
             emotionButtons[i].style.display = 'flex'
           
           }
+           //set start time
+           start_time = performance.now();
 
 
        });
       } 
-    }
+     }
+        let buttonSelections = document.querySelectorAll('button[name="custom-button"]')
+
+        buttonSelections.forEach((button) => {
+          button.addEventListener('click', (e) => {
+            if(e.target === button){
+              let val = button.innerHTML;
+              response = val
+            }
+            
+          })
+        })
+
+
+        
+
+        document.addEventListener("keypress", (e) => {
+          if(e.key === "Enter"){
+           if(!response){
+            alert("Please select a button")
+            return
+           }
+           else{
+
+            jsPsych.finishTrial({rt: (performance.now() - start_time), response: response});
+           }
+          }
+        })
+
      
     },
 
@@ -335,4 +368,5 @@ export default function emotionRecognitionTask() {
     jsPsych.pluginAPI.keyDown(key);
     jsPsych.pluginAPI.keyUp(key);
   }
+
 }
