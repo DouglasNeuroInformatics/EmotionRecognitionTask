@@ -254,13 +254,25 @@ export default function emotionRecognitionTask() {
     
     
     on_load: () => {
-      // Add an event listener for key presses
-      
-       // Get references to the video and overlay elements
-      
       const video = document.getElementById("video");
       const overlay = document.getElementById("overlay");
       const cross = document.getElementById("overlay-cross")
+
+      let continueButton = document.createElement('button')
+
+      continueButton.style.alignContent = "center"
+      continueButton.style.position = "absolute"
+      continueButton.style.display = "None"
+      continueButton.style.top = "85%"
+      continueButton.className = "btn btn-primary"
+      continueButton.textContent = "Continue"
+    
+      
+
+      document.body.appendChild(continueButton)
+
+
+
 
 
       let videoCount = 0
@@ -304,6 +316,9 @@ export default function emotionRecognitionTask() {
             emotionButtons[i].style.display = 'flex'
           
           }
+          //reveal continue button
+          continueButton.style.display = "flex"
+
            //set start time
            start_time = performance.now();
 
@@ -326,17 +341,14 @@ export default function emotionRecognitionTask() {
 
         
 
-        document.addEventListener("keypress", (e) => {
-          if(e.key === "Enter"){
+        continueButton.addEventListener("click", (e) => {
+         
            if(!response){
             alert("Please select a button")
             return
-           }
-           else{
-
-            jsPsych.finishTrial({rt: (performance.now() - start_time), response: response});
-           }
           }
+          jsPsych.finishTrial({rt: (performance.now() - start_time), response: response});
+          continueButton.remove()
         })
 
      
@@ -374,12 +386,12 @@ export default function emotionRecognitionTask() {
 
   timeline.push(preload);
   timeline.push(instructions);
-  timeline.push(audioCheck);
+  // timeline.push(audioCheck);
   // timeline.push(audioEmotionChoice);
   // timeline.push(videoInstructions);
-  // timeline.push(videoCheck);
-  //timeline.push(videoCheckWithButtons);
-  timeline.push(videoEmotionChoice);
+  //timeline.push(videoCheck);
+  timeline.push(videoCheckWithButtons);
+  // timeline.push(videoEmotionChoice);
 
   jsPsych.run(timeline);
 
