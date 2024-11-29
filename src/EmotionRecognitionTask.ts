@@ -180,13 +180,6 @@ export default function emotionRecognitionTask() {
     stimulus: function() {
       
       let html = `
-        <head>
-          <meta charset="utf-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1">
-          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        </head>
        <style>
         /* Style for the video container */
         .video-container {
@@ -194,6 +187,7 @@ export default function emotionRecognitionTask() {
           width: 50vw;
           height: 40vh;
           overflow: hidden;
+          background-color: black;
         }
 
         /* The black overlay */
@@ -217,6 +211,7 @@ export default function emotionRecognitionTask() {
         video {
           position: absolute;
           object-fit: cover;
+          display: flex;
           top: 0;
           left: 0;
           width: 100%;
@@ -254,6 +249,8 @@ export default function emotionRecognitionTask() {
     
     
     on_load: () => {
+      addBootstrapScripts()
+      
       const video = document.getElementById("video");
       const overlay = document.getElementById("overlay");
       const cross = document.getElementById("overlay-cross")
@@ -384,10 +381,26 @@ export default function emotionRecognitionTask() {
     }
    };
 
+  const addBootstrapScripts = () => {
+    let link = document.createElement('link')
+    let ajaxScript = document.createElement('script')
+    let bootstrapScript = document.createElement('script')
+
+    link.rel = "stylesheet"
+    link.href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+
+    ajaxScript.src = "https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    bootstrapScript.src = "https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+
+    document.head.appendChild(link)
+    document.head.appendChild(ajaxScript)
+    document.head.appendChild(bootstrapScript)
+  }
+
   timeline.push(preload);
   timeline.push(instructions);
-  // timeline.push(audioCheck);
-  // timeline.push(audioEmotionChoice);
+  timeline.push(audioCheck);
+  timeline.push(audioEmotionChoice);
   // timeline.push(videoInstructions);
   //timeline.push(videoCheck);
   timeline.push(videoCheckWithButtons);
