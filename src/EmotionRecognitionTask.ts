@@ -298,7 +298,6 @@ export default function emotionRecognitionTask() {
       if (video && video instanceof HTMLVideoElement) {
         video.addEventListener("ended", function() {
       // Show the overlay again
-        overlay.style.display = "flex"; 
         overlay.style.opacity = "1"
         cross.style.display = "none"
         video.style.display = "none"
