@@ -242,8 +242,8 @@ export default function emotionRecognitionTask() {
       return `<div name='custom-button-div' data-toggle="buttons" style="padding:10px; display:none; justify-content: center; align-items: center;  width: 100%"><button name="custom-button" class="btn btn-primary" style="width:100%">${choice}</button></div>`;
     },
 
-    prompt: `<p>Once the video completes and the emotion selection displays. PLease select the most accurate emotion displayed.
-    <br>Once you are satisfied with your answer press the "Enter" key to continue</p>`,
+    prompt: `<p>Once the video completes and the emotion selection displays. Please select the most accurate emotion displayed.
+    <br>Once you are satisfied with your answer press the "Continue" button</p>`,
     response_ends_trial: false,
     response_allowed_while_playing: true,
     
@@ -267,10 +267,6 @@ export default function emotionRecognitionTask() {
       
 
       document.body.appendChild(continueButton)
-
-
-
-
 
       let videoCount = 0
       let start_time = 0
@@ -335,9 +331,6 @@ export default function emotionRecognitionTask() {
           })
         })
 
-
-        
-
         continueButton.addEventListener("click", (e) => {
          
            if(!response){
@@ -348,7 +341,6 @@ export default function emotionRecognitionTask() {
           continueButton.remove()
         })
 
-     
     },
 
   };
