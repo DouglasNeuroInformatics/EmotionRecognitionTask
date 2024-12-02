@@ -49,13 +49,84 @@ export default function emotionRecognitionTask() {
     stimulus: "../audio/hello-there.mp3",
     prompt: "<p>Press any key to continue after video is completed</p>",
     response_ends_trial: true,
+    response_allowed_while_playing: false,
+    
   };
+
 
   const audioEmotionChoice = {
     type: audioButtonResponse,
     stimulus: "../audio/hello-there.mp3",
     choices: ["Joy", "Anger", "Relief"],
+    button_html: (choice: string) => {
+      return `<div name='custom-button-div' data-toggle="buttons" style="padding:10px; justify-content: center; align-items: center;  width: 100%"><button name="custom-button" class="btn btn-primary" style="width:100%">${choice}</button></div>`;
+    },
     prompt: "<p>Select the most accurate emotion </p>",
+    
+    response_allowed_while_playing: false,
+    correct_answer: "Joy",
+
+    on_load: () => {
+      const audioElement = document.querySelector('audio');
+      console.log(audioElement)
+
+    }
+
+  };
+
+  const audioHtmlEmotionChoice = {
+    type: HtmlButtonResponse,
+    stimulus: function() {
+      let html = `
+      <svg id="audioIcon" xmlns="http://www.w3.org/2000/svg" style="align-content: center; left: 300px" version="1.0" width="200" height="200" viewBox="0 0 45 100">
+        <path d="M39.389,13.769 L22.235,28.606 L6,28.606 L6,47.699 L21.989,47.699 L39.389,62.75 L39.389,13.769z" style="stroke:#111;stroke-width:5;stroke-linejoin:round;fill:#111;"/>
+        <path d="M48,27.6a19.5,19.5 0 0 1 0,21.4M55.1,20.5a30,30 0 0 1 0,35.6M61.6,14a38.8,38.8 0 0 1 0,48.6" style="fill:none;stroke:#111;stroke-width:5;stroke-linecap:round"/>
+      </svg>
+      <audio id="audioContent" preload="auto">
+        <source src="../audio/hello-there.mp3" type="audio/mpeg">
+      </audio>
+      `
+
+      return html
+
+    },
+    choices: ["Joy", "Anger", "Relief"],
+    button_html: (choice: string) => {
+      return `<div name='custom-button-div' data-toggle="buttons" style="padding:10px;  display:none; justify-content: center; align-items: center;  width: 100%"><button name="custom-button" class="btn btn-primary" style="width:100%">${choice}</button></div>`;
+    },
+    prompt: "<p>Select the most accurate emotion </p>",
+    
+    response_allowed_while_playing: false,
+    correct_answer: "Joy",
+    response_ends_trail: false,
+
+    on_load: () => {
+      let playOnce = false;
+      const audioIcon = document.getElementById("audioIcon")
+      const audioContent = document.getElementById("audioContent")
+
+      if(audioIcon){
+        audioIcon.addEventListener("click", () => {
+          if(audioContent && audioContent instanceof HTMLAudioElement && !playOnce){
+            audioContent.play()
+            playOnce = true
+          }
+
+        })
+      }
+
+      if(audioContent && audioContent instanceof HTMLAudioElement){
+        audioContent.addEventListener('ended', () => {
+          revealEmotioButtons()
+        }
+
+        )
+      }
+
+      
+
+    }
+
   };
 
   const videoInstructions = {
@@ -180,61 +251,59 @@ export default function emotionRecognitionTask() {
     stimulus: function() {
       
       let html = `
-       <style>
-        /* Style for the video container */
-        .video-container {
-          position: relative;
-          width: 50vw;
-          height: 40vh;
-          overflow: hidden;
-          background-color: black;
-        }
+      <style>
+       /* Style for the video container */
+       .video-container {
+         position: relative;
+         width: 50vw;
+         height: 40vh;
+         overflow: hidden;
+       }
 
-        /* The black overlay */
-        .video-overlay {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background-color: black;
-          color: white;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          cursor: pointer;
-          z-index: 2;
-          transition: .5s ease;
-        }
+       /* The black overlay */
+       .video-overlay {
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         background-color: black;
+         color: white;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         cursor: pointer;
+         z-index: 2;
+         transition: .5s ease;
+       }
 
-        /* The video element */
-        video {
-          position: absolute;
-          object-fit: cover;
-          display: flex;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-        }
+       /* The video element */
+       video {
+         position: absolute;
+         object-fit: cover;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+       }
+     </style>
+     <div class="video-container">
+         <div class="video-overlay" id="overlay">
+           <svg id="overlay-cross" height="100" width="100" xmlns="http://www.w3.org/2000/svg">
+             <line x1="50" y1="0" x2="50" y2="100" style="stroke:white;stroke-width:18" />
+             <line x1="0" y1="50" x2="100" y2="50" style="stroke:white;stroke-width:18" />
+             Sorry, your browser does not support inline SVG.
+           </svg>
+         </div>
+         <video id="video" preload="auto" src="../video/Hello-There.mp4">
+         </video>
 
-        .spacedButtons {
+         .spacedButtons {
           padding: 10px
         }
-
-      </style>
-      <div class="video-container">
-          <div class="video-overlay" id="overlay">
-            <svg id="overlay-cross" height="100" width="100" xmlns="http://www.w3.org/2000/svg">
-              <line x1="50" y1="0" x2="50" y2="100" style="stroke:white;stroke-width:18" />
-              <line x1="0" y1="50" x2="100" y2="50" style="stroke:white;stroke-width:18" />
-              Sorry, your browser does not support inline SVG.
-            </svg>
-          </div>
-          <video id="video" preload="auto" src="../video/Hello-There.mp4">
-          </video>
-      </div>
-      `;
+         
+     </div>
+     `;
       return html
     },
     choices: ["Joy", "Anger", "Madness"],
@@ -255,17 +324,7 @@ export default function emotionRecognitionTask() {
       const overlay = document.getElementById("overlay");
       const cross = document.getElementById("overlay-cross")
 
-      let continueButton = document.createElement('button')
-
-      continueButton.style.alignContent = "center"
-      continueButton.style.position = "absolute"
-      continueButton.style.display = "None"
-      continueButton.style.top = "85%"
-      continueButton.className = "btn btn-primary"
-      continueButton.textContent = "Continue"
-    
-      
-
+      let continueButton = addContinueButton()
       document.body.appendChild(continueButton)
 
       let videoCount = 0
@@ -302,12 +361,8 @@ export default function emotionRecognitionTask() {
         cross.style.display = "none"
         video.style.display = "none"
 
-        let emotionButtons = document.getElementsByName('custom-button-div')
+        revealEmotioButtons()
 
-          for(let i = 0 ; i < emotionButtons.length; i ++){
-            emotionButtons[i].style.display = 'flex'
-          
-          }
           //reveal continue button
           continueButton.style.display = "flex"
 
@@ -339,9 +394,7 @@ export default function emotionRecognitionTask() {
           jsPsych.finishTrial({rt: (performance.now() - start_time), response: response});
           continueButton.remove()
         })
-
     },
-
   };
 
   const videoEmotionChoice = {
@@ -390,18 +443,42 @@ export default function emotionRecognitionTask() {
 
   timeline.push(preload);
   timeline.push(instructions);
+  timeline.push(audioHtmlEmotionChoice)
   timeline.push(audioCheck);
   timeline.push(audioEmotionChoice);
-  // timeline.push(videoInstructions);
-  //timeline.push(videoCheck);
+  timeline.push(videoInstructions);
+  timeline.push(videoCheck);
   timeline.push(videoCheckWithButtons);
-  // timeline.push(videoEmotionChoice);
+  timeline.push(videoEmotionChoice);
 
   jsPsych.run(timeline);
 
   function simulateKeyPress(jsPsych: JsPsych, key: string) {
     jsPsych.pluginAPI.keyDown(key);
     jsPsych.pluginAPI.keyUp(key);
+  }
+
+  const addContinueButton = () => {
+    let continueButton = document.createElement('button')
+
+    continueButton.style.alignContent = "center"
+    continueButton.style.position = "absolute"
+    continueButton.style.display = "None"
+    continueButton.style.top = "85%"
+    continueButton.className = "btn btn-primary"
+    continueButton.textContent = "Continue"
+    
+    return continueButton
+  }
+
+  const revealEmotioButtons = () => {
+
+    let emotionButtons = document.getElementsByName('custom-button-div')
+
+    for(let i = 0 ; i < emotionButtons.length; i ++){
+      emotionButtons[i].style.display = 'flex'
+    }
+
   }
 
 }
