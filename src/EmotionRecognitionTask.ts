@@ -2,9 +2,7 @@ import { initJsPsych } from "jspsych";
 import "jspsych/css/jspsych.css";
 import HtmlKeyboardResponsePlugin from "@jspsych/plugin-html-keyboard-response";
 import HtmlButtonResponse from '@jspsych/plugin-html-button-response';
-import videoButtonResponse from "@jspsych/plugin-video-button-response";
 import PreloadPlugin from "@jspsych/plugin-preload";
-import audioButtonResponse from "@jspsych/plugin-audio-button-response";
 import audioKeyboardResponse from "@jspsych/plugin-audio-keyboard-response";
 import { JsPsych } from "/runtime/v1/jspsych@8.x";
 
