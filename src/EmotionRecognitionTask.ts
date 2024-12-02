@@ -376,33 +376,6 @@ export default function emotionRecognitionTask() {
     },
   };
 
-  const videoEmotionChoice = {
-    type: videoButtonResponse,
-    stimulus: ["../video/Hello-There.mp4"],
-    choices: ["Joy", "Anger", "Relief"],
-    prompt: "<p> Select the most accurate emotion </p>",
-    response_allowed_while_playing: false,
-    button_html: (choice: string) => {
-      return `
-      <div name='custom-button-div' data-toggle="buttons" style="padding:10px; justify-content: center; align-items: center;  width: 100%"><button name="custom-button" class="btn btn-primary" style="width:100%">${choice}</button></div>`;
-    },
-    response_ends_trial: false,
-    on_load: function() {
-      let link = document.createElement('link')
-      let ajaxScript = document.createElement('script')
-      let bootstrapScript = document.createElement('script')
-
-      link.rel = "stylesheet"
-      link.href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-
-      ajaxScript.src = "https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-      bootstrapScript.src = "https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
-
-      document.head.appendChild(link)
-      document.head.appendChild(ajaxScript)
-      document.head.appendChild(bootstrapScript)
-    }
-   };
 
   const addBootstrapScripts = () => {
     let link = document.createElement('link')
@@ -424,12 +397,9 @@ export default function emotionRecognitionTask() {
   timeline.push(instructions);
   timeline.push(audioHtmlEmotionChoice)
   timeline.push(audioCheck);
-  timeline.push(audioEmotionChoice);
   timeline.push(videoInstructions);
   timeline.push(videoCheck);
   timeline.push(videoCheckWithButtons);
-  timeline.push(videoEmotionChoice);
-
   jsPsych.run(timeline);
 
   function simulateKeyPress(jsPsych: JsPsych, key: string) {
