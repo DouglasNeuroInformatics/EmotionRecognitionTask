@@ -53,27 +53,6 @@ export default function emotionRecognitionTask() {
     
   };
 
-
-  const audioEmotionChoice = {
-    type: audioButtonResponse,
-    stimulus: "../audio/hello-there.mp3",
-    choices: ["Joy", "Anger", "Relief"],
-    button_html: (choice: string) => {
-      return `<div name='custom-button-div' data-toggle="buttons" style="padding:10px; justify-content: center; align-items: center;  width: 100%"><button name="custom-button" class="btn btn-primary" style="width:100%">${choice}</button></div>`;
-    },
-    prompt: "<p>Select the most accurate emotion </p>",
-    
-    response_allowed_while_playing: false,
-    correct_answer: "Joy",
-
-    on_load: () => {
-      const audioElement = document.querySelector('audio');
-      console.log(audioElement)
-
-    }
-
-  };
-
   const audioHtmlEmotionChoice = {
     type: HtmlButtonResponse,
     stimulus: function() {
