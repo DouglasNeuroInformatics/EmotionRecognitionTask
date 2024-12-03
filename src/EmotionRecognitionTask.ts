@@ -7,7 +7,6 @@ import audioKeyboardResponse from "@jspsych/plugin-audio-keyboard-response";
 import { JsPsych } from "/runtime/v1/jspsych@8.x";
 
 var jsPsych = initJsPsych();
-let response: string, rt;
 
 /* create timeline */
 
@@ -55,7 +54,7 @@ export default function emotionRecognitionTask() {
     type: HtmlButtonResponse,
     stimulus: function() {
       let html = `
-      <svg id="audioIcon" xmlns="http://www.w3.org/2000/svg" style="align-content: center; left: 300px" version="1.0" width="200" height="200" viewBox="0 0 45 100">
+      <svg id="audioIcon" xmlns="http://www.w3.org/2000/svg" style="align-content: center;" version="1.0" width="200" height="200" viewBox="0 0 45 120">
         <path d="M39.389,13.769 L22.235,28.606 L6,28.606 L6,47.699 L21.989,47.699 L39.389,62.75 L39.389,13.769z" style="stroke:#111;stroke-width:5;stroke-linejoin:round;fill:#111;"/>
         <path d="M48,27.6a19.5,19.5 0 0 1 0,21.4M55.1,20.5a30,30 0 0 1 0,35.6M61.6,14a38.8,38.8 0 0 1 0,48.6" style="fill:none;stroke:#111;stroke-width:5;stroke-linecap:round"/>
       </svg>
@@ -94,7 +93,7 @@ export default function emotionRecognitionTask() {
 
       if(audioContent && audioContent instanceof HTMLAudioElement){
         audioContent.addEventListener('ended', () => {
-          revealEmotioButtons()
+          revealEmotionButtons()
         }
 
         )
@@ -304,13 +303,15 @@ export default function emotionRecognitionTask() {
       let continueButton = addContinueButton()
       document.body.appendChild(continueButton)
 
-      let videoCount = 0
+      let videoCount = false
       let start_time = 0
+
+      let response: string
 
      // Add a click event listener to the overlay
       if(overlay && cross){
        overlay.addEventListener("click", function() {
-         if(videoCount > 0){
+         if(videoCount){
            return
          }
         // Hide the overlay
@@ -326,8 +327,7 @@ export default function emotionRecognitionTask() {
           }, 550);
         }, 1400)
 
-
-        videoCount++
+        videoCount = true
       });
 
       // Add an event listener to show the overlay when the video ends
@@ -338,13 +338,13 @@ export default function emotionRecognitionTask() {
         cross.style.display = "none"
         video.style.display = "none"
 
-        revealEmotioButtons()
+        revealEmotionButtons()
 
-          //reveal continue button
-          continueButton.style.display = "flex"
+        //reveal continue button
+        continueButton.style.display = "flex"
 
-           //set start time
-           start_time = performance.now();
+        //set start time
+        start_time = performance.now();
 
 
        });
@@ -375,6 +375,15 @@ export default function emotionRecognitionTask() {
   };
 
 
+  timeline.push(preload);
+  timeline.push(instructions);
+  timeline.push(audioHtmlEmotionChoice)
+  // timeline.push(audioCheck);
+  // timeline.push(videoInstructions);
+  // timeline.push(videoCheck);
+  // timeline.push(videoCheckWithButtons);
+  jsPsych.run(timeline);
+
   const addBootstrapScripts = () => {
     let link = document.createElement('link')
     let ajaxScript = document.createElement('script')
@@ -391,14 +400,7 @@ export default function emotionRecognitionTask() {
     document.head.appendChild(bootstrapScript)
   }
 
-  timeline.push(preload);
-  timeline.push(instructions);
-  timeline.push(audioHtmlEmotionChoice)
-  timeline.push(audioCheck);
-  timeline.push(videoInstructions);
-  timeline.push(videoCheck);
-  timeline.push(videoCheckWithButtons);
-  jsPsych.run(timeline);
+
 
   function simulateKeyPress(jsPsych: JsPsych, key: string) {
     jsPsych.pluginAPI.keyDown(key);
@@ -418,14 +420,13 @@ export default function emotionRecognitionTask() {
     return continueButton
   }
 
-  const revealEmotioButtons = () => {
+  const revealEmotionButtons = () => {
 
     let emotionButtons = document.getElementsByName('custom-button-div')
 
     for(let i = 0 ; i < emotionButtons.length; i ++){
       emotionButtons[i].style.display = 'flex'
     }
-
   }
 
 }
