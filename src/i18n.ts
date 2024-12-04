@@ -44,6 +44,10 @@ const i18n = createI18Next({
       en: "Submit",
       fr: "Soumettre",
     },
+    continue: {
+      en: "Continue",
+      fr: "Continuer"
+    },
   },
 });
 // the whole i18n implementation needs to be changed
