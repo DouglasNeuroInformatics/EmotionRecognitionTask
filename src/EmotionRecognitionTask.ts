@@ -114,6 +114,63 @@ export default function emotionRecognitionTask() {
     
   };
 
+
+  const audioHtmlTask = {
+    type: HtmlKeyboardResponsePlugin,
+    stimulus: function() {
+      return audioHtml
+    },
+    prompt: "<p>Click on the sound icon to play audio</p>",
+    
+    response_allowed_while_playing: false,
+    response_ends_trial: false,
+
+    on_load: () => {
+      addBootstrapScripts()
+
+      let playOnce = false;
+      const audioIcon = document.getElementById("audioIcon")
+      const audioContent = document.getElementById("audioContent")
+
+      let continueButton = addContinueButton()
+      let continueButtonDiv = createContinueButtonDiv(continueButton)
+      const jsPsychContent = document.getElementById('jspsych-content')
+      
+      if(jsPsychContent){
+        jsPsychContent.appendChild(continueButtonDiv)
+      }
+      else {
+        document.body.appendChild(continueButtonDiv)
+      }
+      
+
+      if(audioIcon){
+        audioIcon.addEventListener("click", () => {
+          if(audioContent && audioContent instanceof HTMLAudioElement && !playOnce){
+            audioContent.play()
+            playOnce = true
+          }
+
+        })
+      }
+
+      if(audioContent && audioContent instanceof HTMLAudioElement){
+        audioContent.addEventListener('ended', () => {
+          continueButton.style.display = 'flex'
+        }
+
+        )
+      }
+
+      continueButton.addEventListener("click", () => {
+        jsPsych.finishTrial();
+        continueButton.remove()
+      })
+
+    }
+
+  };
+
   const audioHtmlEmotionChoice = {
     type: HtmlButtonResponse,
     stimulus: function() {
@@ -140,12 +197,14 @@ export default function emotionRecognitionTask() {
       let start_time = 0;
 
       let continueButton = addContinueButton()
-      const jspsychContent = document.getElementById('jspsych-content')
-      if(jspsychContent){
-        jspsychContent.appendChild(continueButton)
+      let continueButtonDiv = createContinueButtonDiv(continueButton)
+      const jsPsychContent = document.getElementById('jspsych-content')
+      
+      if(jsPsychContent){
+        jsPsychContent.appendChild(continueButtonDiv)
       }
       else {
-        document.body.appendChild(continueButton)
+        document.body.appendChild(continueButtonDiv)
       }
       
 
@@ -289,7 +348,15 @@ export default function emotionRecognitionTask() {
       const cross = document.getElementById("overlay-cross")
 
       let continueButton = addContinueButton()
-      document.body.appendChild(continueButton)
+      let continueButtonDiv = createContinueButtonDiv(continueButton)
+      const jsPsychContent = document.getElementById('jspsych-content')
+      
+      if(jsPsychContent){
+        jsPsychContent.appendChild(continueButtonDiv)
+      }
+      else {
+        document.body.appendChild(continueButtonDiv)
+      }
 
       let videoCount = false
       let start_time = 0
@@ -367,8 +434,8 @@ export default function emotionRecognitionTask() {
 
   timeline.push(preload);
   timeline.push(instructions);
+  timeline.push(audioHtmlTask)
   timeline.push(audioHtmlEmotionChoice)
-  timeline.push(audioCheck);
   timeline.push(videoInstructions);
   timeline.push(videoCheck);
   timeline.push(videoCheckWithButtons);
@@ -412,6 +479,17 @@ export default function emotionRecognitionTask() {
     continueButton.textContent = "Continue"
     
     return continueButton
+  }
+
+  const createContinueButtonDiv = (continueButton: HTMLButtonElement) => {
+    let continueButtonDiv = document.createElement('div')
+    continueButtonDiv.style.justifyContent = "center"
+    continueButtonDiv.style.alignItems = "center"
+    continueButtonDiv.style.display = "flex"
+    continueButtonDiv.appendChild(continueButton)
+
+    return continueButtonDiv
+
   }
 
   const revealEmotionButtons = () => {
