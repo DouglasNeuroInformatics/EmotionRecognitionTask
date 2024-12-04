@@ -3,7 +3,6 @@ import "jspsych/css/jspsych.css";
 import HtmlKeyboardResponsePlugin from "@jspsych/plugin-html-keyboard-response";
 import HtmlButtonResponse from '@jspsych/plugin-html-button-response';
 import PreloadPlugin from "@jspsych/plugin-preload";
-import audioKeyboardResponse from "@jspsych/plugin-audio-keyboard-response";
 import { JsPsych } from "/runtime/v1/jspsych@8.x";
 
 var jsPsych = initJsPsych();
@@ -97,23 +96,6 @@ export default function emotionRecognitionTask() {
     type: HtmlKeyboardResponsePlugin,
     stimulus: `<p>Hello this is a test. The audio will play twice. please select the most accurate emotion displayed after</p>`,
   };
-
-  const audioCheck = {
-    type: audioKeyboardResponse,
-    on_start: function () {
-      document.addEventListener(
-        "click",
-        () => simulateKeyPress(jsPsych, "a"),
-        { once: true },
-      );
-    },
-    stimulus: "../audio/hello-there.mp3",
-    prompt: "<p>Press any key to continue after video is completed</p>",
-    response_ends_trial: true,
-    response_allowed_while_playing: false,
-    
-  };
-
 
   const audioHtmlTask = {
     type: HtmlKeyboardResponsePlugin,
@@ -319,7 +301,6 @@ export default function emotionRecognitionTask() {
      }
      
     },
-
   };
 
 
@@ -402,7 +383,6 @@ export default function emotionRecognitionTask() {
         //set start time
         start_time = performance.now();
 
-
         });
        } 
       }
@@ -415,7 +395,6 @@ export default function emotionRecognitionTask() {
             let val = button.innerHTML;
             response = val
           }
-          
         })
       })
       
@@ -430,7 +409,6 @@ export default function emotionRecognitionTask() {
       })
     },
   };
-
 
   timeline.push(preload);
   timeline.push(instructions);
@@ -456,8 +434,6 @@ export default function emotionRecognitionTask() {
     document.head.appendChild(ajaxScript)
     document.head.appendChild(bootstrapScript)
   }
-
-
 
   function simulateKeyPress(jsPsych: JsPsych, key: string) {
     jsPsych.pluginAPI.keyDown(key);
