@@ -96,6 +96,12 @@ export default function emotionRecognitionTask() {
   const instructions = {
     type: HtmlKeyboardResponsePlugin,
     stimulus: `<p>Hello this is a test. The audio will play twice. please select the most accurate emotion displayed after</p>`,
+    on_load: function () {
+      document.addEventListener('click', clickHandler)
+    },
+    on_finish: function () {
+      document.removeEventListener('click', clickHandler)
+    }
   };
 
   const audioHtmlTask = {
@@ -242,6 +248,12 @@ export default function emotionRecognitionTask() {
   const videoInstructions = {
     type: HtmlKeyboardResponsePlugin,
     stimulus: `<p>Now onto video tasks, the video will be played twice for the subject to determine the emotion displayed.  Press any key to continue to the videos</p>`,
+    on_load: function () {
+      document.addEventListener('click', clickHandler)
+    },
+    on_finish: function () {
+      document.removeEventListener('click', clickHandler)
+    }
   };
 
   const videoCheck = {
