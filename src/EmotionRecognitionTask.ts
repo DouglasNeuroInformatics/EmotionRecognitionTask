@@ -7,7 +7,7 @@ import { JsPsych } from "/runtime/v1/jspsych@8.x";
 import { addBootstrapScripts, addContinueButton, createContinueButtonDiv, revealEmotionButtons } from "./helperFunctions";
 import * as mediaData from  '../src/mediaContentData.json'
 
-let jsPsych = initJsPsych();
+const jsPsych = initJsPsych();
 
 /* create timeline */
 
