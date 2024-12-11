@@ -231,7 +231,7 @@ export default function emotionRecognitionTask() {
 
       buttonSelections.forEach((button) => {
         button.addEventListener('click', (e) => {
-          if(e.target === button){
+          if(e.target instanceof HTMLButtonElement && e.target === button){
             const val = button.innerHTML;
             response = val
           }
@@ -427,10 +427,9 @@ export default function emotionRecognitionTask() {
 
       buttonSelections.forEach((button) => {
         button.addEventListener('click', (e) => {
-          if(e.target === button){
+          if(e.target instanceof HTMLButtonElement && e.target === button){
             const val = button.innerHTML;
             response = val
-            
           }
         })
       })
