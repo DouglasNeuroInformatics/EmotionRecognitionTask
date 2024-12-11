@@ -9,7 +9,7 @@ export const addContinueButton = () => {
     continueButton.style.position = "flex"
     continueButton.style.display = "None"
     continueButton.style.margin = "0"
-    continueButton.className = "btn btn-primary"
+    continueButton.className = "btn btn-primary btn-lg"
     continueButton.textContent = "Continue"
     
     return continueButton
@@ -37,16 +37,14 @@ export const addContinueButton = () => {
 
   export const addBootstrapScripts = () => {
     const link = document.createElement('link')
-    const ajaxScript = document.createElement('script')
     const bootstrapScript = document.createElement('script')
 
     link.rel = "stylesheet"
-    link.href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    link.href = "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
 
-    ajaxScript.src = "https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-    bootstrapScript.src = "https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+    
+    bootstrapScript.src = "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 
     document.head.appendChild(link)
-    document.head.appendChild(ajaxScript)
     document.head.appendChild(bootstrapScript)
   }
