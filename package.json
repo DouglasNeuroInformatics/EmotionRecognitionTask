@@ -19,6 +19,7 @@
     "@jspsych/plugin-video-button-response": "^2.0.0",
     "@jspsych/plugin-video-keyboard-response": "^2.0.0",
     "@opendatacapture/runtime-v1": "latest",
+    "@douglasneuroinformatics/libui": "^3.7.3",
     "docsify": "^4.13.1",
     "jspsych": "^8.0.1",
     "react": "^18.3.1",
