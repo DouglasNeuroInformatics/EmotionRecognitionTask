@@ -7,7 +7,7 @@ import { JsPsych } from "/runtime/v1/jspsych@8.x";
 import { addBootstrapScripts, addContinueButton, createContinueButtonDiv, revealEmotionButtons } from "./helperFunctions";
 import * as mediaData from  '../src/mediaContentData.json'
 
-var jsPsych = initJsPsych();
+let jsPsych = initJsPsych();
 
 /* create timeline */
 
@@ -91,7 +91,7 @@ export default function emotionRecognitionTask() {
   )};
 
 
-  let timeline = [];
+  const timeline = [];
 
   const preload = {
     type: PreloadPlugin,
@@ -128,8 +128,8 @@ export default function emotionRecognitionTask() {
       const audioIcon = document.getElementById("audioIcon")
       const audioContent = document.getElementById("audioContent")
 
-      let continueButton = addContinueButton()
-      let continueButtonDiv = createContinueButtonDiv(continueButton)
+      const continueButton = addContinueButton()
+      const continueButtonDiv = createContinueButtonDiv(continueButton)
       const jsPsychContent = document.getElementById('jspsych-content')
       
       if(jsPsychContent){
@@ -192,8 +192,8 @@ export default function emotionRecognitionTask() {
       let response: string = "";
       let start_time = 0;
 
-      let continueButton = addContinueButton()
-      let continueButtonDiv = createContinueButtonDiv(continueButton)
+      const continueButton = addContinueButton()
+      const continueButtonDiv = createContinueButtonDiv(continueButton)
       const jsPsychContent = document.getElementById('jspsych-content')
       
       if(jsPsychContent){
@@ -227,12 +227,12 @@ export default function emotionRecognitionTask() {
         )
       }
 
-      let buttonSelections = document.querySelectorAll('button[name="custom-button"]')
+      const buttonSelections = document.querySelectorAll('button[name="custom-button"]')
 
       buttonSelections.forEach((button) => {
         button.addEventListener('click', (e) => {
           if(e.target === button){
-            let val = button.innerHTML;
+            const val = button.innerHTML;
             response = val
           }
           
@@ -364,8 +364,8 @@ export default function emotionRecognitionTask() {
       const overlay = document.getElementById("overlay");
       const cross = document.getElementById("overlay-cross")
 
-      let continueButton = addContinueButton()
-      let continueButtonDiv = createContinueButtonDiv(continueButton)
+      const continueButton = addContinueButton()
+      const continueButtonDiv = createContinueButtonDiv(continueButton)
       const jsPsychContent = document.getElementById('jspsych-content')
       
       if(jsPsychContent){
@@ -423,12 +423,12 @@ export default function emotionRecognitionTask() {
        } 
       }
 
-      let buttonSelections = document.querySelectorAll('button[name="custom-button"]')
+      const buttonSelections = document.querySelectorAll('button[name="custom-button"]')
 
       buttonSelections.forEach((button) => {
         button.addEventListener('click', (e) => {
           if(e.target === button){
-            let val = button.innerHTML;
+            const val = button.innerHTML;
             response = val
           }
         })

@@ -10,7 +10,7 @@ function dataMunger(data: DataCollection) {
     .filter({ trial_type: "survey-html-form" })
     .values() as LoggingTrial[];
   const experimentResults: ExperimentResults[] = [];
-  for (let trial of trials) {
+  for (const trial of trials) {
     // parsed experimentResults go here
     const result = $ExperimentResults.parse({
       //example:

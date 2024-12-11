@@ -1,6 +1,6 @@
 export const addContinueButton = () => {
-    let divContainer = document.createElement('div')
-    let continueButton = document.createElement('button')
+    const divContainer = document.createElement('div')
+    const continueButton = document.createElement('button')
 
     divContainer.style.alignContent = "center"
 
@@ -16,7 +16,7 @@ export const addContinueButton = () => {
   }
 
  export const createContinueButtonDiv = (continueButton: HTMLButtonElement) => {
-    let continueButtonDiv = document.createElement('div')
+    const continueButtonDiv = document.createElement('div')
     continueButtonDiv.style.justifyContent = "center"
     continueButtonDiv.style.alignItems = "center"
     continueButtonDiv.style.display = "flex"
@@ -28,7 +28,7 @@ export const addContinueButton = () => {
 
   export const revealEmotionButtons = () => {
 
-    let emotionButtons = document.getElementsByName('custom-button-div')
+    const emotionButtons = document.getElementsByName('custom-button-div')
 
     for(let i = 0 ; i < emotionButtons.length; i ++){
       emotionButtons[i].style.display = 'flex'
@@ -36,9 +36,9 @@ export const addContinueButton = () => {
   }
 
   export const addBootstrapScripts = () => {
-    let link = document.createElement('link')
-    let ajaxScript = document.createElement('script')
-    let bootstrapScript = document.createElement('script')
+    const link = document.createElement('link')
+    const ajaxScript = document.createElement('script')
+    const bootstrapScript = document.createElement('script')
 
     link.rel = "stylesheet"
     link.href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
