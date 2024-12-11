@@ -174,7 +174,7 @@ export default function emotionRecognitionTask() {
     },
     choices: mediaData.Content.Audio.Emotions,
     button_html: (choice: string) => {
-      return `<div name='custom-button-div' data-toggle="buttons" style="padding:10px;  display:none; justify-content: center; align-items: center;  width: 100%"><button name="custom-button" class="btn btn-primary" style="width:100%">${choice}</button></div>`;
+      return `<div name='custom-button-div' data-toggle="buttons" style="padding:10px;  display:none; justify-content: center; align-items: center;  width: 100%"><button name="custom-button" type="button" class="btn btn-primary" style="width:100%">${choice}</button></div>`;
     },
     prompt: "<p>Select the most accurate emotion </p>",
     
@@ -347,7 +347,7 @@ export default function emotionRecognitionTask() {
     },
     choices: mediaData.Content.Video.Emotions,
     button_html: (choice: string) => {
-      return `<div name='custom-button-div' data-toggle="buttons" style="padding:10px; display:none; justify-content: center; align-items: center;  width: 100%"><button name="custom-button" class="btn btn-primary" style="width:100%">${choice}</button></div>`;
+      return `<div name='custom-button-div' data-toggle="buttons" style="padding:10px; display:none; justify-content: center; align-items: center;  width: 100%"><button name="custom-button" type="button" class="btn btn-primary" style="width:100%">${choice}</button></div>`;
     },
     correct_answer: mediaData.Content.Video.CorrectAnswer,
 
@@ -430,6 +430,7 @@ export default function emotionRecognitionTask() {
           if(e.target === button){
             const val = button.innerHTML;
             response = val
+            
           }
         })
       })
