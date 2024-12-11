@@ -1,0 +1,44 @@
+{
+  "name": "emotion-recognition-task",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@jspsych/plugin-audio-button-response": "^2.0.1",
+    "@jspsych/plugin-audio-keyboard-response": "^2.0.0",
+    "@jspsych/plugin-html-button-response": "^2.0.0",
+    "@jspsych/plugin-html-keyboard-response": "^2.0.0",
+    "@jspsych/plugin-preload": "^2.0.0",
+    "@jspsych/plugin-survey-html-form": "^2.0.0",
+    "@jspsych/plugin-video-button-response": "^2.0.0",
+    "@jspsych/plugin-video-keyboard-response": "^2.0.0",
+    "@opendatacapture/runtime-v1": "latest",
+    "@douglasneuroinformatics/libui": "^3.7.3",
+    "docsify": "^4.13.1",
+    "jspsych": "^8.0.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@douglasneuroinformatics/eslint-config": "^4.3.0",
+    "@douglasneuroinformatics/tsconfig": "^1.0.1",
+    "@types/node": "^20.14.12",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@typescript-eslint/eslint-plugin": "^7.15.0",
+    "@typescript-eslint/parser": "^7.15.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-react-refresh": "^0.4.7",
+    "typescript": "^5.2.2",
+    "vite": "^5.3.4"
+  },
+  "packageManager": "pnpm@9.11.0+sha512.0a203ffaed5a3f63242cd064c8fb5892366c103e328079318f78062f24ea8c9d50bc6a47aa3567cabefd824d170e78fa2745ed1f16b132e16436146b7688f19b"
+}

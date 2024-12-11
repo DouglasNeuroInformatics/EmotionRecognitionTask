@@ -1,0 +1,14 @@
+{
+    "Content": {
+        "Video": {
+            "Emotions": ["Joy", "Anger", "Madness"],
+            "CorrectAnswer": "Joy",
+            "Filepath": "../video/Hello-There.mp4"
+        },
+        "Audio": {
+            "Emotions": ["Joy", "Anger", "Madness"],
+            "CorrectAnswer": "Joy",
+            "Filepath": "../audio/hello-there.mp3"
+        }
+    }
+}
