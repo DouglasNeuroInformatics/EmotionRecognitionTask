@@ -1,8 +1,8 @@
 # DNP jsPsych Template
 
-This is a template for the the DNPs jsPsych tasks.
-It is designed to be resource for the developers at the DNP or elsewhere to create tasks using jsPsych.
-A goal of this template is have the task be instruments for the [OpenDataCapture](https://opendatacapture.org/en/) (ODC) project developed at the DNP.
+This is a template for the DNP's jsPsych tasks.
+It is designed to be a resource for developers at the DNP or elsewhere to create tasks using jsPsych.
+A goal of this template is to have tasks serve as instruments for the [OpenDataCapture](https://opendatacapture.org/en/) (ODC) project developed at the DNP.
 These docs assume some Typescript experience.
 
 ## Setup
