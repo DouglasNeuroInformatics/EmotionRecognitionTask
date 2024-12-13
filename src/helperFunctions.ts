@@ -37,60 +37,28 @@ export const addContinueButton = () => {
 
   export const addBootstrapScripts = () => {
     const link = document.createElement('link')
+    const Csslink = document.createElement('link')
     const bootstrapScript = document.createElement('script')
 
     link.rel = "stylesheet"
     link.href = "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
 
+    Csslink.rel = "stylesheet"
+    Csslink.href = "src/style.css"
+
     
     bootstrapScript.src = "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 
     document.head.appendChild(link)
+    document.head.appendChild(Csslink)
     document.head.appendChild(bootstrapScript)
+    
   }
 
 
   export const videoCoverHtmlGenerator = (filepath:string) => {
     return `
-      <style>
-      /* Style for the video container */
-      .video-container {
-        position: relative;
-        width: 50vw;
-        height: 40vh;
-        overflow: hidden;
-      }
-
-      /* The black overlay */
-      .video-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: black;
-        color: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-        z-index: 2;
-        transition: .5s ease;
-      }
-
-      /* The video element */
-      video {
-        position: absolute;
-        object-fit: cover;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-      }
-      .spacedButtons {
-              padding: 10px
-            }
-    </style>
+     
     <div class="video-container">
         <div class="video-overlay" id="overlay">
           <svg id="overlay-cross" height="100" width="100" xmlns="http://www.w3.org/2000/svg">
