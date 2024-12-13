@@ -111,348 +111,360 @@ export default function emotionRecognitionTask() {
     }
   };
 
-  const audioHtmlTask = {
-    type: HtmlKeyboardResponsePlugin,
-    stimulus: function() {
-      return audioHtmlGenerator(mediaData.Content.Audio.Filepath)
-    },
-    prompt: "<p>Click on the sound icon to play audio</p>",
-    
-    response_allowed_while_playing: false,
-    response_ends_trial: false,
-
-    on_load: () => {
-      addBootstrapScripts()
-
-      let playOnce = false;
-      const audioIcon = document.getElementById("audioIcon")
-      const audioContent = document.getElementById("audioContent")
-
-      const continueButton = addContinueButton()
-      const continueButtonDiv = createContinueButtonDiv(continueButton)
-      const jsPsychContent = document.getElementById('jspsych-content')
+  const audioHtmlTask = (filepath: string) => {
+    return {
+      type: HtmlKeyboardResponsePlugin,
+      stimulus: function() {
+        return audioHtmlGenerator(filepath)
+      },
+      prompt: "<p>Click on the sound icon to play audio</p>",
       
-      if(jsPsychContent){
-        jsPsychContent.appendChild(continueButtonDiv)
-      }
-      else {
-        document.body.appendChild(continueButtonDiv)
-      }
-      
+      response_allowed_while_playing: false,
+      response_ends_trial: false,
 
-      if(audioIcon){
-        audioIcon.addEventListener("click", () => {
-          if(audioContent && audioContent instanceof HTMLAudioElement && !playOnce){
-            audioContent.play()
-            playOnce = true
-          }
+      on_load: () => {
+        addBootstrapScripts()
 
-        })
-      }
+        let playOnce = false;
+        const audioIcon = document.getElementById("audioIcon")
+        const audioContent = document.getElementById("audioContent")
 
-      if(audioContent && audioContent instanceof HTMLAudioElement){
-        audioContent.addEventListener('ended', () => {
-          continueButton.style.display = 'flex'
+        const continueButton = addContinueButton()
+        const continueButtonDiv = createContinueButtonDiv(continueButton)
+        const jsPsychContent = document.getElementById('jspsych-content')
+        
+        if(jsPsychContent){
+          jsPsychContent.appendChild(continueButtonDiv)
+        }
+        else {
+          document.body.appendChild(continueButtonDiv)
+        }
+        
+
+        if(audioIcon){
+          audioIcon.addEventListener("click", () => {
+            if(audioContent && audioContent instanceof HTMLAudioElement && !playOnce){
+              audioContent.play()
+              playOnce = true
+            }
+
+          })
         }
 
-        )
+        if(audioContent && audioContent instanceof HTMLAudioElement){
+          audioContent.addEventListener('ended', () => {
+            continueButton.style.display = 'flex'
+          }
+
+          )
+        }
+
+        continueButton.addEventListener("click", () => {
+          jsPsych.finishTrial();
+          continueButton.remove()
+        })
+
       }
 
-      continueButton.addEventListener("click", () => {
-        jsPsych.finishTrial();
-        continueButton.remove()
-      })
-
     }
+    
 
   };
 
-  const audioHtmlEmotionChoice = {
-    type: HtmlButtonResponse,
-    stimulus: function() {
-      return audioHtmlGenerator(mediaData.Content.Audio.Filepath)
-    },
-    choices: mediaData.Content.Audio.Emotions,
-    button_html: (choice: string) => {
-      return `<div name='custom-button-div' data-toggle="buttons" style="padding:10px;  display:none; justify-content: center; align-items: center;  width: 100%"><button name="custom-button" type="button" class="btn btn-primary" style="width:100%">${choice}</button></div>`;
-    },
-    prompt: "<p>Select the most accurate emotion </p>",
-    
-    response_allowed_while_playing: false,
-    correct_answer: mediaData.Content.Audio.CorrectAnswer,
-    response_ends_trial: false,
-
-    on_load: () => {
-      addBootstrapScripts()
-
-      let playOnce = false;
-      const audioIcon = document.getElementById("audioIcon")
-      const audioContent = document.getElementById("audioContent")
-
-      let response: string = "";
-      let start_time = 0;
-
-      const continueButton = addContinueButton()
-      const continueButtonDiv = createContinueButtonDiv(continueButton)
-      const jsPsychContent = document.getElementById('jspsych-content')
+  const audioHtmlEmotionChoice = (filepath: string, emotionChoices: string[], correctAnswer: string) => {
+    return {
+      type: HtmlButtonResponse,
+      stimulus: function() {
+        return audioHtmlGenerator(filepath)
+      },
+      choices: emotionChoices,
+      button_html: (choice: string) => {
+        return `<div name='custom-button-div' data-toggle="buttons" style="padding:10px;  display:none; justify-content: center; align-items: center;  width: 100%"><button name="custom-button" type="button" class="btn btn-primary" style="width:100%">${choice}</button></div>`;
+      },
+      prompt: "<p>Select the most accurate emotion </p>",
       
-      if(jsPsychContent){
-        jsPsychContent.appendChild(continueButtonDiv)
-      }
-      else {
-        document.body.appendChild(continueButtonDiv)
-      }
-      
+      response_allowed_while_playing: false,
+      correct_answer: correctAnswer,
+      response_ends_trial: false,
 
-      if(audioIcon){
-        audioIcon.addEventListener("click", () => {
-          if(audioContent && audioContent instanceof HTMLAudioElement && !playOnce){
-            audioContent.play()
-            playOnce = true
-          }
+      on_load: () => {
+        addBootstrapScripts()
 
-        })
-      }
+        let playOnce = false;
+        const audioIcon = document.getElementById("audioIcon")
+        const audioContent = document.getElementById("audioContent")
 
-      if(audioContent && audioContent instanceof HTMLAudioElement){
-        audioContent.addEventListener('ended', () => {
-          revealEmotionButtons()
-          continueButton.style.display = 'flex'
+        let response: string = "";
+        let start_time = 0;
 
+        const continueButton = addContinueButton()
+        const continueButtonDiv = createContinueButtonDiv(continueButton)
+        const jsPsychContent = document.getElementById('jspsych-content')
+        
+        if(jsPsychContent){
+          jsPsychContent.appendChild(continueButtonDiv)
+        }
+        else {
+          document.body.appendChild(continueButtonDiv)
+        }
+        
 
-          //set start time
-          start_time = performance.now();
+        if(audioIcon){
+          audioIcon.addEventListener("click", () => {
+            if(audioContent && audioContent instanceof HTMLAudioElement && !playOnce){
+              audioContent.play()
+              playOnce = true
+            }
+
+          })
         }
 
-        )
-      }
+        if(audioContent && audioContent instanceof HTMLAudioElement){
+          audioContent.addEventListener('ended', () => {
+            revealEmotionButtons()
+            continueButton.style.display = 'flex'
 
-      const buttonSelections = document.querySelectorAll('button[name="custom-button"]')
 
-      buttonSelections.forEach((button) => {
-        button.addEventListener('click', (e) => {
-          if(e.target instanceof HTMLButtonElement && e.target === button){
-            const val = button.innerHTML;
-            response = val
+            //set start time
+            start_time = performance.now();
           }
-          
-        })
-      })
-      continueButton.addEventListener("click", () => {
- 
-        if(!response){
-          alert("Please select a button")
-          return
-        }
-        jsPsych.finishTrial({rt: (performance.now() - start_time), response: response});
-        continueButton.remove()
-      })
 
+          )
+        }
+
+        const buttonSelections = document.querySelectorAll('button[name="custom-button"]')
+
+        buttonSelections.forEach((button) => {
+          button.addEventListener('click', (e) => {
+            if(e.target instanceof HTMLButtonElement && e.target === button){
+              const val = button.innerHTML;
+              response = val
+            }
+            
+          })
+        })
+        continueButton.addEventListener("click", () => {
+  
+          if(!response){
+            alert("Please select a button")
+            return
+          }
+          jsPsych.finishTrial({rt: (performance.now() - start_time), response: response});
+          continueButton.remove()
+        })
+
+      }
     }
-
+    
   };
 
   const videoInstructions = {
-    type: HtmlKeyboardResponsePlugin,
-    stimulus: `<p>Now onto video tasks, the video will be played twice for the subject to determine the emotion displayed.  Press any key to continue to the videos</p>`,
-    on_load: function () {
-      document.addEventListener('click', clickHandler)
-    },
-    on_finish: function () {
-      document.removeEventListener('click', clickHandler)
-    }
-  };
+      type: HtmlKeyboardResponsePlugin,
+      stimulus: `<p>Now onto video tasks, the video will be played twice for the subject to determine the emotion displayed.  Press any key to continue to the videos</p>`,
+      on_load: function () {
+        document.addEventListener('click', clickHandler)
+      },
+      on_finish: function () {
+        document.removeEventListener('click', clickHandler)
+      }
+    };
 
-  const videoCheck = {
-    type: HtmlKeyboardResponsePlugin,
-    stimulus: function() {
-      return videoCoverHtmlGenerator(mediaData.Content.Video.Filepath)
-    },
-    prompt: "<p>Please press the continue button after the video has completed</p>",
-    response_ends_trial: false,
-    response_allowed_while_playing: false,
-    on_load: () => {
-  
-      addBootstrapScripts()
+    const videoCheck = (filepath: string) => {
+      return {
+        type: HtmlKeyboardResponsePlugin,
+        stimulus: function() {
+          return videoCoverHtmlGenerator(filepath)
+        },
+        prompt: "<p>Please press the continue button after the video has completed</p>",
+        response_ends_trial: false,
+        response_allowed_while_playing: false,
+        on_load: () => {
       
-       // Get references to the video and overlay elements
-      const video = document.getElementById("video");
-      const overlay = document.getElementById("overlay");
-      const cross = document.getElementById("overlay-cross")
+          addBootstrapScripts()
+          
+          // Get references to the video and overlay elements
+          const video = document.getElementById("video");
+          const overlay = document.getElementById("overlay");
+          const cross = document.getElementById("overlay-cross")
 
-      const continueButton = addContinueButton()
-      const continueButtonDiv = createContinueButtonDiv(continueButton)
-      const jsPsychContent = document.getElementById('jspsych-content')
-      
-      if(jsPsychContent){
-        jsPsychContent.appendChild(continueButtonDiv)
-      }
-      else {
-        document.body.appendChild(continueButtonDiv)
-      }
-
-      let videoCount = 0
-
-     // Add a click event listener to the overlay
-      if(overlay && cross){
-       overlay.addEventListener("click", function() {
-         if(videoCount > 0){
-           return
-         }
-        
-
-        // Hide the overlay
-        setTimeout(() => {
-          overlay.style.opacity = "0";
-          setTimeout(() => {
-            if(video && video instanceof HTMLVideoElement){
-              video.play().catch((err) => {
-                console.error("Error playing video:", err);
-              });
-            }
-            
-          }, 550);
-        }, 1400)
-
-        videoCount++
-      });
-
-      // Add an event listener to show the overlay when the video ends
-      if (video && video instanceof HTMLVideoElement) {
-        video.addEventListener("ended", function() {
-      // Show the overlay again
-        overlay.style.display = "flex"; // Set it back to flex to maintain centering
-        overlay.style.opacity = "1"
-        cross.style.display = "none"
-        video.style.display = "none"
-        continueButton.style.display = "flex"
-        });
-      }
-
-     }
-
-     continueButton.addEventListener("click", () => {
-      jsPsych.finishTrial();
-      continueButton.remove()
-    })
-     
-    },
-  };
-
-
-  const videoCheckWithButtons = {
-    type: HtmlButtonResponse,
-    stimulus: function() {
-      return videoCoverHtmlGenerator(mediaData.Content.Video.Filepath)
-    },
-    choices: mediaData.Content.Video.Emotions,
-    button_html: (choice: string) => {
-      return `<div name='custom-button-div' data-toggle="buttons" style="padding:10px; display:none; justify-content: center; align-items: center;  width: 100%"><button name="custom-button" type="button" class="btn btn-primary" style="width:100%">${choice}</button></div>`;
-    },
-    correct_answer: mediaData.Content.Video.CorrectAnswer,
-
-    prompt: `<p>Once the video completes and the emotion selection displays. Please select the most accurate emotion displayed.
-    <br>Once you are satisfied with your answer press the "Continue" button</p>`,
-    response_ends_trial: false,
-    response_allowed_while_playing: true,
-    
-    
-    on_load: () => {
-      addBootstrapScripts()
-      
-      const video = document.getElementById("video");
-      const overlay = document.getElementById("overlay");
-      const cross = document.getElementById("overlay-cross")
-
-      const continueButton = addContinueButton()
-      const continueButtonDiv = createContinueButtonDiv(continueButton)
-      const jsPsychContent = document.getElementById('jspsych-content')
-      
-      if(jsPsychContent){
-        jsPsychContent.appendChild(continueButtonDiv)
-      }
-      else {
-        document.body.appendChild(continueButtonDiv)
-      }
-
-      let videoCount = false
-      let start_time = 0
-
-      let response: string = "";
-
-     // Add a click event listener to the overlay
-      if(overlay && cross){
-       overlay.addEventListener("click", function() {
-         if(videoCount){
-           return
-         }
-        // Hide the overlay
-        setTimeout(() => {
-          overlay.style.opacity = "0";
-          setTimeout(() => {
-            if(video && video instanceof HTMLVideoElement){
-              video.play().catch((err) => {
-                console.error("Error playing video:", err);
-              });
-            }
-            
-          }, 550);
-        }, 1400)
-
-        videoCount = true
-      });
-
-      // Add an event listener to show the overlay when the video ends
-      if (video && video instanceof HTMLVideoElement) {
-        video.addEventListener("ended", function() {
-        
-        // Show the overlay again
-        overlay.style.opacity = "1"
-        cross.style.display = "none"
-        video.style.display = "none"
-
-        revealEmotionButtons()
-
-        //reveal continue button
-        continueButton.style.display = "block"
-
-        //set start time
-        start_time = performance.now();
-
-        });
-       } 
-      }
-
-      const buttonSelections = document.querySelectorAll('button[name="custom-button"]')
-
-      buttonSelections.forEach((button) => {
-        button.addEventListener('click', (e) => {
-          if(e.target instanceof HTMLButtonElement && e.target === button){
-            const val = button.innerHTML;
-            response = val
+          const continueButton = addContinueButton()
+          const continueButtonDiv = createContinueButtonDiv(continueButton)
+          const jsPsychContent = document.getElementById('jspsych-content')
+          
+          if(jsPsychContent){
+            jsPsychContent.appendChild(continueButtonDiv)
           }
-        })
-      })
-      
-      continueButton.addEventListener("click", () => {
+          else {
+            document.body.appendChild(continueButtonDiv)
+          }
 
-        if(!response){
-          alert("Please select a button")
-          return
+          let videoCount = 0
+
+        // Add a click event listener to the overlay
+          if(overlay && cross){
+          overlay.addEventListener("click", function() {
+            if(videoCount > 0){
+              return
+            }
+            
+
+            // Hide the overlay
+            setTimeout(() => {
+              overlay.style.opacity = "0";
+              setTimeout(() => {
+                if(video && video instanceof HTMLVideoElement){
+                  video.play().catch((err) => {
+                    console.error("Error playing video:", err);
+                  });
+                }
+                
+              }, 550);
+            }, 1400)
+
+            videoCount++
+          });
+
+          // Add an event listener to show the overlay when the video ends
+          if (video && video instanceof HTMLVideoElement) {
+            video.addEventListener("ended", function() {
+          // Show the overlay again
+            overlay.style.display = "flex"; // Set it back to flex to maintain centering
+            overlay.style.opacity = "1"
+            cross.style.display = "none"
+            video.style.display = "none"
+            continueButton.style.display = "flex"
+            });
+          }
+
         }
-        jsPsych.finishTrial({rt: (performance.now() - start_time), response: response});
-        continueButton.remove()
-      })
-    },
+
+        continueButton.addEventListener("click", () => {
+          jsPsych.finishTrial();
+          continueButton.remove()
+        })
+        
+        },
+      }
+    
+  };
+
+
+  const videoCheckWithButtons = (filepath: string, emotionChoices: string[], correctAnswer: string) => {
+    return {
+      type: HtmlButtonResponse,
+      stimulus: function() {
+        return videoCoverHtmlGenerator(filepath)
+      },
+      choices: emotionChoices,
+      button_html: (choice: string) => {
+        return `<div name='custom-button-div' data-toggle="buttons" style="padding:10px; display:none; justify-content: center; align-items: center;  width: 100%"><button name="custom-button" type="button" class="btn btn-primary" style="width:100%">${choice}</button></div>`;
+      },
+      correct_answer: correctAnswer,
+
+      prompt: `<p>Once the video completes and the emotion selection displays. Please select the most accurate emotion displayed.
+      <br>Once you are satisfied with your answer press the "Continue" button</p>`,
+      response_ends_trial: false,
+      response_allowed_while_playing: true,
+      
+      
+      on_load: () => {
+        addBootstrapScripts()
+        
+        const video = document.getElementById("video");
+        const overlay = document.getElementById("overlay");
+        const cross = document.getElementById("overlay-cross")
+
+        const continueButton = addContinueButton()
+        const continueButtonDiv = createContinueButtonDiv(continueButton)
+        const jsPsychContent = document.getElementById('jspsych-content')
+        
+        if(jsPsychContent){
+          jsPsychContent.appendChild(continueButtonDiv)
+        }
+        else {
+          document.body.appendChild(continueButtonDiv)
+        }
+
+        let videoCount = false
+        let start_time = 0
+
+        let response: string = "";
+
+      // Add a click event listener to the overlay
+        if(overlay && cross){
+        overlay.addEventListener("click", function() {
+          if(videoCount){
+            return
+          }
+          // Hide the overlay
+          setTimeout(() => {
+            overlay.style.opacity = "0";
+            setTimeout(() => {
+              if(video && video instanceof HTMLVideoElement){
+                video.play().catch((err) => {
+                  console.error("Error playing video:", err);
+                });
+              }
+              
+            }, 550);
+          }, 1400)
+
+          videoCount = true
+        });
+
+        // Add an event listener to show the overlay when the video ends
+        if (video && video instanceof HTMLVideoElement) {
+          video.addEventListener("ended", function() {
+          
+          // Show the overlay again
+          overlay.style.opacity = "1"
+          cross.style.display = "none"
+          video.style.display = "none"
+
+          revealEmotionButtons()
+
+          //reveal continue button
+          continueButton.style.display = "block"
+
+          //set start time
+          start_time = performance.now();
+
+          });
+        } 
+        }
+
+        const buttonSelections = document.querySelectorAll('button[name="custom-button"]')
+
+        buttonSelections.forEach((button) => {
+          button.addEventListener('click', (e) => {
+            if(e.target instanceof HTMLButtonElement && e.target === button){
+              const val = button.innerHTML;
+              response = val
+            }
+          })
+        })
+        
+        continueButton.addEventListener("click", () => {
+
+          if(!response){
+            alert("Please select a button")
+            return
+          }
+          jsPsych.finishTrial({rt: (performance.now() - start_time), response: response});
+          continueButton.remove()
+        })
+      },
+    }
+    
   };
 
   timeline.push(preload);
   timeline.push(instructions);
-  timeline.push(audioHtmlTask)
-  timeline.push(audioHtmlEmotionChoice)
+  timeline.push(audioHtmlTask(mediaData.Content.Audio.Filepath))
+  timeline.push(audioHtmlEmotionChoice(mediaData.Content.Audio.Filepath,mediaData.Content.Audio.Emotions,mediaData.Content.Audio.CorrectAnswer))
   timeline.push(videoInstructions);
-  timeline.push(videoCheck);
-  timeline.push(videoCheckWithButtons);
+  timeline.push(videoCheck(mediaData.Content.Video.Filepath));
+  timeline.push(videoCheckWithButtons(mediaData.Content.Audio.Filepath,mediaData.Content.Video.Emotions,mediaData.Content.Video.CorrectAnswer));
   jsPsych.run(timeline);
 
   function simulateKeyPress(jsPsych: JsPsych, key: string) {
