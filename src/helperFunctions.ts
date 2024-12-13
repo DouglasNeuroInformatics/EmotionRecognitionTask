@@ -48,3 +48,74 @@ export const addContinueButton = () => {
     document.head.appendChild(link)
     document.head.appendChild(bootstrapScript)
   }
+
+
+  export const videoCoverHtmlGenerator = (filepath:string) => {
+    return `
+      <style>
+      /* Style for the video container */
+      .video-container {
+        position: relative;
+        width: 50vw;
+        height: 40vh;
+        overflow: hidden;
+      }
+
+      /* The black overlay */
+      .video-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        z-index: 2;
+        transition: .5s ease;
+      }
+
+      /* The video element */
+      video {
+        position: absolute;
+        object-fit: cover;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .spacedButtons {
+              padding: 10px
+            }
+    </style>
+    <div class="video-container">
+        <div class="video-overlay" id="overlay">
+          <svg id="overlay-cross" height="100" width="100" xmlns="http://www.w3.org/2000/svg">
+            <line x1="50" y1="0" x2="50" y2="100" style="stroke:white;stroke-width:18" />
+            <line x1="0" y1="50" x2="100" y2="50" style="stroke:white;stroke-width:18" />
+            Sorry, your browser does not support inline SVG.
+          </svg>
+        </div>
+        <video id="video" preload="auto" src=${filepath}>
+        </video>
+        
+    </div>
+    `;
+  }
+  
+  
+
+  export const audioHtmlGenerator = (filepath:string) => {
+    return ` 
+      <svg id="audioIcon" xmlns="http://www.w3.org/2000/svg" style="align-content: center;" version="1.0" width="200" height="200" viewBox="10 0 45 120">
+            <path d="M39.389,13.769 L22.235,28.606 L6,28.606 L6,47.699 L21.989,47.699 L39.389,62.75 L39.389,13.769z" style="stroke:#111;stroke-width:5;stroke-linejoin:round;fill:#111;"/>
+            <path d="M48,27.6a19.5,19.5 0 0 1 0,21.4M55.1,20.5a30,30 0 0 1 0,35.6M61.6,14a38.8,38.8 0 0 1 0,48.6" style="fill:none;stroke:#111;stroke-width:5;stroke-linecap:round"/>
+        </svg>
+        <audio id="audioContent" preload="auto">
+            <source src=${filepath} type="audio/mpeg">
+        </audio>
+          `;
+  } 
