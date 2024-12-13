@@ -392,7 +392,7 @@ export default function emotionRecognitionTask() {
   timeline.push(audioHtmlEmotionChoice(mediaData.Content.Audio.Filepath,mediaData.Content.Audio.Emotions,mediaData.Content.Audio.CorrectAnswer))
   timeline.push(videoInstructions);
   timeline.push(videoCheck(mediaData.Content.Video.Filepath));
-  timeline.push(videoCheckWithButtons(mediaData.Content.Audio.Filepath,mediaData.Content.Video.Emotions,mediaData.Content.Video.CorrectAnswer));
+  timeline.push(videoCheckWithButtons(mediaData.Content.Video.Filepath,mediaData.Content.Video.Emotions,mediaData.Content.Video.CorrectAnswer));
   jsPsych.run(timeline);
 
   function simulateKeyPress(jsPsych: JsPsych, key: string) {
