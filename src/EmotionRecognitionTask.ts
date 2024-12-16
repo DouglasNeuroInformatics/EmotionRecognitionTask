@@ -6,12 +6,15 @@ import PreloadPlugin from "@jspsych/plugin-preload";
 import { JsPsych } from "/runtime/v1/jspsych@8.x";
 import { addBootstrapScripts, addContinueButton, audioHtmlGenerator, createContinueButtonDiv, revealEmotionButtons, videoCoverHtmlGenerator } from "./helperFunctions";
 import * as mediaData from  '../src/mediaContentData.json'
+import { useTranslation } from '@douglasneuroinformatics/libui/hooks';
 
 const jsPsych = initJsPsych();
 
-/* create timeline */
+
+
 
 export default function emotionRecognitionTask() {
+  //const { t } = useTranslation()
 
   const clickHandler = () => { document.addEventListener(
     "click",
@@ -26,12 +29,17 @@ export default function emotionRecognitionTask() {
     type: PreloadPlugin,
     auto_preload: true,
     show_progress_bar: true,
-    message: `<p>loading media</p>`,
+    message: `<p> Welcome </p>`,
   };
+
+  // t({
+  //   en: `<p>Hello this is a test. The audio will play twice. please select the most accurate emotion displayed after.</p>`,
+  //   fr: `<p>Bonjour, c'est un test. L'audio sera joué deux fois. veuillez sélectionner l'émotion la plus précise affichée après.</p>`
+  // })
 
   const instructions = {
     type: HtmlKeyboardResponsePlugin,
-    stimulus: `<p>Hello this is a test. The audio will play twice. please select the most accurate emotion displayed after</p>`,
+    stimulus:  `<p>Hello this is a test. The audio will play twice. please select the most accurate emotion displayed after.</p>`,
     on_load: function () {
       document.addEventListener('click', clickHandler)
     },
