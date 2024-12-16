@@ -1,10 +1,18 @@
 {
     "Content": {
         "Video": {
-            "Emotions": ["Joy", "Anger", "Madness"],
-            "CorrectAnswer": "Joy",
-            "Filepath": "../video/Hello-There.mp4"
+            "Video1": {
+                "Emotions": ["Joy", "Anger", "Madness"],
+                "CorrectAnswer": "Joy",
+                "Filepath": "../video/Hello-There.mp4"
+            },
+            "Video2": {
+                "Emotions": ["Joy", "Anger", "Madness"],
+                "CorrectAnswer": "Joy",
+                "Filepath": "../video/BEEER.mp4"
+            }
         },
+      
         "Audio": {
             "Audio1": {
                 "Emotions": ["Joy", "Anger", "Madness"],

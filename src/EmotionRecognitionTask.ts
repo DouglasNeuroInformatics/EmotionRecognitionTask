@@ -396,8 +396,10 @@ export default function emotionRecognitionTask() {
   }
  
   timeline.push(videoInstructions);
-  timeline.push(videoCheck(mediaData.Content.Video.Filepath));
-  timeline.push(videoCheckWithButtons(mediaData.Content.Video.Filepath,mediaData.Content.Video.Emotions,mediaData.Content.Video.CorrectAnswer));
+  for (const [, videoInfo] of Object.entries(mediaData.Content.Video)) {
+    timeline.push(videoCheck(videoInfo.Filepath))
+    timeline.push(videoCheckWithButtons(videoInfo.Filepath,videoInfo.Emotions,videoInfo.CorrectAnswer))
+  }
   jsPsych.run(timeline);
 
   function simulateKeyPress(jsPsych: JsPsych, key: string) {
