@@ -385,11 +385,16 @@ export default function emotionRecognitionTask() {
     }
     
   };
+  
+  
 
   timeline.push(preload);
   timeline.push(instructions);
-  timeline.push(audioHtmlTask(mediaData.Content.Audio.Filepath))
-  timeline.push(audioHtmlEmotionChoice(mediaData.Content.Audio.Filepath,mediaData.Content.Audio.Emotions,mediaData.Content.Audio.CorrectAnswer))
+  for (const [, audioInfo] of Object.entries(mediaData.Content.Audio)) {
+    timeline.push(audioHtmlTask(audioInfo.Filepath))
+    timeline.push(audioHtmlEmotionChoice(audioInfo.Filepath,audioInfo.Emotions,audioInfo.CorrectAnswer))
+  }
+ 
   timeline.push(videoInstructions);
   timeline.push(videoCheck(mediaData.Content.Video.Filepath));
   timeline.push(videoCheckWithButtons(mediaData.Content.Video.Filepath,mediaData.Content.Video.Emotions,mediaData.Content.Video.CorrectAnswer));
