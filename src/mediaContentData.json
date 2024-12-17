@@ -1,14 +1,30 @@
 {
     "Content": {
         "Video": {
-            "Emotions": ["Joy", "Anger", "Madness"],
-            "CorrectAnswer": "Joy",
-            "Filepath": "../video/Hello-There.mp4"
+            "Video1": {
+                "Emotions": ["Joy", "Anger", "Madness"],
+                "CorrectAnswer": "Joy",
+                "Filepath": "../video/Hello-There.mp4"
+            },
+            "Video2": {
+                "Emotions": ["Joy", "Anger", "Madness"],
+                "CorrectAnswer": "Joy",
+                "Filepath": "../video/BEEER.mp4"
+            }
         },
+      
         "Audio": {
-            "Emotions": ["Joy", "Anger", "Madness"],
-            "CorrectAnswer": "Joy",
-            "Filepath": "../audio/hello-there.mp3"
+            "Audio1": {
+                "Emotions": ["Joy", "Anger", "Madness"],
+                "CorrectAnswer": "Joy",
+                "Filepath": "../audio/hello-there.mp3"
+            },
+            "Audio2": {
+                "Emotions": ["Joy", "Anger", "Relief"],
+                "CorrectAnswer": "Joy",
+                "Filepath": "../audio/yay-6326.mp3"
+            }
+            
         }
     }
 }
