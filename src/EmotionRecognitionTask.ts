@@ -3,16 +3,35 @@ import "jspsych/css/jspsych.css";
 import HtmlKeyboardResponsePlugin from "@jspsych/plugin-html-keyboard-response";
 import HtmlButtonResponse from '@jspsych/plugin-html-button-response';
 import PreloadPlugin from "@jspsych/plugin-preload";
-import { JsPsych } from "/runtime/v1/jspsych@8.x";
 import { addBootstrapScripts, addContinueButton, audioHtmlGenerator, createContinueButtonDiv, revealEmotionButtons, videoCoverHtmlGenerator } from "./helperFunctions";
 import * as mediaData from  '../src/mediaContentData.json'
+
+import type { Language } from "@opendatacapture/runtime-v1/@opendatacapture/runtime-core/index.js";
+import i18n from "./i18n.ts";
+import { experimentSettingsJson } from "./experimentSettings.ts";
+import { $Settings } from "./schemas.ts";
 
 const jsPsych = initJsPsych();
 
 
 
 
-export default function emotionRecognitionTask() {
+export default async function emotionRecognitionTask() {
+
+  const language = "fr"
+
+  // parse settings
+  const settingsParseResult = $Settings.safeParse(experimentSettingsJson);
+
+  if (!settingsParseResult.success) {
+    throw new Error(`validation error, check experiment settings \n error can be seen below: \n ${settingsParseResult.error}`);
+  }
+
+  // small hack to get around i18n issues with wait for changeLanguage
+  i18n.changeLanguage(language as Language);
+  await new Promise(function (resolve) {
+    i18n.onLanguageChange = resolve;
+  });
 
   const clickHandler = () => { document.addEventListener(
     "click",
@@ -27,17 +46,13 @@ export default function emotionRecognitionTask() {
     type: PreloadPlugin,
     auto_preload: true,
     show_progress_bar: true,
-    message: `<p> Welcome </p>`,
+    message: `<p> ${i18n.t("loadingStimulus")}</p>`,
   };
 
-  // t({
-  //   en: `<p>Hello this is a test. The audio will play twice. please select the most accurate emotion displayed after.</p>`,
-  //   fr: `<p>Bonjour, c'est un test. L'audio sera joué deux fois. veuillez sélectionner l'émotion la plus précise affichée après.</p>`
-  // })
 
   const instructions = {
     type: HtmlKeyboardResponsePlugin,
-    stimulus:  `<p>Hello this is a test. The audio will play twice. please select the most accurate emotion displayed after.</p>`,
+    stimulus:  `<p>${i18n.t("audioInstructions")}</p>`,
     on_load: function () {
       document.addEventListener('click', clickHandler)
     },
