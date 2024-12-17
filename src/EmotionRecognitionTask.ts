@@ -6,7 +6,6 @@ import PreloadPlugin from "@jspsych/plugin-preload";
 import { JsPsych } from "/runtime/v1/jspsych@8.x";
 import { addBootstrapScripts, addContinueButton, audioHtmlGenerator, createContinueButtonDiv, revealEmotionButtons, videoCoverHtmlGenerator } from "./helperFunctions";
 import * as mediaData from  '../src/mediaContentData.json'
-import { useTranslation } from '@douglasneuroinformatics/libui/hooks';
 
 const jsPsych = initJsPsych();
 
@@ -14,7 +13,6 @@ const jsPsych = initJsPsych();
 
 
 export default function emotionRecognitionTask() {
-  //const { t } = useTranslation()
 
   const clickHandler = () => { document.addEventListener(
     "click",
@@ -394,15 +392,12 @@ export default function emotionRecognitionTask() {
     
   };
   
-  
-
   timeline.push(preload);
   timeline.push(instructions);
   for (const [, audioInfo] of Object.entries(mediaData.Content.Audio)) {
     timeline.push(audioHtmlTask(audioInfo.Filepath))
     timeline.push(audioHtmlEmotionChoice(audioInfo.Filepath,audioInfo.Emotions,audioInfo.CorrectAnswer))
   }
- 
   timeline.push(videoInstructions);
   for (const [, videoInfo] of Object.entries(mediaData.Content.Video)) {
     timeline.push(videoCheck(videoInfo.Filepath))
