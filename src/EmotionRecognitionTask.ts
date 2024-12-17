@@ -161,9 +161,7 @@ export default function emotionRecognitionTask() {
 
             //set start time
             start_time = performance.now();
-          }
-
-          )
+          })
         }
 
         const buttonSelections = document.querySelectorAll('button[name="custom-button"]')
