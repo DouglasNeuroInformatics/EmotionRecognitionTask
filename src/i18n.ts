@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/consistent-type-definitions */
-/* eslint-disable @typescript-eslint/no-namespace */
-
 import { i18n } from '@douglasneuroinformatics/libui/i18n';
 import emotionTranslations from '../src/translations/emotionTaskTranslation.json'
 
