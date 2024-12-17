@@ -11,7 +11,7 @@ import {
   revealEmotionButtons,
   videoCoverHtmlGenerator,
 } from "./helperFunctions";
-import * as mediaData from "../src/mediaContentData.json";
+import * as mediaData from "./mediaContentData.json";
 
 import type { Language } from "@opendatacapture/runtime-v1/@opendatacapture/runtime-core/index.js";
 import i18n from "./i18n.ts";
