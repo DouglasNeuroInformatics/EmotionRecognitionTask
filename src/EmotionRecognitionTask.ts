@@ -21,7 +21,6 @@ import { $Settings } from "./schemas.ts";
 const jsPsych = initJsPsych();
 
 export default async function emotionRecognitionTask() {
-  const language = "fr";
 
   // parse settings
   const settingsParseResult = $Settings.safeParse(experimentSettingsJson);
@@ -31,6 +30,8 @@ export default async function emotionRecognitionTask() {
       `validation error, check experiment settings \n error can be seen below: \n ${settingsParseResult.error}`
     );
   }
+
+  const language = experimentSettingsJson.language as Language;
 
   // small hack to get around i18n issues with wait for changeLanguage
   i18n.changeLanguage(language as Language);
