@@ -1,5 +1,5 @@
 import { i18n } from '@douglasneuroinformatics/libui/i18n';
-import emotionTranslations from '../src/translations/emotionTaskTranslation.json'
+import emotionTranslations from './translations/emotionTaskTranslation.json'
 
 document.documentElement.setAttribute("lang", "en");
 
