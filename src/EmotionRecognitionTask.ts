@@ -89,9 +89,7 @@ export default function emotionRecognitionTask() {
         if(audioContent && audioContent instanceof HTMLAudioElement){
           audioContent.addEventListener('ended', () => {
             continueButton.style.display = 'flex'
-          }
-
-          )
+          })
         }
 
         continueButton.addEventListener("click", () => {
@@ -258,7 +256,7 @@ export default function emotionRecognitionTask() {
 
           // Add an event listener to show the overlay when the video ends
           if (video && video instanceof HTMLVideoElement) {
-            video.addEventListener("ended", function() {
+            video.addEventListener("ended", () => {
           // Show the overlay again
             overlay.style.display = "flex"; // Set it back to flex to maintain centering
             overlay.style.opacity = "1"
@@ -346,7 +344,7 @@ export default function emotionRecognitionTask() {
 
         // Add an event listener to show the overlay when the video ends
         if (video && video instanceof HTMLVideoElement) {
-          video.addEventListener("ended", function() {
+          video.addEventListener("ended", () => {
           
           // Show the overlay again
           overlay.style.opacity = "1"
