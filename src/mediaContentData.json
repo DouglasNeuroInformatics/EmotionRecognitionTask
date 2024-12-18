@@ -1,6 +1,18 @@
 {
     "Content": {
+        "Video+Audio": {
+            "07sou1212": {
+                "Emotions": [ "Anger", "Fear", "Contempt"],
+                "CorrectAnswer": "Anger",
+                "Filepath": "../Stimuli/Stimuli/Audio-video/07rel_Gemep-2.mp4"
+            }
+        },
         "Video": {
+            "06col313": {
+                "Emotions": [ "Anger", "Fear", "Contempt"],
+                "CorrectAnswer": "Anger",
+                "Filepath": "../video/Hello-There.mp4"
+            },
             "Video1": {
                 "Emotions": ["Joy", "Anger", "Madness"],
                 "CorrectAnswer": "Joy",
