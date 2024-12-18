@@ -404,14 +404,14 @@ export default async function emotionRecognitionTask() {
   };
 
   timeline.push(preload);
-  timeline.push(instructions);
-  for (const [, audioInfo] of Object.entries(mediaData.Content.Audio)) {
-    timeline.push(audioHtmlTask(audioInfo.Filepath));
+  timeline.push(videoInstructions);
+  for (const [, videoInfo] of Object.entries(mediaData.Content.VideoAndAudio)) {
+    timeline.push(videoCheck(videoInfo.Filepath));
     timeline.push(
-      audioHtmlEmotionChoice(
-        audioInfo.Filepath,
-        audioInfo.Emotions,
-        audioInfo.CorrectAnswer
+      videoCheckWithButtons(
+        videoInfo.Filepath,
+        videoInfo.Emotions,
+        videoInfo.CorrectAnswer
       )
     );
   }
@@ -426,6 +426,18 @@ export default async function emotionRecognitionTask() {
       )
     );
   }
+  timeline.push(instructions);
+  for (const [, audioInfo] of Object.entries(mediaData.Content.Audio)) {
+    timeline.push(audioHtmlTask(audioInfo.Filepath));
+    timeline.push(
+      audioHtmlEmotionChoice(
+        audioInfo.Filepath,
+        audioInfo.Emotions,
+        audioInfo.CorrectAnswer
+      )
+    );
+  }
+  
   jsPsych.run(timeline);
 
   function simulateKeyPress(jsPsych: JsPsych, key: string) {
