@@ -1,30 +1,550 @@
 {
     "Content": {
         "Video": {
-            "Video1": {
-                "Emotions": ["Joy", "Anger", "Madness"],
-                "CorrectAnswer": "Joy",
-                "Filepath": "../video/Hello-There.mp4"
+            "06col313": {
+                "Emotions": [
+                    "Anger",
+                    "Fear",
+                    "Contempt"
+                ],
+                "CorrectAnswer": "Anger",
+                "Filepath": "../Stimuli/Video-seulement/06ang_Gemep.mp4"
             },
-            "Video2": {
-                "Emotions": ["Joy", "Anger", "Madness"],
+            "07joi114": {
+                "Emotions": [
+                    "Interest",
+                    "Joy",
+                    "Pride"
+                ],
                 "CorrectAnswer": "Joy",
-                "Filepath": "../video/BEEER.mp4"
+                "Filepath": "../Stimuli/Video-seulement/07joy_Gemep.mp4"
+            },
+            "01sou123": {
+                "Emotions": [
+                    "Pleasure",
+                    "Joy",
+                    "Relief"
+                ],
+                "CorrectAnswer": "Relief",
+                "Filepath": "../Stimuli/Video-seulement/01rel_Gemep.mp4"
+            },
+            "08mep": {
+                "Emotions": [
+                    "Contempt",
+                    "Anger",
+                    "Sadness"
+                ],
+                "CorrectAnswer": "Contempt",
+                "Filepath": "../Stimuli/Video-seulement/08con_Gemep.mp4"
+            },
+            "05pla121": {
+                "Emotions": [
+                    "Joy",
+                    "Pleasure",
+                    "Pride"
+                ],
+                "CorrectAnswer": "Pleasure",
+                "Filepath": "../Stimuli/Video-seulement/05ple_Gemep.mp4"
+            },
+            "02peu": {
+                "Emotions": [
+                    "Sadness",
+                    "Fear",
+                    "Anger"
+                ],
+                "CorrectAnswer": "Fear",
+                "Filepath": "../Stimuli/Video-seulement/02fea_Gemep.mp4"
+            },
+            "08fie125": {
+                "Emotions": [
+                    "Pride",
+                    "Anger",
+                    "Disgust"
+                ],
+                "CorrectAnswer": "Pride",
+                "Filepath": "../Stimuli/Video-seulement/08pri_Gemep.mp4"
+            },
+            "02deg125": {
+                "Emotions": [
+                    "Sadness",
+                    "Disgust",
+                    "Contempt"
+                ],
+                "CorrectAnswer": "Disgust",
+                "Filepath": "../Stimuli/Video-seulement/02dis_Gemep.mp4"
+            },
+            "06fie124": {
+                "Emotions": [
+                    "Pride",
+                    "Joy",
+                    "Relief"
+                ],
+                "CorrectAnswer": "Pride",
+                "Filepath": "../Stimuli/Video-seulement/06pri_Gemep.mp4"
+            },
+            "04col122": {
+                "Emotions": [
+                    "Interest",
+                    "Fear",
+                    "Anger"
+                ],
+                "CorrectAnswer": "Anger",
+                "Filepath": "../Stimuli/Video-seulement/04ang_Gemep.mp4"
+            },
+            "02int111": {
+                "Emotions": [
+                    "Interest",
+                    "Pleasure",
+                    "Relief"
+                ],
+                "CorrectAnswer": "Interest",
+                "Filepath": "../Stimuli/Video-seulement/02int_Gemep.mp4"
+            },
+            "05joi121": {
+                "Emotions": [
+                    "Pride",
+                    "Joy",
+                    "Interest"
+                ],
+                "CorrectAnswer": "Joy",
+                "Filepath": "../Stimuli/Video-seulement/05joy_Gemep.mp4"
+            },
+            "03tri123": {
+                "Emotions": [
+                    "Contempt",
+                    "Disgust",
+                    "Sadness"
+                ],
+                "CorrectAnswer": "Sadness",
+                "Filepath": "../Stimuli/Video-seulement/03sad_Gemep.mp4"
+            },
+            "09sou111": {
+                "Emotions": [
+                    "Disgust",
+                    "Relief",
+                    "Pleasure"
+                ],
+                "CorrectAnswer": "Relief",
+                "Filepath": "../Stimuli/Video-seulement/09rel_Gemep.mp4"
+            },
+            "01int212": {
+                "Emotions": [
+                    "Interest",
+                    "Pleasure",
+                    "Relief"
+                ],
+                "CorrectAnswer": "Interest",
+                "Filepath": "../Stimuli/Video-seulement/01int_Gemep.mp4"
+            },
+            "03peu125": {
+                "Emotions": [
+                    "Contempt",
+                    "Fear",
+                    "Anger"
+                ],
+                "CorrectAnswer": "Fear",
+                "Filepath": "../Stimuli/Video-seulement/03fea_Gemep.mp4"
+            },
+            "06mep": {
+                "Emotions": [
+                    "Interest",
+                    "Disgust",
+                    "Contempt"
+                ],
+                "CorrectAnswer": "Contempt",
+                "Filepath": "../Stimuli/Video-seulement/06con_Gemep.mp4"
+            },
+            "04deg": {
+                "Emotions": [
+                    "Sadness",
+                    "Contempt",
+                    "Disgust"
+                ],
+                "CorrectAnswer": "Disgust",
+                "Filepath": "../Stimuli/Video-seulement/04dis_Gemep.mp4"
+            },
+            "09pla121": {
+                "Emotions": [
+                    "Pleasure",
+                    "Relief",
+                    "Pride"
+                ],
+                "CorrectAnswer": "Pleasure",
+                "Filepath": "../Stimuli/Video-seulement/09ple_Gemep.mp4"
+            },
+            "02tri112": {
+                "Emotions": [
+                    "Disgust",
+                    "Sadness",
+                    "Fear"
+                ],
+                "CorrectAnswer": "Sadness",
+                "Filepath": "../Stimuli/Video-seulement/02sad_Gemep.mp4"
             }
         },
-      
         "Audio": {
-            "Audio1": {
-                "Emotions": ["Joy", "Anger", "Madness"],
-                "CorrectAnswer": "Joy",
-                "Filepath": "../audio/hello-there.mp3"
+            "06int116": {
+                "Emotions": [
+                    "Pride",
+                    "Interest",
+                    "Anger"
+                ],
+                "CorrectAnswer": "Interest",
+                "Filepath": "../Stimuli/Audio-seulement/06int_Gemep.mp3"
             },
-            "Audio2": {
-                "Emotions": ["Joy", "Anger", "Relief"],
+            "10sou123": {
+                "Emotions": [
+                    "Pleasure",
+                    "Relief",
+                    "Fear"
+                ],
+                "CorrectAnswer":  "Relief",
+                "Filepath": "../Stimuli/Audio-seulement/10rel_Gemep.mp3"
+            },
+            "04joi122": {
+                "Emotions": [
+                    "Joy",
+                    "Anger",
+                    "Pride"
+                ],
                 "CorrectAnswer": "Joy",
-                "Filepath": "../audio/yay-6326.mp3"
+                "Filepath": "../Stimuli/Audio-seulement/04joy_Gemep.mp3"
+            },
+            "08col312": {
+                "Emotions": [
+                    "Anger",
+                    "Fear",
+                    "Pride"
+                ],
+                "CorrectAnswer": "Anger",
+                "Filepath": "../Stimuli/Audio-seulement/08ang_Gemep.mp3"
+            },
+            "09fie315": {
+                "Emotions": [
+                    "Interest",
+                    "Joy",
+                    "Pride"
+                ],
+                "CorrectAnswer": "Interest",
+                "Filepath": "../Stimuli/Audio-seulement/09pri_Gemep.mp3"
+            },
+            "01pla113": {
+                "Emotions": [
+                    "Relief",
+                    "Interest",
+                    "Pleasure"
+                ],
+                "CorrectAnswer": "Relief",
+                "Filepath": "../Stimuli/Audio-seulement/01ple_Gemep.mp3"
+            },
+            "07peu125": {
+                "Emotions": [
+                    "Fear",
+                    "Anger",
+                    "Contempt"
+                ],
+                "CorrectAnswer": "Fear",
+                "Filepath": "../Stimuli/Audio-seulement/07fea_Gemep.mp3"
+            },
+            "06joi122": {
+                "Emotions": [
+                    "Joy",
+                    "Sadness",
+                    "Contempt"
+                ],
+                "CorrectAnswer": "Joy",
+                "Filepath": "../Stimuli/Audio-seulement/06joy_Gemep.mp3"
+            },
+            "05int121": {
+                "Emotions": [
+                    "Relief",
+                    "Pleasure",
+                    "Interest"
+                ],
+                "CorrectAnswer": "Interest",
+                "Filepath": "../Stimuli/Audio-seulement/05int_Gemep.mp3"
+            },
+            "04sou117": {
+                "Emotions": [
+                    "Pleasure",
+                    "Joy",
+                    "Relief"
+                ],
+                "CorrectAnswer": "Relief",
+                "Filepath": "../Stimuli/Audio-seulement/04rel_Gemep.mp3"
+            },
+            "03mep": {
+                "Emotions": [
+                    "Contempt",
+                    "Interest",
+                    "Disgust"
+                ],
+                "CorrectAnswer": "Contempt",
+                "Filepath": "../Stimuli/Audio-seulement/03con_Gemep.mp3"
+            },
+            "04tri124": {
+                "Emotions": [
+                    "Relief",
+                    "Contempt",
+                    "Sadness"
+                ],
+                "CorrectAnswer": "Sadness",
+                "Filepath": "../Stimuli/Audio-seulement/04sad_Gemep.mp3"
+            },
+            "05fie": {
+                "Emotions": [
+                    "Joy",
+                    "Pride",
+                    "Contempt"
+                ],
+                "CorrectAnswer": "Pride",
+                "Filepath": "../Stimuli/Audio-seulement/05pri_Gemep.mp3"
+            },
+            "10col125": {
+                "Emotions": [
+                    "Disgust",
+                    "Anger",
+                    "Fear"
+                ],
+                "CorrectAnswer": "Anger",
+                "Filepath": "../Stimuli/Audio-seulement/10ang_Gemep.mp3"
+            },
+            "06tri123": {
+                "Emotions": [
+                    "Fear",
+                    "Disgust",
+                    "Sadness"
+                ],
+                "CorrectAnswer": "Sadness",
+                "Filepath": "../Stimuli/Audio-seulement/06sad_Gemep.mp3"
+            },
+            "04deg112": {
+                "Emotions": [
+                    "Disgust",
+                    "Relief",
+                    "Pleasure"
+                ],
+                "CorrectAnswer": "Disgust",
+                "Filepath": "../Stimuli/Audio-seulement/04dis_Gemep.mp3"
+            },
+            "08peu112": {
+                "Emotions": [
+                    "Sadness",
+                    "Fear",
+                    "Anger"
+                ],
+                "CorrectAnswer": "Fear",
+                "Filepath": "../Stimuli/Audio-seulement/08fea_Gemep.mp3"
+            },
+            "02pla125": {
+                "Emotions": [
+                    "Interest",
+                    "Pleasure",
+                    "Sadness"
+                ],
+                "CorrectAnswer": "Pleasure",
+                "Filepath": "../Stimuli/Audio-seulement/02ple_Gemep.mp3"
+            },
+            "10deg113": {
+                "Emotions": [
+                    "Disgust",
+                    "Pleasure",
+                    "Sadness"
+                ],
+                "CorrectAnswer": "Disgust",
+                "Filepath": "../Stimuli/Audio-seulement/10dis_Gemep.mp3"
+            },
+            "06mep": {
+                "Emotions": [
+                    "Anger",
+                    "Contempt",
+                    "Disgust"
+                ],
+                "CorrectAnswer": "Contempt",
+                "Filepath": "../Stimuli/Audio-seulement/06con_Gemep.mp3"
             }
-            
-        }
+        },
+    "VideoAndAudio": {
+      "07sou1212": {
+        "Emotions": [
+          "Pleasure",
+          "Pride",
+          "Relief"
+        ],
+        "CorrectAnswer": "Relief",
+        "Filepath": "../Stimuli/Audio-video/07rel_Gemep-2.mp4"
+      },
+      "05tri119": {
+        "Emotions": [
+          "Sadness",
+          "Fear",
+          "Disgust"
+        ],
+        "CorrectAnswer": "Disgust",
+        "Filepath": "../Stimuli/Audio-video/05dis_Gemep.mp4"
+      },
+      "01joi114": {
+        "Emotions": [
+          "Pride",
+          "Joy",
+          "Relief"
+        ],
+        "CorrectAnswer": "Joy",
+        "Filepath": "../Stimuli/Audio-video/01joy_Gemep.mp4"
+      },
+      "01mep": {
+        "Emotions": [
+          "Contempt",
+          "Disgust",
+          "Anger"
+        ],
+        "CorrectAnswer": "Contempt",
+        "Filepath": "../Stimuli/Audio-video/01con_Gemep.mp4"
+      },
+      "04fie113": {
+        "Emotions": [
+          "Joy",
+          "Interest",
+          "Pride"
+        ],
+        "CorrectAnswer": "Pride",
+        "Filepath": "../Stimuli/Audio-video/04pri_Gemep.mp4"
+      },
+      "10peu122": {
+        "Emotions": [
+          "Fear",
+          "Sadness",
+          "Disgust"
+        ],
+        "CorrectAnswer": "Sadness",
+        "Filepath": "../Stimuli/Audio-video/10fea_Gemep.mp4"
+      },
+      "06pla114": {
+        "Emotions": [
+          "Joy",
+          "Pleasure",
+          "Interest"
+        ],
+        "CorrectAnswer": "Pleasure",
+        "Filepath": "../Stimuli/Audio-video/06ple_Gemep-2.mp4"
+      },
+      "09tri114": {
+        "Emotions": [
+          "Anger",
+          "Sadness",
+          "Contempt"
+        ],
+        "CorrectAnswer": "Sadness",
+        "Filepath": "../Stimuli/Audio-video/09sad_Gemep.mp4"
+      },
+      "02joi": {
+        "Emotions": [
+          "Relief",
+          "Pride",
+          "Joy"
+        ],
+        "CorrectAnswer": "Joy",
+        "Filepath": "../Stimuli/Audio-video/02joy_Gemep.mp4"
+      },
+      "01col126": {
+        "Emotions": [
+          "Contempt",
+          "Fear",
+          "Anger"
+        ],
+        "CorrectAnswer": "Anger",
+        "Filepath": "../Stimuli/Audio-video/01ang_Gemep.mp4"
+      },
+      "09deg113": {
+        "Emotions": [
+          "Anger",
+          "Disgust",
+          "Contempt"
+        ],
+        "CorrectAnswer": "Disgust",
+        "Filepath": "../Stimuli/Audio-video/09dis_Gemep.mp4"
+      },
+      "03sou121": {
+        "Emotions": [
+          "Relief",
+          "Pride",
+          "Pleasure"
+        ],
+        "CorrectAnswer": "Relief",
+        "Filepath": "../Stimuli/Audio-video/03rel_Gemep.mp4"
+      },
+      "08pla213": {
+        "Emotions": [
+          "Pleasure",
+          "Joy",
+          "Relief"
+        ],
+        "CorrectAnswer": "Pleasure",
+        "Filepath": "../Stimuli/Audio-video/08ple_Gemep.mp4"
+      },
+      "04peu112": {
+        "Emotions": [
+          "Fear",
+          "Sadness",
+          "Anger"
+        ],
+        "CorrectAnswer": "Fear",
+        "Filepath": "../Stimuli/Audio-video/04fea_Gemep.mp4"
+      },
+      "07mep": {
+        "Emotions": [
+          "Contempt",
+          "Sadness",
+          "Interest"
+        ],
+        "CorrectAnswer": "Contempt",
+        "Filepath": "../Stimuli/Audio-video/07con_Gemep.mp4"
+      },
+      "02fie312": {
+        "Emotions": [
+          "Pride",
+          "Joy",
+          "Interest"
+        ],
+        "CorrectAnswer": "Pride",
+        "Filepath": "../Stimuli/Audio-video/02pri_Gemep.mp4"
+      },
+      "07int": {
+        "Emotions": [
+          "Relief",
+          "Interest",
+          "Joy"
+        ],
+        "CorrectAnswer": "Interest",
+        "Filepath": "../Stimuli/Audio-video/07int_Gemep.mp4"
+      },
+      "05deg123": {
+        "Emotions": [
+          "Disgust",
+          "Sadness",
+          "Fear"
+        ],
+        "CorrectAnswer": "Disgust",
+        "Filepath": "../Stimuli/Audio-video/05dis_Gemep.mp4"
+      },
+      "07col312": {
+        "Emotions": [
+          "Fear",
+          "Anger",
+          "Disgust"
+        ],
+        "CorrectAnswer": "Anger",
+        "Filepath": "../Stimuli/Audio-video/07ang_Gemep.mp4"
+      },
+      "03int121": {
+        "Emotions": [
+          "Pride",
+          "Pleasure",
+          "Interest"
+        ],
+        "CorrectAnswer": "Interest",
+        "Filepath": "../Stimuli/Audio-video/03int_Gemep.mp4"
+      }
     }
+  }
 }

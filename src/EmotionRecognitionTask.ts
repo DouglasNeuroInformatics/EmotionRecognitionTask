@@ -404,32 +404,56 @@ export default async function emotionRecognitionTask() {
   };
 
   timeline.push(preload);
-  timeline.push(instructions);
-  for (const [, audioInfo] of Object.entries(mediaData.Content.Audio)) {
-    timeline.push(audioHtmlTask(audioInfo.Filepath));
+  timeline.push(videoInstructions);
+  for (const [, videoInfo] of Object.entries(mediaData.Content.VideoAndAudio)) {
+    timeline.push(videoCheck(videoInfo.Filepath));
+    const translatedEmotions = videoInfo.Emotions.map((emotion) => {
+      return translate(emotion)
+    })
     timeline.push(
-      audioHtmlEmotionChoice(
-        audioInfo.Filepath,
-        audioInfo.Emotions,
-        audioInfo.CorrectAnswer
+      videoCheckWithButtons(
+        videoInfo.Filepath,
+        translatedEmotions,
+        translate(videoInfo.CorrectAnswer)
       )
     );
   }
   timeline.push(videoInstructions);
   for (const [, videoInfo] of Object.entries(mediaData.Content.Video)) {
     timeline.push(videoCheck(videoInfo.Filepath));
+    const translatedEmotions = videoInfo.Emotions.map((emotion) => {
+      return translate(emotion)
+    })
     timeline.push(
       videoCheckWithButtons(
         videoInfo.Filepath,
-        videoInfo.Emotions,
-        videoInfo.CorrectAnswer
+        translatedEmotions,
+        translate(videoInfo.CorrectAnswer)
       )
     );
   }
+  timeline.push(instructions);
+  for (const [, audioInfo] of Object.entries(mediaData.Content.Audio)) {
+    timeline.push(audioHtmlTask(audioInfo.Filepath));
+    const translatedEmotions = audioInfo.Emotions.map((emotion) => {
+      return translate(emotion)
+    })
+    timeline.push(
+      audioHtmlEmotionChoice(
+        audioInfo.Filepath,
+        translatedEmotions,
+        translate(audioInfo.CorrectAnswer)
+      )
+    );
+  }
+  
   jsPsych.run(timeline);
 
   function simulateKeyPress(jsPsych: JsPsych, key: string) {
     jsPsych.pluginAPI.keyDown(key);
     jsPsych.pluginAPI.keyUp(key);
+  }
+  function translate(emotion: string) {
+   return i18n.t(`emotions.${emotion}`)
   }
 }
