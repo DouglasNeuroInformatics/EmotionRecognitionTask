@@ -45,6 +45,48 @@ const i18n = createI18Next({
     buttonSelectionWarning: {
       en: `Please select a button`,
       fr: `Veuillez sélectionner un bouton`
+    },
+    emotions: {
+      Anger: {
+        "en": "Anger",
+        "fr": "Colère"
+      },
+      Fear: {
+        "en": "Fear",
+        "fr": "Peur"
+      },
+      Contempt: {
+        "en": "Contempt",
+        "fr": "Mépris"
+      },
+      Interest: {
+        "en": "Interest",
+        "fr": "Intérêt" 
+      },
+      Joy: {
+        "en": "Joy",
+        "fr": "Joie"
+      },
+      Pride: {
+        "en": "Pride",
+        "fr": "Fierté"
+      },
+      Pleasure: {
+        "en": "Pleasure",
+        "fr": "Plaisir"
+      },
+      Relief: {
+        "en": "Relief",
+        "fr": "Soulagement"
+      },
+      Sadness: {
+        "en": "Sadness",
+        "fr": "Tristesse"
+      },
+      Disgust: {
+        "en": "Disgust",
+        "fr": "Dégoût"
+      }
     }
 
 
