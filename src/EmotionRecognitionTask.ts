@@ -336,7 +336,7 @@ export default async function emotionRecognitionTask() {
           document.body.appendChild(continueButtonDiv);
         }
 
-        if(buttonResponseContainer) {
+        if(buttonResponseContainer && buttonResponseContainer instanceof HTMLElement) {
           buttonResponseContainer.style.display = "flex"
           buttonResponseContainer.style.justifyContent = "center"
           buttonResponseContainer.style.alignItems = "center"
