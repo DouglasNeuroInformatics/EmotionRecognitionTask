@@ -125,9 +125,12 @@ export default async function emotionRecognitionTask() {
 
   const audioHtmlEmotionChoice = (
     filepath: string,
+    mediaCode: string,
+    mediaType: string,
     emotionChoices: string[],
     correctAnswer: string
   ) => {
+    let finalResponse: string = "";
     return {
       type: HtmlButtonResponse,
       stimulus: function () {
@@ -210,6 +213,14 @@ export default async function emotionRecognitionTask() {
           continueButton.remove();
         });
       },
+      on_finish: function(data: any) {
+        if(finalResponse){
+          data.correctResponse = (finalResponse === correctAnswer)
+          data.selectedResponse = finalResponse
+          data.mediaFileType =  mediaType
+          data.itemCode = mediaCode 
+        }
+      }
     };
   };
 
@@ -298,9 +309,12 @@ export default async function emotionRecognitionTask() {
 
   const videoCheckWithButtons = (
     filepath: string,
+    mediaCode: string,
+    mediaType: string,
     emotionChoices: string[],
     correctAnswer: string
   ) => {
+    let finalResponse:string = ""
     return {
       type: HtmlButtonResponse,
       stimulus: function () {
@@ -344,8 +358,6 @@ export default async function emotionRecognitionTask() {
 
         let videoCount = false;
         let start_time = 0;
-
-        let response: string = "";
 
         // Add a click event listener to the overlay
         if (overlay && cross) {
@@ -395,29 +407,37 @@ export default async function emotionRecognitionTask() {
           button.addEventListener("click", (e) => {
             if (e.target instanceof HTMLButtonElement && e.target === button) {
               const val = button.innerHTML;
-              response = val;
+              finalResponse = val;
             }
           });
         });
 
         continueButton.addEventListener("click", () => {
-          if (!response) {
+          if (!finalResponse) {
             alert(i18n.t("buttonSelectionWarning"));
             return;
           }
           jsPsych.finishTrial({
             rt: performance.now() - start_time,
-            response: response,
+            response: finalResponse,
           });
           continueButton.remove();
         });
       },
+      on_finish: function(data: any) {
+        if(finalResponse){
+          data.correctResponse = (finalResponse === correctAnswer)
+          data.selectedResponse = finalResponse
+          data.mediaFileType =  mediaType
+          data.itemCode = mediaCode 
+        }
+      }
     };
   };
 
   timeline.push(preload);
   timeline.push(videoInstructions);
-  for (const [, videoInfo] of Object.entries(mediaData.Content.VideoAndAudio)) {
+  for (const [key, videoInfo] of Object.entries(mediaData.Content.VideoAndAudio)) {
     timeline.push(videoCheck(videoInfo.Filepath));
     const translatedEmotions = videoInfo.Emotions.map((emotion) => {
       return translate(emotion)
@@ -425,13 +445,15 @@ export default async function emotionRecognitionTask() {
     timeline.push(
       videoCheckWithButtons(
         videoInfo.Filepath,
+        key,
+        "VideoAndAudio",
         translatedEmotions,
         translate(videoInfo.CorrectAnswer)
       )
     );
   }
   timeline.push(videoInstructions);
-  for (const [, videoInfo] of Object.entries(mediaData.Content.Video)) {
+  for (const [key, videoInfo] of Object.entries(mediaData.Content.Video)) {
     timeline.push(videoCheck(videoInfo.Filepath));
     const translatedEmotions = videoInfo.Emotions.map((emotion) => {
       return translate(emotion)
@@ -439,13 +461,15 @@ export default async function emotionRecognitionTask() {
     timeline.push(
       videoCheckWithButtons(
         videoInfo.Filepath,
+        key,
+        "Video",
         translatedEmotions,
         translate(videoInfo.CorrectAnswer)
       )
     );
   }
   timeline.push(instructions);
-  for (const [, audioInfo] of Object.entries(mediaData.Content.Audio)) {
+  for (const [key, audioInfo] of Object.entries(mediaData.Content.Audio)) {
     timeline.push(audioHtmlTask(audioInfo.Filepath));
     const translatedEmotions = audioInfo.Emotions.map((emotion) => {
       return translate(emotion)
@@ -453,6 +477,8 @@ export default async function emotionRecognitionTask() {
     timeline.push(
       audioHtmlEmotionChoice(
         audioInfo.Filepath,
+        key,
+        "Audio",
         translatedEmotions,
         translate(audioInfo.CorrectAnswer)
       )
