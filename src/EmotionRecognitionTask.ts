@@ -17,25 +17,13 @@ import type { Language } from "@opendatacapture/runtime-v1/@opendatacapture/runt
 import i18n from "./i18n.ts";
 import { experimentSettingsJson } from "./experimentSettings.ts";
 import { $Settings } from "./schemas.ts";
+import { errorMonitor } from "events";
 
 const jsPsych = initJsPsych();
 
 
 
 export default async function emotionRecognitionTask() {
-
-  const EmotionKeys = [
-     'emotions.Anger',
-     'emotions.Fear',
-     'emotions.Contempt',
-     'emotions.Interest',
-     'emotions.Joy',
-     'emotions.Pride',
-     'emotions.Pleasure',
-     'emotions.Relief',
-     'emotions.Sadness',
-     'emotions.Disgust'
-    ]
  
 
   // parse settings
@@ -470,9 +458,12 @@ export default async function emotionRecognitionTask() {
     jsPsych.pluginAPI.keyUp(key);
   }
   function translate(emotion: string){
-   if ( EmotionKeys.includes(`emotions.${emotion}`)){
-    return i18n.t(`emotions.${emotion}`)
-   }
-   return "Emotion not found"
+    try{
+      const translation = i18n.t(`emotions.${emotion}`)
+      return translation
+    }catch (error) {
+      console.error(error)
+      return "Emotion Not Found"
+    }
   }
 }
