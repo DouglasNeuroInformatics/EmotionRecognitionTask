@@ -322,15 +322,24 @@ export default async function emotionRecognitionTask() {
         const video = document.getElementById("video");
         const overlay = document.getElementById("overlay");
         const cross = document.getElementById("overlay-cross");
+        
 
         const continueButton = addContinueButton();
         const continueButtonDiv = createContinueButtonDiv(continueButton);
         const jsPsychContent = document.getElementById("jspsych-content");
 
+        const buttonResponseContainer = document.getElementById("jspsych-html-button-response-stimulus")
+
         if (jsPsychContent) {
           jsPsychContent.appendChild(continueButtonDiv);
         } else {
           document.body.appendChild(continueButtonDiv);
+        }
+
+        if(buttonResponseContainer) {
+          buttonResponseContainer.style.display = "flex"
+          buttonResponseContainer.style.justifyContent = "center"
+          buttonResponseContainer.style.alignItems = "center"
         }
 
         let videoCount = false;
