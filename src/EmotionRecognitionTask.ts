@@ -9,7 +9,7 @@ import {
   audioHtmlGenerator,
   createContinueButtonDiv,
   revealEmotionButtons,
-  videoCoverHtmlGenerator,
+  videoCoverHtmlGenerator
 } from "./helperFunctions";
 import * as mediaData from "./mediaContentData.json";
 
@@ -20,7 +20,23 @@ import { $Settings } from "./schemas.ts";
 
 const jsPsych = initJsPsych();
 
+
+
 export default async function emotionRecognitionTask() {
+
+  const EmotionKeys = [
+     'emotions.Anger',
+     'emotions.Fear',
+     'emotions.Contempt',
+     'emotions.Interest',
+     'emotions.Joy',
+     'emotions.Pride',
+     'emotions.Pleasure',
+     'emotions.Relief',
+     'emotions.Sadness',
+     'emotions.Disgust'
+    ]
+ 
 
   // parse settings
   const settingsParseResult = $Settings.safeParse(experimentSettingsJson);
@@ -453,7 +469,10 @@ export default async function emotionRecognitionTask() {
     jsPsych.pluginAPI.keyDown(key);
     jsPsych.pluginAPI.keyUp(key);
   }
-  function translate(emotion: string) {
-   return i18n.t(`emotions.${emotion}`)
+  function translate(emotion: string){
+   if ( EmotionKeys.includes(`emotions.${emotion}`)){
+    return i18n.t(`emotions.${emotion}`)
+   }
+   return "Emotion not found"
   }
 }
