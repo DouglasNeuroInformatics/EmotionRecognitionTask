@@ -17,7 +17,6 @@ import type { Language } from "@opendatacapture/runtime-v1/@opendatacapture/runt
 import i18n from "./i18n.ts";
 import { experimentSettingsJson } from "./experimentSettings.ts";
 import { $Settings } from "./schemas.ts";
-import { errorMonitor } from "events";
 
 const jsPsych = initJsPsych();
 
