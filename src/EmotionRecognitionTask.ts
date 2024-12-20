@@ -18,9 +18,6 @@ import i18n from "./i18n.ts";
 import { experimentSettingsJson } from "./experimentSettings.ts";
 import { $Settings } from "./schemas.ts";
 
-const jsPsych = initJsPsych();
-
-
 
 export default async function emotionRecognitionTask() {
  
@@ -153,7 +150,6 @@ export default async function emotionRecognitionTask() {
         const audioIcon = document.getElementById("audioIcon");
         const audioContent = document.getElementById("audioContent");
 
-        let response: string = "";
         let start_time = 0;
 
         const continueButton = addContinueButton();
@@ -197,18 +193,18 @@ export default async function emotionRecognitionTask() {
           button.addEventListener("click", (e) => {
             if (e.target instanceof HTMLButtonElement && e.target === button) {
               const val = button.innerHTML;
-              response = val;
+              finalResponse = val;
             }
           });
         });
         continueButton.addEventListener("click", () => {
-          if (!response) {
+          if (!finalResponse) {
             alert(i18n.t("buttonSelectionWarning"));
             return;
           }
           jsPsych.finishTrial({
             rt: performance.now() - start_time,
-            response: response,
+            response: finalResponse,
           });
           continueButton.remove();
         });
@@ -219,6 +215,7 @@ export default async function emotionRecognitionTask() {
           data.selectedResponse = finalResponse
           data.mediaFileType =  mediaType
           data.itemCode = mediaCode 
+          data.trial_type = "emotionChoice"
         }
       }
     };
@@ -430,6 +427,7 @@ export default async function emotionRecognitionTask() {
           data.selectedResponse = finalResponse
           data.mediaFileType =  mediaType
           data.itemCode = mediaCode 
+          data.trial_type = "emotionChoice"
         }
       }
     };
@@ -484,6 +482,14 @@ export default async function emotionRecognitionTask() {
       )
     );
   }
+  const jsPsych = initJsPsych({
+    timeline: timeline, 
+    on_finish: function(){
+      const filteredData = jsPsych.data.get().filter({trial_type:'emotionChoice'})
+      console.log(filteredData)
+    }
+  });
+  
   
   jsPsych.run(timeline);
 
