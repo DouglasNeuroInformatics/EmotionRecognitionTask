@@ -54,7 +54,18 @@ export default async function emotionRecognitionTask() {
     message: `<p> ${i18n.t("loadingStimulus")}</p>`,
   };
 
-  const instructions = {
+  const taskInstructions = {
+    type: HtmlKeyboardResponsePlugin,
+    stimulus: `<p>${i18n.t("initialInstructions")}</p>`,
+    on_load: function () {
+      document.addEventListener("click", clickHandler);
+    },
+    on_finish: function () {
+      document.removeEventListener("click", clickHandler);
+    },
+  };
+
+  const audioInstructions = {
     type: HtmlKeyboardResponsePlugin,
     stimulus: `<p>${i18n.t("audioInstructions")}</p>`,
     on_load: function () {
@@ -434,6 +445,7 @@ export default async function emotionRecognitionTask() {
   };
 
   timeline.push(preload);
+  timeline.push(taskInstructions);
   timeline.push(videoInstructions);
   for (const [key, videoInfo] of Object.entries(mediaData.Content.VideoAndAudio)) {
     timeline.push(videoCheck(videoInfo.Filepath));
@@ -466,7 +478,7 @@ export default async function emotionRecognitionTask() {
       )
     );
   }
-  timeline.push(instructions);
+  timeline.push(audioInstructions);
   for (const [key, audioInfo] of Object.entries(mediaData.Content.Audio)) {
     timeline.push(audioHtmlTask(audioInfo.Filepath));
     const translatedEmotions = audioInfo.Emotions.map((emotion) => {
