@@ -430,6 +430,13 @@ export default async function emotionRecognitionTask() {
             response: finalResponse,
           });
           continueButton.remove();
+          buttonSelections.forEach((button) => {
+            button.removeEventListener("click", (e) => {
+              if (e.target instanceof HTMLButtonElement && e.target === button) {
+                const val = button.innerHTML;
+                finalResponse = val;
+              }});
+            });
         });
       },
       on_finish: function(data: any) {
@@ -440,6 +447,7 @@ export default async function emotionRecognitionTask() {
           data.itemCode = mediaCode 
           data.trial_type = "emotionChoice"
         }
+      
       }
     };
   };
@@ -501,9 +509,12 @@ export default async function emotionRecognitionTask() {
       console.log(filteredData)
     }
   });
+
+
   
   
   jsPsych.run(timeline);
+
 
   function simulateKeyPress(jsPsych: JsPsych, key: string) {
     jsPsych.pluginAPI.keyDown(key);
