@@ -519,8 +519,8 @@ export default async function emotionRecognitionTask() {
       const translation = i18n.t(`emotions.${emotion}`)
       return translation
     }catch (error) {
-      console.error(error)
-      return "Emotion Not Found"
+      console.error(`Translation error for emotion "${emotion}":`, error)
+      return emotion;
     }
   }
 
