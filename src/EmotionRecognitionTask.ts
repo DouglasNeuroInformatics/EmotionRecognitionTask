@@ -457,48 +457,42 @@ export default async function emotionRecognitionTask() {
   timeline.push(videoInstructions);
   for (const [key, videoInfo] of Object.entries(mediaData.Content.VideoAndAudio)) {
     timeline.push(videoCheck(videoInfo.Filepath));
-    const translatedEmotions = videoInfo.Emotions.map((emotion) => {
-      return translate(emotion)
-    })
+    const { emotions: translatedEmotions, correctAnswer } = getTranslatedEmotions(videoInfo);
     timeline.push(
       videoCheckWithButtons(
         videoInfo.Filepath,
         key,
         "VideoAndAudio",
         translatedEmotions,
-        translate(videoInfo.CorrectAnswer)
+        correctAnswer
       )
     );
   }
   timeline.push(videoInstructions);
   for (const [key, videoInfo] of Object.entries(mediaData.Content.Video)) {
     timeline.push(videoCheck(videoInfo.Filepath));
-    const translatedEmotions = videoInfo.Emotions.map((emotion) => {
-      return translate(emotion)
-    })
+    const { emotions: translatedEmotions, correctAnswer } = getTranslatedEmotions(videoInfo);
     timeline.push(
       videoCheckWithButtons(
         videoInfo.Filepath,
         key,
         "Video",
         translatedEmotions,
-        translate(videoInfo.CorrectAnswer)
+        correctAnswer
       )
     );
   }
   timeline.push(audioInstructions);
   for (const [key, audioInfo] of Object.entries(mediaData.Content.Audio)) {
     timeline.push(audioHtmlTask(audioInfo.Filepath));
-    const translatedEmotions = audioInfo.Emotions.map((emotion) => {
-      return translate(emotion)
-    })
+    const { emotions: translatedEmotions, correctAnswer } = getTranslatedEmotions(audioInfo);
     timeline.push(
       audioHtmlEmotionChoice(
         audioInfo.Filepath,
         key,
         "Audio",
         translatedEmotions,
-        translate(audioInfo.CorrectAnswer)
+        correctAnswer
       )
     );
   }
@@ -528,5 +522,12 @@ export default async function emotionRecognitionTask() {
       console.error(error)
       return "Emotion Not Found"
     }
+  }
+
+  function getTranslatedEmotions(mediaInfo: { Emotions: string[], CorrectAnswer: string }) {
+    return {
+      emotions: mediaInfo.Emotions.map(translate),
+      correctAnswer: translate(mediaInfo.CorrectAnswer)
+    };
   }
 }
