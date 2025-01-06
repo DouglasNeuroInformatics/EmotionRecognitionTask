@@ -44,10 +44,16 @@ export const $ExperimentImage = z.object({
   stimulus: z.string(),
 });
 
+export const $EmotionRecognitionTaskResult = $LoggingTrial.extend({
+  mediaFileType: z.string(),
+  itemCode: z.string()
+})
+
 export type SupportedLanguage = z.infer<typeof $Language>;
 export type ParticipantResponse = z.infer<typeof $ParticipantResponse>;
 export type Trial = z.infer<typeof $Trial>;
 export type LoggingTrial = z.infer<typeof $LoggingTrial>;
 export type ExperimentResults = z.infer<typeof $ExperimentResults>;
+export type EmotionRecognitionTask = z.infer<typeof $EmotionRecognitionTaskResult>
 export type Settings = z.infer<typeof $Settings>;
 export type ExperimentImage = z.infer<typeof $ExperimentImage>;

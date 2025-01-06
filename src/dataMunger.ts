@@ -1,26 +1,22 @@
-import { $ExperimentResults } from "./schemas.ts";
+import { $EmotionRecognitionTaskResult } from "./schemas.ts";
 
-import type { ExperimentResults, LoggingTrial } from "./schemas.ts";
+import type { ExperimentResults, LoggingTrial, EmotionRecognitionTask } from "./schemas.ts";
 import type { DataCollection } from "/runtime/v1/jspsych@8.x";
 
-import { DOMPurify } from "/runtime/v1/dompurify@3.x";
 
 function dataMunger(data: DataCollection) {
-  const trials = data
-    .filter({ trial_type: "survey-html-form" })
-    .values() as LoggingTrial[];
-  const experimentResults: ExperimentResults[] = [];
+  const trials = data.values() as EmotionRecognitionTask[]
+  const experimentResults: EmotionRecognitionTask[] = [];
   for (const trial of trials) {
     // parsed experimentResults go here
-    const result = $ExperimentResults.parse({
+    const result = $EmotionRecognitionTaskResult.parse({
       //example:
       stimulus: trial.stimulus,
       correctResponse: trial.correctResponse,
-      difficultyLevel: trial.difficultyLevel,
       language: trial.language,
       rt: trial.rt,
+      mediaFileType: trial.mediaFileType,
       responseResult: trial.response.result,
-      responseNotes: DOMPurify.sanitize(trial.response.notes),
     });
     experimentResults.push(result);
   }
