@@ -20,6 +20,16 @@ import { $Settings } from "./schemas.ts";
 
 
 export default async function emotionRecognitionTask() {
+
+  type EmotionalTrialData = {
+    correctResponse: boolean;
+    selectedResponse: string;
+    mediaFileType: string;
+    itemCode: string;
+    trial_type: string;
+    rt?: number;
+    response: string;
+  }
  
 
   // parse settings
@@ -220,7 +230,7 @@ export default async function emotionRecognitionTask() {
           continueButton.remove();
         });
       },
-      on_finish: function(data: any) {
+      on_finish: function(data: EmotionalTrialData) {
         if(finalResponse){
           data.correctResponse = (finalResponse === correctAnswer)
           data.selectedResponse = finalResponse
@@ -439,7 +449,7 @@ export default async function emotionRecognitionTask() {
             });
         });
       },
-      on_finish: function(data: any) {
+      on_finish: function(data: EmotionalTrialData) {
         if(finalResponse){
           data.correctResponse = (finalResponse === correctAnswer)
           data.selectedResponse = finalResponse
@@ -503,12 +513,8 @@ export default async function emotionRecognitionTask() {
       console.log(filteredData)
     }
   });
-
-
-  
   
   jsPsych.run(timeline);
-
 
   function simulateKeyPress(jsPsych: JsPsych, key: string) {
     jsPsych.pluginAPI.keyDown(key);
