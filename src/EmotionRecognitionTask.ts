@@ -98,7 +98,7 @@ export default async function emotionRecognitionTask() {
         const continueButtonDiv = createContinueButtonDiv(continueButton);
         const jsPsychContent = document.getElementById("jspsych-content");
 
-        if (jsPsychContent) {
+        if (jsPsychContent && jsPsychContent instanceof HTMLElement) {
           jsPsychContent.appendChild(continueButtonDiv);
         } else {
           document.body.appendChild(continueButtonDiv);
@@ -167,7 +167,7 @@ export default async function emotionRecognitionTask() {
         const continueButtonDiv = createContinueButtonDiv(continueButton);
         const jsPsychContent = document.getElementById("jspsych-content");
 
-        if (jsPsychContent) {
+        if (jsPsychContent && jsPsychContent instanceof HTMLElement) {
           jsPsychContent.appendChild(continueButtonDiv);
         } else {
           document.body.appendChild(continueButtonDiv);
@@ -264,7 +264,7 @@ export default async function emotionRecognitionTask() {
         const continueButtonDiv = createContinueButtonDiv(continueButton);
         const jsPsychContent = document.getElementById("jspsych-content");
 
-        if (jsPsychContent) {
+        if (jsPsychContent && jsPsychContent instanceof HTMLElement) {
           jsPsychContent.appendChild(continueButtonDiv);
         } else {
           document.body.appendChild(continueButtonDiv);
@@ -352,7 +352,7 @@ export default async function emotionRecognitionTask() {
 
         const buttonResponseContainer = document.getElementById("jspsych-html-button-response-stimulus")
 
-        if (jsPsychContent) {
+        if (jsPsychContent && jsPsychContent instanceof HTMLElement) {
           jsPsychContent.appendChild(continueButtonDiv);
         } else {
           document.body.appendChild(continueButtonDiv);
