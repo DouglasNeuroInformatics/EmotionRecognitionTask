@@ -24,12 +24,10 @@ export default async function emotionRecognitionTask() {
 
   type EmotionalTrialData = {
     correctResponse: string;
-    selectedResponse: string;
     mediaFileType: string;
     itemCode: string;
     trialType: string;
     rt?: number;
-    response: string;
     language: string;
   }
  
@@ -235,7 +233,6 @@ export default async function emotionRecognitionTask() {
       on_finish: function(data: EmotionalTrialData) {
         if(finalResponse){
           data.correctResponse =  correctAnswer
-          data.selectedResponse = finalResponse
           data.mediaFileType =  mediaType
           data.itemCode = mediaCode 
           data.trialType = "emotionChoice"
@@ -455,7 +452,6 @@ export default async function emotionRecognitionTask() {
       on_finish: function(data: EmotionalTrialData) {
         if(finalResponse){
           data.correctResponse = correctAnswer
-          data.selectedResponse = finalResponse
           data.mediaFileType =  mediaType
           data.itemCode = mediaCode 
           data.trialType = "emotionChoice"
@@ -514,7 +510,6 @@ export default async function emotionRecognitionTask() {
     timeline: timeline, 
     on_finish: function(){
       const filteredData = jsPsych.data.get().filter({trialType:'emotionChoice'})
-      console.log(filteredData)
       const resultJson = transformAndExportJson(filteredData)
       downloadJson(resultJson, resultJson.timestamp)
     }
