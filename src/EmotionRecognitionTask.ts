@@ -1,4 +1,4 @@
-import { initJsPsych, JsPsych } from "jspsych";
+import { initJsPsych, JsPsych } from "/runtime/v1/jspsych@8.x";
 import "jspsych/css/jspsych.css";
 import HtmlKeyboardResponsePlugin from "@jspsych/plugin-html-keyboard-response";
 import HtmlButtonResponse from "@jspsych/plugin-html-button-response";
@@ -17,6 +17,7 @@ import type { Language } from "@opendatacapture/runtime-v1/@opendatacapture/runt
 import i18n from "./i18n.ts";
 import { experimentSettingsJson } from "./experimentSettings.ts";
 import { $Settings } from "./schemas.ts";
+import { transformAndExportJson } from "./dataMunger";
 
 
 export default async function emotionRecognitionTask() {
@@ -26,9 +27,10 @@ export default async function emotionRecognitionTask() {
     selectedResponse: string;
     mediaFileType: string;
     itemCode: string;
-    trial_type: string;
+    trialType: string;
     rt?: number;
     response: string;
+    language: string;
   }
  
 
@@ -236,7 +238,8 @@ export default async function emotionRecognitionTask() {
           data.selectedResponse = finalResponse
           data.mediaFileType =  mediaType
           data.itemCode = mediaCode 
-          data.trial_type = "emotionChoice"
+          data.trialType = "emotionChoice"
+          data.language = language as string
         }
       }
     };
@@ -455,7 +458,8 @@ export default async function emotionRecognitionTask() {
           data.selectedResponse = finalResponse
           data.mediaFileType =  mediaType
           data.itemCode = mediaCode 
-          data.trial_type = "emotionChoice"
+          data.trialType = "emotionChoice"
+          data.language = language as string
         }
         
       }
@@ -509,8 +513,10 @@ export default async function emotionRecognitionTask() {
   const jsPsych = initJsPsych({
     timeline: timeline, 
     on_finish: function(){
-      const filteredData = jsPsych.data.get().filter({trial_type:'emotionChoice'})
+      const filteredData = jsPsych.data.get().filter({trialType:'emotionChoice'})
       console.log(filteredData)
+      const resultJson = transformAndExportJson(filteredData)
+      console.log(resultJson)
     }
   });
   
