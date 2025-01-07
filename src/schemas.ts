@@ -13,11 +13,10 @@ const $Trial = z.object({
 });
 const $LoggingTrial = $Trial.extend({
   correctResponse: z.string(),
-  difficultyLevel: z.coerce.number().positive().int(),
-  language: $Language,
-  response: $ParticipantResponse,
-  rt: z.coerce.number().positive().int(),
-  stimulus: z.string(),
+  difficultyLevel: z.coerce.number().positive().int().optional(),
+  language: $Language.optional(),
+  response: z.string(),
+  rt: z.coerce.number().positive().int()
 });
 export const $ExperimentResults = $LoggingTrial
   .omit({ response: true, trialType: true })

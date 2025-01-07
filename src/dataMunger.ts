@@ -10,12 +10,15 @@ function dataMunger(data: DataCollection) {
   for (const trial of trials) {
     // parsed experimentResults go here
     const result = $EmotionRecognitionTaskResult.parse({
-      //example:
-      stimulus: trial.stimulus,
+      
+      trialType: trial.trialType,
+      response: trial.response,
       correctResponse: trial.correctResponse,
       language: trial.language,
       rt: trial.rt,
-      mediaFileType: trial.mediaFileType
+      mediaFileType: trial.mediaFileType,
+      itemCode: trial.itemCode,
+      selectedLanguage: trial.language
     });
     experimentResults.push(result);
   }
@@ -63,14 +66,14 @@ function exportToJsonSerializable(data: EmotionRecognitionTask[]): {
     version: "1.0",
     timestamp: getLocalTime(),
     experimentResults: data.map((result) => ({
-      // create appropriate mapping, example:
-      stimulus: result.stimulus,
       correctResponse: result.correctResponse,
-      // difficultyLevel: result.difficultyLevel,
-      // language: result.language,
+      response: result.response,
+      language: result.language,
       rt: result.rt,
       trialType: result.trialType,
-      itemCode: result.itemCode
+      itemCode: result.itemCode,
+      mediaFileType: result.mediaFileType
+
 
     })),
   };
