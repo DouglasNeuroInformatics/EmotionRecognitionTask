@@ -22,7 +22,7 @@ import { $Settings } from "./schemas.ts";
 export default async function emotionRecognitionTask() {
 
   type EmotionalTrialData = {
-    correctResponse: boolean;
+    correctResponse: string;
     selectedResponse: string;
     mediaFileType: string;
     itemCode: string;
@@ -232,7 +232,7 @@ export default async function emotionRecognitionTask() {
       },
       on_finish: function(data: EmotionalTrialData) {
         if(finalResponse){
-          data.correctResponse = (finalResponse === correctAnswer)
+          data.correctResponse =  correctAnswer
           data.selectedResponse = finalResponse
           data.mediaFileType =  mediaType
           data.itemCode = mediaCode 
@@ -451,13 +451,13 @@ export default async function emotionRecognitionTask() {
       },
       on_finish: function(data: EmotionalTrialData) {
         if(finalResponse){
-          data.correctResponse = (finalResponse === correctAnswer)
+          data.correctResponse = correctAnswer
           data.selectedResponse = finalResponse
           data.mediaFileType =  mediaType
           data.itemCode = mediaCode 
           data.trial_type = "emotionChoice"
         }
-      
+        
       }
     };
   };
