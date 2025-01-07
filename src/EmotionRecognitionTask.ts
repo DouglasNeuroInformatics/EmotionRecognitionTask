@@ -17,7 +17,7 @@ import type { Language } from "@opendatacapture/runtime-v1/@opendatacapture/runt
 import i18n from "./i18n.ts";
 import { experimentSettingsJson } from "./experimentSettings.ts";
 import { $Settings } from "./schemas.ts";
-import { transformAndExportJson } from "./dataMunger";
+import { transformAndExportJson, downloadJson } from "./dataMunger";
 
 
 export default async function emotionRecognitionTask() {
@@ -516,7 +516,7 @@ export default async function emotionRecognitionTask() {
       const filteredData = jsPsych.data.get().filter({trialType:'emotionChoice'})
       console.log(filteredData)
       const resultJson = transformAndExportJson(filteredData)
-      console.log(resultJson)
+      downloadJson(resultJson, resultJson.timestamp)
     }
   });
   
