@@ -1,6 +1,6 @@
 import { $EmotionRecognitionTaskResult } from "./schemas.ts";
 
-import type { ExperimentResults, LoggingTrial, EmotionRecognitionTask } from "./schemas.ts";
+import type { EmotionRecognitionTask } from "./schemas.ts";
 import type { DataCollection } from "/runtime/v1/jspsych@8.x";
 
 
@@ -15,8 +15,7 @@ function dataMunger(data: DataCollection) {
       correctResponse: trial.correctResponse,
       language: trial.language,
       rt: trial.rt,
-      mediaFileType: trial.mediaFileType,
-      responseResult: trial.response.result,
+      mediaFileType: trial.mediaFileType
     });
     experimentResults.push(result);
   }
@@ -24,7 +23,7 @@ function dataMunger(data: DataCollection) {
   return experimentResults;
 }
 
-function arrayToCSV(array: ExperimentResults[]) {
+function arrayToCSV(array: EmotionRecognitionTask[]) {
   const header = Object.keys(array[0]!).join(",");
   const trials = array
     .map((trial) => Object.values(trial).join(","))
@@ -57,7 +56,7 @@ function getLocalTime() {
 }
 
 // for ODC
-function exportToJsonSerializable(data: ExperimentResults[]): {
+function exportToJsonSerializable(data: EmotionRecognitionTask[]): {
   [key: string]: unknown;
 } {
   return {
@@ -67,11 +66,12 @@ function exportToJsonSerializable(data: ExperimentResults[]): {
       // create appropriate mapping, example:
       stimulus: result.stimulus,
       correctResponse: result.correctResponse,
-      difficultyLevel: result.difficultyLevel,
-      language: result.language,
+      // difficultyLevel: result.difficultyLevel,
+      // language: result.language,
       rt: result.rt,
-      responseResult: result.responseResult,
-      responseNotes: result.responseNotes,
+      trialType: result.trialType,
+      itemCode: result.itemCode
+
     })),
   };
 }
