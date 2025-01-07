@@ -90,3 +90,15 @@ export function transformAndExportJson(data: DataCollection): any {
   const jsonSerializableData = exportToJsonSerializable(mungedData);
   return JSON.parse(JSON.stringify(jsonSerializableData));
 }
+
+export function downloadJson(data: JSON, filename: string) {
+  const blobData = JSON.stringify(data)
+  const blob = new Blob([blobData], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.setAttribute("href", url);
+  link.setAttribute("download", filename);
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
