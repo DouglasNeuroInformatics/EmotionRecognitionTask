@@ -16,8 +16,12 @@ const i18n = createI18Next({
       en: "Loading stimulus",
       fr: "Stimulus de chargement",
     },
+    guidelines: {
+      en: `Guidelines:`,
+      fr: `Directives:`
+    },
     initialInstructions: {
-      en: `Guidelines:  
+      en: ` 
             This test measures your ability to recognize emotions.
 
             Your task is to watch a series of videos with image and sound, without sound, or without image, in which a person expresses an emotion. 
@@ -26,7 +30,7 @@ const i18n = createI18Next({
             
             Make sure your volume is high enough to hear the sounds.`,
             
-      fr: `Directives:  
+      fr: `  
 
             Ce test mesure votre capacité à reconnaître les émotions.
 

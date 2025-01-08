@@ -66,7 +66,11 @@ export default async function emotionRecognitionTask() {
 
   const taskInstructions = {
     type: HtmlKeyboardResponsePlugin,
-    stimulus: `<p>${i18n.t("initialInstructions")}</p>`,
+    stimulus: function (){
+      return ` 
+      <h3 classname="guidelines" style="color:red;"> ${i18n.t("guidelines")} </h3>
+      <p>${i18n.t("initialInstructions")}</p>`
+    },
     on_load: function () {
       document.addEventListener("click", clickHandler);
     },
