@@ -41,16 +41,13 @@ const i18n = createI18Next({
             Assurez-vous que votre volume est suffisamment élevé pour entendre les sons. <br>`,
     },
     audioInstructions: {
-      en: `The third block is about to begin. <br>
-
-      <span style="color:red"> <b> only audio </b> </span> will be presented.<br>
-      
-      Please click on the audio icon to play it`,
-    fr: `La troisieme bloc va commencer. <br>
-
-      Des vidéos <span style="color:red"> <b> avec image seulement  </b> </span> seront présentées. <br>
-      
-      Veuillez cliquer sur le icon l'audio pour le lancer.`  },
+      en: `Snippets <span style="color:red"> <b> without images </b> </span> will now be presented.<br>
+ 
+      Please click on the icon to play the audio.`,
+    fr: `
+      Des extraits <span style="color:red"> <b> sans image  </b> </span> seront maintenant présentés.<br>
+ 
+      Veuillez cliquer sur l'icône afin de lancer l'extrait.` },
     initialAudioTask: {
       en: "Click on the sound icon to play audio.",
       fr: "Cliquez sur l'icône du son pour écouter l'audio.",
