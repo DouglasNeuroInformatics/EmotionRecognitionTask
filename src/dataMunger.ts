@@ -1,34 +1,38 @@
-import { $ExperimentResults } from "./schemas.ts";
+import { $EmotionRecognitionTaskResult } from "./schemas.ts";
 
-import type { ExperimentResults, LoggingTrial } from "./schemas.ts";
+import type { EmotionRecognitionTask } from "./schemas.ts";
 import type { DataCollection } from "/runtime/v1/jspsych@8.x";
 
-import { DOMPurify } from "/runtime/v1/dompurify@3.x";
 
 function dataMunger(data: DataCollection) {
-  const trials = data
-    .filter({ trial_type: "survey-html-form" })
-    .values() as LoggingTrial[];
-  const experimentResults: ExperimentResults[] = [];
+  const trials = data.values() as EmotionRecognitionTask[]
+  const experimentResults: EmotionRecognitionTask[] = [];
   for (const trial of trials) {
     // parsed experimentResults go here
-    const result = $ExperimentResults.parse({
-      //example:
-      stimulus: trial.stimulus,
-      correctResponse: trial.correctResponse,
-      difficultyLevel: trial.difficultyLevel,
-      language: trial.language,
-      rt: trial.rt,
-      responseResult: trial.response.result,
-      responseNotes: DOMPurify.sanitize(trial.response.notes),
-    });
-    experimentResults.push(result);
+    try {
+      const result = $EmotionRecognitionTaskResult.parse({
+      
+        trialType: trial.trialType,
+        response: trial.response,
+        correctResponse: trial.correctResponse,
+        language: trial.language,
+        rt: trial.rt,
+        mediaFileType: trial.mediaFileType,
+        itemCode: trial.itemCode,
+        selectedLanguage: trial.language
+      });
+      experimentResults.push(result);
+    }
+    catch(error){
+      console.error('Failed to parse trial:', error);
+    }
+    
   }
 
   return experimentResults;
 }
 
-function arrayToCSV(array: ExperimentResults[]) {
+function arrayToCSV(array: EmotionRecognitionTask[]) {
   const header = Object.keys(array[0]!).join(",");
   const trials = array
     .map((trial) => Object.values(trial).join(","))
@@ -61,21 +65,22 @@ function getLocalTime() {
 }
 
 // for ODC
-function exportToJsonSerializable(data: ExperimentResults[]): {
+function exportToJsonSerializable(data: EmotionRecognitionTask[]): {
   [key: string]: unknown;
 } {
   return {
     version: "1.0",
     timestamp: getLocalTime(),
     experimentResults: data.map((result) => ({
-      // create appropriate mapping, example:
-      stimulus: result.stimulus,
       correctResponse: result.correctResponse,
-      difficultyLevel: result.difficultyLevel,
+      response: result.response,
       language: result.language,
       rt: result.rt,
-      responseResult: result.responseResult,
-      responseNotes: result.responseNotes,
+      trialType: result.trialType,
+      itemCode: result.itemCode,
+      mediaFileType: result.mediaFileType
+
+
     })),
   };
 }
@@ -90,4 +95,17 @@ export function transformAndExportJson(data: DataCollection): any {
   const mungedData = dataMunger(data);
   const jsonSerializableData = exportToJsonSerializable(mungedData);
   return JSON.parse(JSON.stringify(jsonSerializableData));
+}
+
+export function downloadJson(data: JSON, filename: string) {
+  const blobData = JSON.stringify(data)
+  const blob = new Blob([blobData], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.setAttribute("href", url);
+  link.setAttribute("download", filename);
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
 }
