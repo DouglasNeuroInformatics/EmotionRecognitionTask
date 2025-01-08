@@ -15,6 +15,7 @@ function dataMunger(data: DataCollection) {
         trialType: trial.trialType,
         response: trial.response,
         correctResponse: trial.correctResponse,
+        correctResponseSelected: trial.correctResponseSelected,
         language: trial.language,
         rt: trial.rt,
         mediaFileType: trial.mediaFileType,
@@ -73,6 +74,7 @@ function exportToJsonSerializable(data: EmotionRecognitionTask[]): {
     timestamp: getLocalTime(),
     experimentResults: data.map((result) => ({
       correctResponse: result.correctResponse,
+      correctResponseSelected: result.correctResponseSelected,
       response: result.response,
       language: result.language,
       rt: result.rt,

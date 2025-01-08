@@ -23,6 +23,7 @@ export default async function emotionRecognitionTask() {
 
   type EmotionalTrialData = {
     correctResponse: string;
+    correctResponseSelected: "yes" | "no";
     mediaFileType: string;
     itemCode: string;
     trialType: string;
@@ -236,6 +237,7 @@ export default async function emotionRecognitionTask() {
       on_finish: function(data: EmotionalTrialData) {
         if(finalResponse){
           data.correctResponse =  correctAnswer
+          data.correctResponseSelected = (correctAnswer === finalResponse) ? 'yes':'no'
           data.mediaFileType =  mediaType
           data.itemCode = mediaCode 
           data.trialType = "emotionChoice"
@@ -466,6 +468,7 @@ export default async function emotionRecognitionTask() {
       on_finish: function(data: EmotionalTrialData) {
         if(finalResponse){
           data.correctResponse = correctAnswer
+          data.correctResponseSelected = (correctAnswer === finalResponse) ? 'yes' : 'no'
           data.mediaFileType =  mediaType
           data.itemCode = mediaCode 
           data.trialType = "emotionChoice"
