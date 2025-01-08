@@ -18,17 +18,17 @@ export default defineInstrument({
         }
     },
     details: {
-        description: 'A task to decipher a subjects ability to intepret emotion displayed in audio and visual mediums',
+        description: 'A task to decipher a subjects ability to interpret emotion displayed in audio and visual mediums',
         estimatedDuration: 20,
         instructions: ['Please read the instruction presented within the task carefully'],
         license: 'UNLICENSED',
         title: 'Emotion Recognition Task'
-      },
+    },
     measures: {},
 
     validationSchema: z.object({
         message: z.string()
-      })
+    })
 
 });
 
