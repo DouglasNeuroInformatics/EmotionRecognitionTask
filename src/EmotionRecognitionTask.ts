@@ -69,7 +69,7 @@ export default async function emotionRecognitionTask() {
     stimulus: function (){
       return ` 
       <h3 classname="guidelines" style="color:red;"> ${i18n.t("guidelines")} </h3>
-      <p>${i18n.t("initialInstructions")}</p>`
+      <p style="text-align:center; justify-content:center; font-size: 20px">${i18n.t("initialInstructions")}</p>`
     },
     on_load: function () {
       document.addEventListener("click", clickHandler);
@@ -81,7 +81,7 @@ export default async function emotionRecognitionTask() {
 
   const audioInstructions = {
     type: HtmlKeyboardResponsePlugin,
-    stimulus: `<p>${i18n.t("audioInstructions")}</p>`,
+    stimulus: `<p style="text-align:center; justify-content:center; font-size: 20px">${i18n.t("audioInstructions")}</p>`,
     on_load: function () {
       document.addEventListener("click", clickHandler);
     },
@@ -248,7 +248,18 @@ export default async function emotionRecognitionTask() {
 
   const videoInstructions = {
     type: HtmlKeyboardResponsePlugin,
-    stimulus: `<p>${i18n.t("videoTaskInstructions")}</p>`,
+    stimulus: `<p style="text-align:center; justify-content:center; font-size: 20px">${i18n.t("videoTaskInstructions")}</p>`,
+    on_load: function () {
+      document.addEventListener("click", clickHandler);
+    },
+    on_finish: function () {
+      document.removeEventListener("click", clickHandler);
+    },
+  };
+
+  const audioVisualInstructions = {
+    type: HtmlKeyboardResponsePlugin,
+    stimulus: `<p style="text-align:center; justify-content:center; font-size: 20px">${i18n.t("audioVisualTaskInstructions")}</p>`,
     on_load: function () {
       document.addEventListener("click", clickHandler);
     },
@@ -468,7 +479,7 @@ export default async function emotionRecognitionTask() {
 
   timeline.push(preload);
   timeline.push(taskInstructions);
-  timeline.push(videoInstructions);
+  timeline.push(audioVisualInstructions);
   for (const [key, videoInfo] of Object.entries(mediaData.Content.VideoAndAudio)) {
     timeline.push(videoCheck(videoInfo.Filepath));
     const { emotions: translatedEmotions, correctAnswer } = getTranslatedEmotions(videoInfo);
