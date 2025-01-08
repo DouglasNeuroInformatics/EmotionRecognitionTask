@@ -9,18 +9,24 @@ function dataMunger(data: DataCollection) {
   const experimentResults: EmotionRecognitionTask[] = [];
   for (const trial of trials) {
     // parsed experimentResults go here
-    const result = $EmotionRecognitionTaskResult.parse({
+    try {
+      const result = $EmotionRecognitionTaskResult.parse({
       
-      trialType: trial.trialType,
-      response: trial.response,
-      correctResponse: trial.correctResponse,
-      language: trial.language,
-      rt: trial.rt,
-      mediaFileType: trial.mediaFileType,
-      itemCode: trial.itemCode,
-      selectedLanguage: trial.language
-    });
-    experimentResults.push(result);
+        trialType: trial.trialType,
+        response: trial.response,
+        correctResponse: trial.correctResponse,
+        language: trial.language,
+        rt: trial.rt,
+        mediaFileType: trial.mediaFileType,
+        itemCode: trial.itemCode,
+        selectedLanguage: trial.language
+      });
+      experimentResults.push(result);
+    }
+    catch(error){
+      console.error('Failed to parse trial:', error);
+    }
+    
   }
 
   return experimentResults;
