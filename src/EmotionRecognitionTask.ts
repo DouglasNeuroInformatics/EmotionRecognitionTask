@@ -509,9 +509,14 @@ export default async function emotionRecognitionTask() {
   const jsPsych = initJsPsych({
     timeline: timeline, 
     on_finish: function(){
-      const filteredData = jsPsych.data.get().filter({trialType:'emotionChoice'})
-      const resultJson = transformAndExportJson(filteredData)
-      downloadJson(resultJson, resultJson.timestamp)
+      try{
+        const filteredData = jsPsych.data.get().filter({trialType:'emotionChoice'})
+        const resultJson = transformAndExportJson(filteredData)
+        downloadJson(resultJson, resultJson.timestamp)
+      }catch (error){
+        console.error('Error collection Emotion Recognition Data:', error);
+      }
+      
     }
   });
   
