@@ -1,8 +1,7 @@
 import { initJsPsych, JsPsych } from "/runtime/v1/jspsych@8.x";
-import "jspsych/css/jspsych.css";
-import HtmlKeyboardResponsePlugin from "@jspsych/plugin-html-keyboard-response";
-import HtmlButtonResponse from "@jspsych/plugin-html-button-response";
-import PreloadPlugin from "@jspsych/plugin-preload";
+import HtmlKeyboardResponsePlugin from "/runtime/v1/@jspsych/plugin-html-keyboard-response@2.x";
+import HtmlButtonResponse from "/runtime/v1/@jspsych/plugin-html-button-response@2.x";
+import PreloadPlugin from  "/runtime/v1/@jspsych/plugin-preload@2.x";
 import {
   addBootstrapScripts,
   addContinueButton,
