@@ -57,17 +57,13 @@ const i18n = createI18Next({
       fr: "Sélectionnez l'émotion la plus précise.",
     },
     videoTaskInstructions: {
-      en: `The second block is about to begin. <br>
+      en: `Videos <span style="color:red"> <b> without sound </b> </span> will now be presented. <br>
+ 
+            Please click on the video to launch it.`,
 
-      Videos <span style="color:red"> <b> with only images </b> </span> will be presented.<br>
-      
-      Please click on the video to play it`,
-
-     fr: `La deuxieme bloc va commencer. <br>
-
-      Des vidéos <span style="color:red"> <b> avec image seulement  </b> </span> seront présentées. <br>
-      
-      Veuillez cliquer sur le vidéo pour le lancer.` 
+     fr: ` Des vidéos <span style="color:red"> <b> sans son </b> </span> seront maintenant présentées. <br>
+ 
+        Veuillez cliquer sur le vidéo pour le lancer.` 
     },
     audioVisualTaskInstructions: {
       en: `The first block is about to begin. <br>
