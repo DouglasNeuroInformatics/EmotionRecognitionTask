@@ -16,8 +16,12 @@ const i18n = createI18Next({
       en: "Loading stimulus",
       fr: "Stimulus de chargement",
     },
+    guidelines: {
+      en: `Guidelines:`,
+      fr: `Directives:`
+    },
     initialInstructions: {
-      en: `Guidelines:  
+      en: ` 
             This test measures your ability to recognize emotions.
 
             Your task is to watch a series of videos with image and sound, without sound, or without image, in which a person expresses an emotion. 
@@ -26,20 +30,24 @@ const i18n = createI18Next({
             
             Make sure your volume is high enough to hear the sounds.`,
             
-      fr: `Directives:  
+      fr: `  
 
-            Ce test mesure votre capacité à reconnaître les émotions.
+            Ce test mesure votre capacité à reconnaître les émotions. <br><br> 
 
-            Votre tâche consiste à visionner une série de vidéos avec image et son, sans son, ou sans image, dans lesquelles une personne exprime une émotion. 
+            Votre tâche consiste à visionner une série de vidéos avec image et son, sans son, ou sans image, dans lesquelles une personne exprime une émotion. <br><br> 
             
-            Vous visionnerez chaque extrait 2 fois. Après le second visionnement, vous devrez choisir le mot qui correspond le mieux à l'émotion exprimée par la personne.
+            Vous visionnerez chaque extrait 2 fois. Après le second visionnement, vous devrez choisir le mot qui correspond le mieux à l'émotion exprimée par la personne.<br><br>
             
-            Assurez-vous que votre volume est suffisamment élevé pour entendre les sons. `,
+            Assurez-vous que votre volume est suffisamment élevé pour entendre les sons. <br>`,
     },
     audioInstructions: {
-      en: `Hello this is a test. The audio will play twice. please select the most accurate emotion displayed after.`,
-      fr: `Bonjour, c'est un test. L'audio sera joué deux fois. veuillez sélectionner l'émotion la plus précise affichée après.`,
-    },
+      en: `Snippets <span style="color:red"> <b> without images </b> </span> will now be presented.<br>
+ 
+      Please click on the icon to play the audio.`,
+    fr: `
+      Des extraits <span style="color:red"> <b> sans image  </b> </span> seront maintenant présentés.<br>
+ 
+      Veuillez cliquer sur l'icône afin de lancer l'extrait.` },
     initialAudioTask: {
       en: "Click on the sound icon to play audio.",
       fr: "Cliquez sur l'icône du son pour écouter l'audio.",
@@ -49,8 +57,25 @@ const i18n = createI18Next({
       fr: "Sélectionnez l'émotion la plus précise.",
     },
     videoTaskInstructions: {
-      en: "Now onto video tasks, the video will be played twice for the subject to determine the emotion displayed.  Press any key to continue to the videos",
-      fr: "Passons maintenant aux tâches vidéo, la vidéo sera lue deux fois pour que le sujet détermine l'émotion affichée.  Appuyez sur n'importe quelle touche pour continuer avec les vidéos.",
+      en: `Videos <span style="color:red"> <b> without sound </b> </span> will now be presented. <br>
+ 
+            Please click on the video to launch it.`,
+
+     fr: ` Des vidéos <span style="color:red"> <b> sans son </b> </span> seront maintenant présentées. <br>
+ 
+        Veuillez cliquer sur le vidéo pour le lancer.` 
+    },
+    audioVisualTaskInstructions: {
+      en: `The first block is about to begin. <br>
+
+         Videos <span style="color:red"> <b> with image and sound </b> </span> will be presented. <br>
+          
+          Please click on the video to play it`,
+      fr: `Le premier bloc va commencer. <br>
+
+          Des vidéos <span style="color:red"> <b> avec image et son  </b> </span> seront présentées. <br>
+          
+          Veuillez cliquer sur le vidéo pour le lancer.`
     },
     initialVideoTask: {
       en: 'Please press the "continue" button after the video has completed',

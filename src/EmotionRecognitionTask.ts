@@ -1,8 +1,7 @@
 import { initJsPsych, JsPsych } from "/runtime/v1/jspsych@8.x";
-import "jspsych/css/jspsych.css";
-import HtmlKeyboardResponsePlugin from "@jspsych/plugin-html-keyboard-response";
-import HtmlButtonResponse from "@jspsych/plugin-html-button-response";
-import PreloadPlugin from "@jspsych/plugin-preload";
+import HtmlKeyboardResponsePlugin from "/runtime/v1/@jspsych/plugin-html-keyboard-response@2.x";
+import HtmlButtonResponse from "/runtime/v1/@jspsych/plugin-html-button-response@2.x";
+import PreloadPlugin from  "/runtime/v1/@jspsych/plugin-preload@2.x";
 import {
   addBootstrapScripts,
   addContinueButton,
@@ -17,13 +16,14 @@ import type { Language } from "@opendatacapture/runtime-v1/@opendatacapture/runt
 import i18n from "./i18n.ts";
 import { experimentSettingsJson } from "./experimentSettings.ts";
 import { $Settings } from "./schemas.ts";
-import { transformAndExportJson, downloadJson } from "./dataMunger";
+import { transformAndExportJson, downloadJson, transformAndDownload } from "./dataMunger";
 
 
 export default async function emotionRecognitionTask() {
 
   type EmotionalTrialData = {
     correctResponse: string;
+    correctResponseSelected: "yes" | "no";
     mediaFileType: string;
     itemCode: string;
     trialType: string;
@@ -66,7 +66,11 @@ export default async function emotionRecognitionTask() {
 
   const taskInstructions = {
     type: HtmlKeyboardResponsePlugin,
-    stimulus: `<p>${i18n.t("initialInstructions")}</p>`,
+    stimulus: function (){
+      return ` 
+      <h3 classname="guidelines" style="color:red;"> ${i18n.t("guidelines")} </h3>
+      <p style="text-align:center; justify-content:center; font-size: 20px">${i18n.t("initialInstructions")}</p>`
+    },
     on_load: function () {
       document.addEventListener("click", clickHandler);
     },
@@ -77,7 +81,7 @@ export default async function emotionRecognitionTask() {
 
   const audioInstructions = {
     type: HtmlKeyboardResponsePlugin,
-    stimulus: `<p>${i18n.t("audioInstructions")}</p>`,
+    stimulus: `<p style="text-align:center; justify-content:center; font-size: 20px">${i18n.t("audioInstructions")}</p>`,
     on_load: function () {
       document.addEventListener("click", clickHandler);
     },
@@ -233,6 +237,7 @@ export default async function emotionRecognitionTask() {
       on_finish: function(data: EmotionalTrialData) {
         if(finalResponse){
           data.correctResponse =  correctAnswer
+          data.correctResponseSelected = (correctAnswer === finalResponse) ? 'yes':'no'
           data.mediaFileType =  mediaType
           data.itemCode = mediaCode 
           data.trialType = "emotionChoice"
@@ -244,7 +249,18 @@ export default async function emotionRecognitionTask() {
 
   const videoInstructions = {
     type: HtmlKeyboardResponsePlugin,
-    stimulus: `<p>${i18n.t("videoTaskInstructions")}</p>`,
+    stimulus: `<p style="text-align:center; justify-content:center; font-size: 20px">${i18n.t("videoTaskInstructions")}</p>`,
+    on_load: function () {
+      document.addEventListener("click", clickHandler);
+    },
+    on_finish: function () {
+      document.removeEventListener("click", clickHandler);
+    },
+  };
+
+  const audioVisualInstructions = {
+    type: HtmlKeyboardResponsePlugin,
+    stimulus: `<p style="text-align:center; justify-content:center; font-size: 20px">${i18n.t("audioVisualTaskInstructions")}</p>`,
     on_load: function () {
       document.addEventListener("click", clickHandler);
     },
@@ -452,6 +468,7 @@ export default async function emotionRecognitionTask() {
       on_finish: function(data: EmotionalTrialData) {
         if(finalResponse){
           data.correctResponse = correctAnswer
+          data.correctResponseSelected = (correctAnswer === finalResponse) ? 'yes' : 'no'
           data.mediaFileType =  mediaType
           data.itemCode = mediaCode 
           data.trialType = "emotionChoice"
@@ -464,7 +481,7 @@ export default async function emotionRecognitionTask() {
 
   timeline.push(preload);
   timeline.push(taskInstructions);
-  timeline.push(videoInstructions);
+  timeline.push(audioVisualInstructions);
   for (const [key, videoInfo] of Object.entries(mediaData.Content.VideoAndAudio)) {
     timeline.push(videoCheck(videoInfo.Filepath));
     const { emotions: translatedEmotions, correctAnswer } = getTranslatedEmotions(videoInfo);
@@ -512,6 +529,7 @@ export default async function emotionRecognitionTask() {
       try{
         const filteredData = jsPsych.data.get().filter({trialType:'emotionChoice'})
         const resultJson = transformAndExportJson(filteredData)
+        transformAndDownload(filteredData)
         downloadJson(resultJson, resultJson.timestamp)
       }catch (error){
         console.error('Error collection Emotion Recognition Data:', error);
