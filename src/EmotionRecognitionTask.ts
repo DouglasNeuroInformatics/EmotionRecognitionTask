@@ -9,14 +9,14 @@ import {
   createContinueButtonDiv,
   revealEmotionButtons,
   videoCoverHtmlGenerator
-} from './helperFunctions';
+} from './helperFunctions.ts';
 import * as mediaData from './mediaContentData.json';
 
 import type { Language } from '@opendatacapture/runtime-v1/@opendatacapture/runtime-core/index.js';
 import i18n from './i18n.ts';
 import { experimentSettingsJson } from './experimentSettings.ts';
 import { $Settings } from './schemas.ts';
-import { transformAndExportJson, downloadJson, transformAndDownload } from './dataMunger';
+import { transformAndExportJson, downloadJson, transformAndDownload } from './dataMunger.ts';
 
 export default async function emotionRecognitionTask() {
   type EmotionalTrialData = {
