@@ -1,5 +1,5 @@
 import './index.css';
-import emotionRecognitionTask from './EmotionRecognitionTask';
+import emotionRecognitionTask from './EmotionRecognitionTask.ts';
 import '/runtime/v1/jspsych@8.x/css/jspsych.css';
 const { defineInstrument } = await import('/runtime/v1/@opendatacapture/runtime-core/index.js');
 const { z } = await import('/runtime/v1/zod@3.23.x/index.js');
