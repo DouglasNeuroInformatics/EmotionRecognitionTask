@@ -62,7 +62,8 @@ export const videoCoverHtmlGenerator = (filepath: string) => {
             Sorry, your browser does not support inline SVG.
           </svg>
         </div>
-        <video id="video" preload="auto" src=${filepath}>
+        <video id="video" preload="auto" >
+          <source src=${filepath} type="video/mp4" />
         </video>
         
     </div>
