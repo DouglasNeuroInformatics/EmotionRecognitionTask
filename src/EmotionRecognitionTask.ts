@@ -153,7 +153,7 @@ export default async function emotionRecognitionTask() {
       },
       choices: emotionChoices,
       button_html: (choice: string) => {
-        return `<div name='custom-button-div' data-toggle="buttons" style="padding:10px;  display:none; justify-content: center; align-items: center;  width: 100%"><button name="custom-button" type="button" class="btn btn-primary" style="width:100%">${choice}</button></div>`;
+        return `<div name='custom-button-div' data-toggle="buttons" style="padding:10px;  display:none; justify-content: center; align-items: center;  width: 100%"><button name="custom-button" type="button" class="btn btn-primary" aria-label="emotionButtons" style="width:100%">${choice}</button></div>`;
       },
       prompt: `<p>${i18n.t('audioEmotionSelection')}</p>`,
 
@@ -206,6 +206,9 @@ export default async function emotionRecognitionTask() {
             if (e.target instanceof HTMLButtonElement && e.target === button) {
               const val = button.innerHTML;
               finalResponse = val;
+              buttonSelections.forEach(btn => btn.classList.remove('active'));
+              // Add active class to the clicked button
+              e.target.classList.add('active');
             }
           });
         });
@@ -426,6 +429,9 @@ export default async function emotionRecognitionTask() {
             if (e.target instanceof HTMLButtonElement && e.target === button) {
               const val = button.innerHTML;
               finalResponse = val;
+              buttonSelections.forEach(btn => btn.classList.remove('active'));
+              // Add active class to the clicked button
+              e.target.classList.add('active');
             }
           });
         });
@@ -440,14 +446,7 @@ export default async function emotionRecognitionTask() {
             response: finalResponse
           });
           continueButton.remove();
-          buttonSelections.forEach((button) => {
-            button.removeEventListener('click', (e) => {
-              if (e.target instanceof HTMLButtonElement && e.target === button) {
-                const val = button.innerHTML;
-                finalResponse = val;
-              }
-            });
-          });
+          
         });
       },
       on_finish: function (data: EmotionalTrialData) {
