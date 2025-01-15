@@ -115,6 +115,14 @@ export default async function emotionRecognitionTask() {
           document.body.appendChild(continueButtonDiv);
         }
 
+        const keyboardResponseContainer = document.getElementById("jspsych-html-keyboard-response-stimulus");
+
+        if (keyboardResponseContainer && keyboardResponseContainer instanceof HTMLElement) {
+          keyboardResponseContainer.style.display = 'flex';
+          keyboardResponseContainer.style.justifyContent = 'center';
+          keyboardResponseContainer.style.alignItems = 'center';
+        }
+
         if (audioIcon) {
           audioIcon.addEventListener('click', () => {
             if (audioContent && audioContent instanceof HTMLAudioElement && !playOnce) {
@@ -179,6 +187,15 @@ export default async function emotionRecognitionTask() {
         } else {
           document.body.appendChild(continueButtonDiv);
         }
+
+        const buttonResponseContainer = document.getElementById('jspsych-html-button-response-stimulus');
+
+        if (buttonResponseContainer && buttonResponseContainer instanceof HTMLElement) {
+          buttonResponseContainer.style.display = 'flex';
+          buttonResponseContainer.style.justifyContent = 'center';
+          buttonResponseContainer.style.alignItems = 'center';
+        }
+
 
         if (audioIcon) {
           audioIcon.addEventListener('click', () => {
@@ -286,6 +303,14 @@ export default async function emotionRecognitionTask() {
           document.body.appendChild(continueButtonDiv);
         }
 
+        const keyboardResponseContainer = document.getElementById("jspsych-html-keyboard-response-stimulus");
+
+        if (keyboardResponseContainer && keyboardResponseContainer instanceof HTMLElement) {
+          keyboardResponseContainer.style.display = 'flex';
+          keyboardResponseContainer.style.justifyContent = 'center';
+          keyboardResponseContainer.style.alignItems = 'center';
+        }
+
         let videoCount = 0;
 
         // Add a click event listener to the overlay
@@ -365,13 +390,13 @@ export default async function emotionRecognitionTask() {
         const continueButtonDiv = createContinueButtonDiv(continueButton);
         const jsPsychContent = document.getElementById('jspsych-content');
 
-        const buttonResponseContainer = document.getElementById('jspsych-html-button-response-stimulus');
-
         if (jsPsychContent && jsPsychContent instanceof HTMLElement) {
           jsPsychContent.appendChild(continueButtonDiv);
         } else {
           document.body.appendChild(continueButtonDiv);
         }
+
+        const buttonResponseContainer = document.getElementById('jspsych-html-button-response-stimulus');
 
         if (buttonResponseContainer && buttonResponseContainer instanceof HTMLElement) {
           buttonResponseContainer.style.display = 'flex';
