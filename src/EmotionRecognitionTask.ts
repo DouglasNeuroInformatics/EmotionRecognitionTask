@@ -10,7 +10,7 @@ import {
   revealEmotionButtons,
   videoCoverHtmlGenerator
 } from './helperFunctions.ts';
-import * as mediaData from './mediaContentData.json';
+import { OdcMediaContent } from './ODCMediaContent.ts';
 
 import type { Language } from '@opendatacapture/runtime-v1/@opendatacapture/runtime-core/index.js';
 import i18n from './i18n.ts';
@@ -490,19 +490,19 @@ export default async function emotionRecognitionTask() {
   timeline.push(preload);
   timeline.push(taskInstructions);
   timeline.push(audioVisualInstructions);
-  for (const [key, videoInfo] of Object.entries(mediaData.Content.VideoAndAudio)) {
+  for (const [key, videoInfo] of Object.entries(OdcMediaContent.Content.VideoAndAudio)) {
     timeline.push(videoCheck(videoInfo.Filepath));
     const { emotions: translatedEmotions, correctAnswer } = getTranslatedEmotions(videoInfo);
     timeline.push(videoCheckWithButtons(videoInfo.Filepath, key, 'VideoAndAudio', translatedEmotions, correctAnswer));
   }
   timeline.push(videoInstructions);
-  for (const [key, videoInfo] of Object.entries(mediaData.Content.Video)) {
+  for (const [key, videoInfo] of Object.entries(OdcMediaContent.Content.Video)) {
     timeline.push(videoCheck(videoInfo.Filepath));
     const { emotions: translatedEmotions, correctAnswer } = getTranslatedEmotions(videoInfo);
     timeline.push(videoCheckWithButtons(videoInfo.Filepath, key, 'Video', translatedEmotions, correctAnswer));
   }
   timeline.push(audioInstructions);
-  for (const [key, audioInfo] of Object.entries(mediaData.Content.Audio)) {
+  for (const [key, audioInfo] of Object.entries(OdcMediaContent.Content.Audio)) {
     timeline.push(audioHtmlTask(audioInfo.Filepath));
     const { emotions: translatedEmotions, correctAnswer } = getTranslatedEmotions(audioInfo);
     timeline.push(audioHtmlEmotionChoice(audioInfo.Filepath, key, 'Audio', translatedEmotions, correctAnswer));
