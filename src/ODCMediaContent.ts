@@ -226,24 +226,24 @@ export const OdcMediaContent = {
         CorrectAnswer: 'Sadness',
         Filepath: sad_Gemep04
       },
-      "05fie": {
-        Emotions: ["Joy", "Pride", "Contempt"],
-        CorrectAnswer: "Pride",
+      '05fie': {
+        Emotions: ['Joy', 'Pride', 'Contempt'],
+        CorrectAnswer: 'Pride',
         Filepath: pri_Gemep05
       },
-      "10col125": {
-        Emotions: ["Disgust", "Anger", "Fear"],
-        CorrectAnswer: "Anger",
+      '10col125': {
+        Emotions: ['Disgust', 'Anger', 'Fear'],
+        CorrectAnswer: 'Anger',
         Filepath: ang_Gemep10
       },
-      "06tri123": {
-        Emotions: ["Fear", "Disgust", "Sadness"],
-        CorrectAnswer: "Sadness",
+      '06tri123': {
+        Emotions: ['Fear', 'Disgust', 'Sadness'],
+        CorrectAnswer: 'Sadness',
         Filepath: sad_Gemep06
       },
-      "04deg112": {
-        Emotions: ["Disgust", "Relief", "Pleasure"],
-        CorrectAnswer: "Disgust",
+      '04deg112': {
+        Emotions: ['Disgust', 'Relief', 'Pleasure'],
+        CorrectAnswer: 'Disgust',
         Filepath: dis_Gemep04_audio
       },
       '05fie115': {
@@ -268,104 +268,104 @@ export const OdcMediaContent = {
       }
     },
     VideoAndAudio: {
-        "07sou1212": {
-          Emotions: ["Pleasure", "Pride", "Relief"],
-          CorrectAnswer: "Relief",
+        '07sou1212': {
+          Emotions: ['Pleasure', 'Pride', 'Relief'],
+          CorrectAnswer: 'Relief',
           Filepath: rel_Gemep07
         },
-        "05tri119": {
-          Emotions: ["Sadness", "Fear", "Disgust"],
-          CorrectAnswer: "Disgust",
+        '05tri119': {
+          Emotions: ['Sadness', 'Fear', 'Disgust'],
+          CorrectAnswer: 'Disgust',
           Filepath: dis_Gemep05
         },
-        "01joi114": {
-          Emotions: ["Pride", "Joy", "Relief"],
-          CorrectAnswer: "Joy",
+        '01joi114': {
+          Emotions: ['Pride', 'Joy', 'Relief'],
+          CorrectAnswer: 'Joy',
           Filepath: joy_Gemep01
         },
-        "01mep": {
-          Emotions: ["Contempt", "Disgust", "Anger"],
-          CorrectAnswer: "Contempt",
+        '01mep': {
+          Emotions: ['Contempt', 'Disgust', 'Anger'],
+          CorrectAnswer: 'Contempt',
           Filepath: con_Gemep01
         },
-        "04fie113": {
-          Emotions: ["Joy", "Interest", "Pride"],
-          CorrectAnswer: "Pride",
+        '04fie113': {
+          Emotions: ['Joy', 'Interest', 'Pride'],
+          CorrectAnswer: 'Pride',
           Filepath: pri_Gemep04
         },
-        "10peu122": {
-          Emotions: ["Fear", "Sadness", "Disgust"],
-          CorrectAnswer: "Sadness",
+        '10peu122': {
+          Emotions: ['Fear', 'Sadness', 'Disgust'],
+          CorrectAnswer: 'Sadness',
           Filepath: fea_Gemep10
         },
-        "06pla114": {
-          Emotions: ["Joy", "Pleasure", "Interest"],
-          CorrectAnswer: "Pleasure",
+        '06pla114': {
+          Emotions: ['Joy', 'Pleasure', 'Interest'],
+          CorrectAnswer: 'Pleasure',
           Filepath: ple_Gemep06
         },
-        "09tri114": {
-          Emotions: ["Anger", "Sadness", "Contempt"],
-          CorrectAnswer: "Sadness",
+        '09tri114': {
+          Emotions: ['Anger', 'Sadness', 'Contempt'],
+          CorrectAnswer: 'Sadness',
           Filepath: sad_Gemep09
         },
-        "02joi": {
-          Emotions: ["Relief", "Pride", "Joy"],
-          CorrectAnswer: "Joy",
+        '02joi': {
+          Emotions: ['Relief', 'Pride', 'Joy'],
+          CorrectAnswer: 'Joy',
           Filepath: joy_Gemep02
         },
-        "01col126": {
-          Emotions: ["Contempt", "Fear", "Anger"],
-          CorrectAnswer: "Anger",
+        '01col126': {
+          Emotions: ['Contempt', 'Fear', 'Anger'],
+          CorrectAnswer: 'Anger',
           Filepath: ang_Gemep01
         },
-        "09deg113": {
-          Emotions: ["Anger", "Disgust", "Contempt"],
-          CorrectAnswer: "Disgust",
+        '09deg113': {
+          Emotions: ['Anger', 'Disgust', 'Contempt'],
+          CorrectAnswer: 'Disgust',
           Filepath: dis_Gemep09
         },
-        "03sou121": {
-          Emotions: ["Relief", "Pride", "Pleasure"],
-          CorrectAnswer: "Relief",
+        '03sou121': {
+          Emotions: ['Relief', 'Pride', 'Pleasure'],
+          CorrectAnswer: 'Relief',
           Filepath: rel_Gemep03
         },
-        "08pla213": {
-          Emotions: ["Pleasure", "Joy", "Relief"],
-          CorrectAnswer: "Pleasure",
+        '08pla213': {
+          Emotions: ['Pleasure', 'Joy', 'Relief'],
+          CorrectAnswer: 'Pleasure',
           Filepath: ple_Gemep08
         },
-        "04peu112": {
-          Emotions: ["Fear", "Sadness", "Anger"],
-          CorrectAnswer: "Fear",
+        '04peu112': {
+          Emotions: ['Fear', 'Sadness', 'Anger'],
+          CorrectAnswer: 'Fear',
           Filepath: fea_Gemep04
         },
-        "07mep": {
-          Emotions: ["Contempt", "Sadness", "Interest"],
-          CorrectAnswer: "Contempt",
+        '07mep': {
+          Emotions: ['Contempt', 'Sadness', 'Interest'],
+          CorrectAnswer: 'Contempt',
           Filepath: con_Gemep07
         },
-        "02fie312": {
-          Emotions: ["Pride", "Joy", "Interest"],
-          CorrectAnswer: "Pride",
+        '02fie312': {
+          Emotions: ['Pride', 'Joy', 'Interest'],
+          CorrectAnswer: 'Pride',
           Filepath: pri_Gemep02
         },
-        "07int": {
-          Emotions: ["Relief", "Interest", "Joy"],
-          CorrectAnswer: "Interest",
+        '07int': {
+          Emotions: ['Relief', 'Interest', 'Joy'],
+          CorrectAnswer: 'Interest',
           Filepath: int_Gemep07
         },
-        "05deg123": {
-          Emotions: ["Disgust", "Sadness", "Fear"],
-          CorrectAnswer: "Disgust",
+        '05deg123': {
+          Emotions: ['Disgust', 'Sadness', 'Fear'],
+          CorrectAnswer: 'Disgust',
           Filepath: dis_Gemep05_video
         },
-        "07col312": {
-          Emotions: ["Fear", "Anger", "Disgust"],
-          CorrectAnswer: "Anger",
+        '07col312': {
+          Emotions: ['Fear', 'Anger', 'Disgust'],
+          CorrectAnswer: 'Anger',
           Filepath: ang_Gemep07
         },
-        "03int121": {
-          Emotions: ["Pride", "Pleasure", "Interest"],
-          CorrectAnswer: "Interest",
+        '03int121': {
+          Emotions: ['Pride', 'Pleasure', 'Interest'],
+          CorrectAnswer: 'Interest',
           Filepath: int_Gemep03
         }
       }
