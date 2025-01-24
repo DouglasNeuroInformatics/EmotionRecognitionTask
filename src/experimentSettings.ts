@@ -5,10 +5,10 @@ const experimentSettingsJson = {
   totalNumberOfTrialsToRun: 1,
   advancementSchedule: 2,
   regressionSchedule: 0,
-  language: "fr",
+  language: 'fr',
   seed: 42,
   initialDifficulty: 1,
   numberOfLevels: 1,
-  downloadOnFinish: false,
+  downloadOnFinish: false
 };
 export { experimentSettingsJson };

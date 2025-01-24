@@ -3,18 +3,18 @@ const stimuliPaths =
   [
     {
       stimulus:
-        "https://raw.githubusercontent.com/DouglasNeuroInformatics/PictureNamingTask/main/public/level1/addressplate.jpg",
+        'https://raw.githubusercontent.com/DouglasNeuroInformatics/PictureNamingTask/main/public/level1/addressplate.jpg',
       difficultyLevel: 1,
-      correctResponse: "addressplate",
-      language: "en",
+      correctResponse: 'addressplate',
+      language: 'en'
     },
     {
       stimulus:
-        "https://raw.githubusercontent.com/DouglasNeuroInformatics/PictureNamingTask/main/public/level1/addressplate.jpg",
+        'https://raw.githubusercontent.com/DouglasNeuroInformatics/PictureNamingTask/main/public/level1/addressplate.jpg',
       difficultyLevel: 1,
-      correctResponse: "addressplate",
-      language: "fr",
-    },
+      correctResponse: 'addressplate',
+      language: 'fr'
+    }
   ];
 
 export { stimuliPaths };

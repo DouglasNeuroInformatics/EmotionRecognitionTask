@@ -9,7 +9,9 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
+  "prettier": "@douglasneuroinformatics/prettier-config",
   "dependencies": {
+    "@douglasneuroinformatics/libui": "^3.7.3",
     "@jspsych/plugin-audio-button-response": "^2.0.1",
     "@jspsych/plugin-audio-keyboard-response": "^2.0.0",
     "@jspsych/plugin-html-button-response": "^2.0.0",
@@ -19,7 +21,6 @@
     "@jspsych/plugin-video-button-response": "^2.0.0",
     "@jspsych/plugin-video-keyboard-response": "^2.0.0",
     "@opendatacapture/runtime-v1": "^1.6.3",
-    "@douglasneuroinformatics/libui": "^3.7.3",
     "docsify": "^4.13.1",
     "jspsych": "^8.0.1",
     "react": "^18.3.1",
@@ -27,6 +28,7 @@
   },
   "devDependencies": {
     "@douglasneuroinformatics/eslint-config": "^4.3.0",
+    "@douglasneuroinformatics/prettier-config": "^0.0.1",
     "@douglasneuroinformatics/tsconfig": "^1.0.1",
     "@types/node": "^20.14.12",
     "@types/react": "^18.3.3",
@@ -37,6 +39,7 @@
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
+    "prettier": "^3.4.2",
     "typescript": "^5.2.2",
     "vite": "^5.3.4"
   },
