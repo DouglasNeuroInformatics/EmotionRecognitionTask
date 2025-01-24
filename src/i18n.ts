@@ -49,14 +49,6 @@ const i18n = createI18Next({
  
       Veuillez cliquer sur l'icône afin de lancer l'extrait.`
     },
-    initialAudioTask: {
-      en: 'Click on the sound icon to play audio.',
-      fr: "Cliquez sur l'icône du son pour écouter l'audio."
-    },
-    audioEmotionSelection: {
-      en: 'Select the most accurate emotion.',
-      fr: "Sélectionnez l'émotion la plus précise."
-    },
     videoTaskInstructions: {
       en: `Videos <span style="color:red"> <b> without sound </b> </span> will now be presented. <br>
  
@@ -77,16 +69,6 @@ const i18n = createI18Next({
           Des vidéos <span style="color:red"> <b> avec image et son  </b> </span> seront présentées. <br>
           
           Veuillez cliquer sur le vidéo pour le lancer.`
-    },
-    initialVideoTask: {
-      en: 'Please press the "continue" button after the video has completed',
-      fr: `Veuillez appuyer sur le bouton "Continuer" une fois la vidéo terminée`
-    },
-    videoEmotionSelection: {
-      en: `Once the video completes and the emotion selection displays. Please select the most accurate emotion displayed.
-      <br>Once you are satisfied with your answer press the "Continue" button`,
-      fr: `Une fois la vidéo terminée et la sélection d'émotions s'affiche. Veuillez sélectionner l'émotion affichée la plus précise.
-      <br>Une fois que vous êtes satisfait de votre réponse, appuyez sur le bouton "Continuer".`
     },
     buttonSelectionWarning: {
       en: `Please select a button`,
