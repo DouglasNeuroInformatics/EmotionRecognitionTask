@@ -93,7 +93,7 @@ export default async function emotionRecognitionTask() {
       stimulus: function () {
         return audioHtmlGenerator(filepath);
       },
-      prompt: `<p> ${i18n.t('initialAudioTask')} <br/> </p>`,
+      prompt: ``,
 
       response_allowed_while_playing: false,
       response_ends_trial: false,
@@ -163,7 +163,7 @@ export default async function emotionRecognitionTask() {
       button_html: (choice: string) => {
         return `<div name='custom-button-div' data-toggle="buttons" style="padding:10px;  display:none; justify-content: center; align-items: center;  width: 100%"><button name="custom-button" type="button" class="btn btn-primary" aria-label="emotionButtons" style="width:100%">${choice}</button></div>`;
       },
-      prompt: `<p>${i18n.t('audioEmotionSelection')}</p>`,
+      prompt: ``,
 
       response_allowed_while_playing: false,
       correct_answer: correctAnswer,
@@ -282,7 +282,7 @@ export default async function emotionRecognitionTask() {
       stimulus: function () {
         return videoCoverHtmlGenerator(filepath);
       },
-      prompt: `<p>${i18n.t('initialVideoTask')}</p>`,
+      prompt: ``,
       response_ends_trial: false,
       response_allowed_while_playing: false,
       on_load: () => {
@@ -375,7 +375,7 @@ export default async function emotionRecognitionTask() {
       },
       correct_answer: correctAnswer,
 
-      prompt: `<p>${i18n.t('videoEmotionSelection')}</p>`,
+      prompt: ``,
       response_ends_trial: false,
       response_allowed_while_playing: true,
 
