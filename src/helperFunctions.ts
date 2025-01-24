@@ -55,9 +55,9 @@ export const videoCoverHtmlGenerator = (filepath: string) => {
      
     <div class="video-container">
         <div class="video-overlay" id="overlay">
-          <svg id="overlay-cross" height="100" width="100" xmlns="http://www.w3.org/2000/svg">
-            <line x1="50" y1="0" x2="50" y2="100" style="stroke:white;stroke-width:18" />
-            <line x1="0" y1="50" x2="100" y2="50" style="stroke:white;stroke-width:18" />
+          <svg id="overlay-cross" height="50" width="50" xmlns="http://www.w3.org/2000/svg">
+            <line x1="25" y1="0" x2="25" y2="50" style="stroke:white;stroke-width:10" />
+            <line x1="0" y1="25" x2="50" y2="25" style="stroke:white;stroke-width:10" />
             Sorry, your browser does not support inline SVG.
           </svg>
         </div>
