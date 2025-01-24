@@ -1,14 +1,12 @@
 export const addContinueButton = () => {
-  const divContainer = document.createElement('div');
-  const continueButton = document.createElement('button');
 
-  divContainer.style.alignContent = 'center';
+  const continueButton = document.createElement('button');
 
   continueButton.style.alignContent = 'center';
   continueButton.style.justifyContent = 'center';
   continueButton.style.position = 'flex';
   continueButton.style.display = 'None';
-  continueButton.style.margin = '0';
+  continueButton.style.margin = '1';
   continueButton.className = 'btn btn-primary btn-lg';
   continueButton.textContent = 'Continue';
 
@@ -20,6 +18,7 @@ export const createContinueButtonDiv = (continueButton: HTMLButtonElement) => {
   continueButtonDiv.style.justifyContent = 'center';
   continueButtonDiv.style.alignItems = 'center';
   continueButtonDiv.style.display = 'flex';
+  continueButtonDiv.style.paddingTop = '1%';
   continueButtonDiv.appendChild(continueButton);
 
   return continueButtonDiv;
