@@ -13,7 +13,7 @@ import {
 import { OdcMediaContent } from './ODCMediaContent.ts';
 
 import type { Language } from '@opendatacapture/runtime-v1/@opendatacapture/runtime-core/index.js';
-import i18n from './i18n.ts';
+import i18nSetUp from "./i18n.ts";
 import { experimentSettingsJson } from './experimentSettings.ts';
 import { $Settings } from './schemas.ts';
 import { transformAndExportJson, downloadJson, transformAndDownload } from './dataMunger.ts';
@@ -21,7 +21,7 @@ import { transformAndExportJson, downloadJson, transformAndDownload } from './da
 export default async function emotionRecognitionTask() {
   type EmotionalTrialData = {
     correctResponse: string;
-    correctResponseSelected: 'yes' | 'no';
+    correctResponseSelected: 1 | 0;
     mediaFileType: string;
     itemCode: string;
     trialType: string;
@@ -40,10 +40,11 @@ export default async function emotionRecognitionTask() {
 
   const language = experimentSettingsJson.language as Language;
 
-  // small hack to get around i18n issues with wait for changeLanguage
-  i18n.changeLanguage(language as Language);
-  await new Promise(function (resolve) {
-    i18n.onLanguageChange = resolve;
+  const i18n = i18nSetUp();
+  // needed to set the language of the experiment later
+  document.addEventListener("changeLanguage", function (event) {
+    // @ts-expect-error the event does have a detail
+    document.documentElement.setAttribute("lang", event.detail as string);
   });
 
   const clickHandler = () => {
@@ -242,7 +243,7 @@ export default async function emotionRecognitionTask() {
       on_finish: function (data: EmotionalTrialData) {
         if (finalResponse) {
           data.correctResponse = correctAnswer;
-          data.correctResponseSelected = correctAnswer === finalResponse ? 'yes' : 'no';
+          data.correctResponseSelected = correctAnswer === finalResponse ? 1 : 0;
           data.mediaFileType = mediaType;
           data.itemCode = mediaCode;
           data.trialType = 'emotionChoice';
@@ -473,7 +474,7 @@ export default async function emotionRecognitionTask() {
       on_finish: function (data: EmotionalTrialData) {
         if (finalResponse) {
           data.correctResponse = correctAnswer;
-          data.correctResponseSelected = correctAnswer === finalResponse ? 'yes' : 'no';
+          data.correctResponseSelected = correctAnswer === finalResponse ? 1 : 0;
           data.mediaFileType = mediaType;
           data.itemCode = mediaCode;
           data.trialType = 'emotionChoice';
