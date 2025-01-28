@@ -277,11 +277,11 @@ export default async function emotionRecognitionTask() {
     }
   };
 
-  const videoCheck = (filepath: string) => {
+  const videoCheck = (filepath: string, top?: string, left?: string) => {
     return {
       type: HtmlKeyboardResponsePlugin,
       stimulus: function () {
-        return videoCoverHtmlGenerator(filepath);
+        return videoCoverHtmlGenerator(filepath, top, left);
       },
       response_ends_trial: false,
       response_allowed_while_playing: false,
@@ -361,13 +361,15 @@ export default async function emotionRecognitionTask() {
     mediaCode: string,
     mediaType: string,
     emotionChoices: string[],
-    correctAnswer: string
+    correctAnswer: string,
+    top?: string,
+    left?: string
   ) => {
     let finalResponse: string = '';
     return {
       type: HtmlButtonResponsePlugin,
       stimulus: function () {
-        return videoCoverHtmlGenerator(filepath);
+        return videoCoverHtmlGenerator(filepath, top, left);
       },
       choices: emotionChoices,
       button_html: (choice: string) => {
@@ -489,15 +491,15 @@ export default async function emotionRecognitionTask() {
   timeline.push(taskInstructions);
   timeline.push(audioVisualInstructions);
   for (const [key, videoInfo] of Object.entries(OdcMediaContent.Content.VideoAndAudio)) {
-    timeline.push(videoCheck(videoInfo.Filepath));
+    timeline.push(videoCheck(videoInfo.Filepath, videoInfo.top, videoInfo.left));
     const { emotions: translatedEmotions, correctAnswer } = getTranslatedEmotions(videoInfo);
-    timeline.push(videoCheckWithButtons(videoInfo.Filepath, key, 'VideoAndAudio', translatedEmotions, correctAnswer));
+    timeline.push(videoCheckWithButtons(videoInfo.Filepath, key, 'VideoAndAudio', translatedEmotions, correctAnswer, videoInfo.top, videoInfo.left));
   }
   timeline.push(videoInstructions);
   for (const [key, videoInfo] of Object.entries(OdcMediaContent.Content.Video)) {
-    timeline.push(videoCheck(videoInfo.Filepath));
+    timeline.push(videoCheck(videoInfo.Filepath, videoInfo.top, videoInfo.left));
     const { emotions: translatedEmotions, correctAnswer } = getTranslatedEmotions(videoInfo);
-    timeline.push(videoCheckWithButtons(videoInfo.Filepath, key, 'Video', translatedEmotions, correctAnswer));
+    timeline.push(videoCheckWithButtons(videoInfo.Filepath, key, 'Video', translatedEmotions, correctAnswer, videoInfo.top, videoInfo.left));
   }
   timeline.push(audioInstructions);
   for (const [key, audioInfo] of Object.entries(OdcMediaContent.Content.Audio)) {
