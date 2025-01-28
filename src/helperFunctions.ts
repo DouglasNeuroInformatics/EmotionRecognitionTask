@@ -50,7 +50,7 @@ export const addBootstrapScripts = () => {
   document.head.appendChild(bootstrapScript);
 };
 
-export const videoCoverHtmlGenerator = (filepath: string, top?: string | '34%', left?: string | '52%') => {
+export const videoCoverHtmlGenerator = (filepath: string, top: string = '40%', left: string = '48%') => {
   return `
      
     <div class="video-container">
