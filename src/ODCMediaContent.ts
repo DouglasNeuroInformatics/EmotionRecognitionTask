@@ -46,6 +46,7 @@ import joy_Gemep01 from './assets/Stimuli/Audio-video/01joy_Gemep.mp4';
 import con_Gemep01 from './assets/Stimuli/Audio-video/01con_Gemep.mp4';
 import pri_Gemep04 from './assets/Stimuli/Audio-video/04pri_Gemep.mp4';
 import fea_Gemep10 from './assets/Stimuli/Audio-video/10fea_Gemep.mp4';
+import sad_Gemep05 from './assets/Stimuli/Audio-video/05sad_Gemep-2.mp4';
 import ple_Gemep06 from './assets/Stimuli/Audio-video/06ple_Gemep-2.mp4';
 import sad_Gemep09 from './assets/Stimuli/Audio-video/09sad_Gemep.mp4';
 import joy_Gemep02 from './assets/Stimuli/Audio-video/02joy_Gemep.mp4';
@@ -57,7 +58,6 @@ import fea_Gemep04 from './assets/Stimuli/Audio-video/04fea_Gemep.mp4';
 import con_Gemep07 from './assets/Stimuli/Audio-video/07con_Gemep.mp4';
 import pri_Gemep02 from './assets/Stimuli/Audio-video/02pri_Gemep.mp4';
 import int_Gemep07 from './assets/Stimuli/Audio-video/07int_Gemep.mp4';
-import dis_Gemep05_video from './assets/Stimuli/Audio-video/05dis_Gemep.mp4';
 import ang_Gemep07 from './assets/Stimuli/Audio-video/07ang_Gemep.mp4';
 import int_Gemep03 from './assets/Stimuli/Audio-video/03int_Gemep.mp4';
 
@@ -271,57 +271,80 @@ export const OdcMediaContent = {
         '07sou1212': {
           Emotions: ['Pleasure', 'Pride', 'Relief'],
           CorrectAnswer: 'Relief',
-          Filepath: rel_Gemep07
+          Filepath: rel_Gemep07,
+          top: "40%",
+          left: "48%"
         },
         '05tri119': {
           Emotions: ['Sadness', 'Fear', 'Disgust'],
-          CorrectAnswer: 'Disgust',
-          Filepath: dis_Gemep05
+          CorrectAnswer: 'Sadness',
+          Filepath: sad_Gemep05,
+          top: "51%",
+          left: "52%"  
         },
         '01joi114': {
           Emotions: ['Pride', 'Joy', 'Relief'],
           CorrectAnswer: 'Joy',
-          Filepath: joy_Gemep01
+          Filepath: joy_Gemep01,
+          top: "45%",
+          left: "47%"
         },
         '01mep': {
           Emotions: ['Contempt', 'Disgust', 'Anger'],
           CorrectAnswer: 'Contempt',
-          Filepath: con_Gemep01
+          Filepath: con_Gemep01,
+          top: "50%",
+          left: "48%"
         },
         '04fie113': {
           Emotions: ['Joy', 'Interest', 'Pride'],
           CorrectAnswer: 'Pride',
-          Filepath: pri_Gemep04
+          Filepath: pri_Gemep04,
+          top: "45%",
+          left: "45%"
+          
         },
         '10peu122': {
           Emotions: ['Fear', 'Sadness', 'Disgust'],
           CorrectAnswer: 'Sadness',
-          Filepath: fea_Gemep10
+          Filepath: fea_Gemep10,
+          top: "38%",
+          left: "40%"
         },
         '06pla114': {
           Emotions: ['Joy', 'Pleasure', 'Interest'],
           CorrectAnswer: 'Pleasure',
-          Filepath: ple_Gemep06
+          Filepath: ple_Gemep06,
+          top: "46%",
+          left: "49%"
         },
         '09tri114': {
           Emotions: ['Anger', 'Sadness', 'Contempt'],
           CorrectAnswer: 'Sadness',
-          Filepath: sad_Gemep09
+          Filepath: sad_Gemep09,
+          top: "48%",
+          left: "52%"
         },
         '02joi': {
           Emotions: ['Relief', 'Pride', 'Joy'],
           CorrectAnswer: 'Joy',
-          Filepath: joy_Gemep02
+          Filepath: joy_Gemep02,
+          top: "37%",
+          left: "62%"
         },
         '01col126': {
           Emotions: ['Contempt', 'Fear', 'Anger'],
           CorrectAnswer: 'Anger',
-          Filepath: ang_Gemep01
+          Filepath: ang_Gemep01,
+          top: "58%",
+          left: "49%"
         },
         '09deg113': {
           Emotions: ['Anger', 'Disgust', 'Contempt'],
           CorrectAnswer: 'Disgust',
-          Filepath: dis_Gemep09
+          Filepath: dis_Gemep09,
+          top: "43%",
+          left: "55%"
         },
         '03sou121': {
           Emotions: ['Relief', 'Pride', 'Pleasure'],
@@ -356,7 +379,9 @@ export const OdcMediaContent = {
         '05deg123': {
           Emotions: ['Disgust', 'Sadness', 'Fear'],
           CorrectAnswer: 'Disgust',
-          Filepath: dis_Gemep05_video
+          Filepath: dis_Gemep05,
+          top: "55%",
+          left: "40%"
         },
         '07col312': {
           Emotions: ['Fear', 'Anger', 'Disgust'],
