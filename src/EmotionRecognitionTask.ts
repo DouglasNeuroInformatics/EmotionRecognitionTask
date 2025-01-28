@@ -1,8 +1,14 @@
 import { initJsPsych } from '/runtime/v1/jspsych@8.x';
-type JsPsych = import("/runtime/v1/jspsych@8.x/index.js").JsPsych;
-import HtmlKeyboardResponsePlugin from '/runtime/v1/@jspsych/plugin-html-keyboard-response@2.x';
-import HtmlButtonResponse from '/runtime/v1/@jspsych/plugin-html-button-response@2.x';
-import PreloadPlugin from '/runtime/v1/@jspsych/plugin-preload@2.x';
+type JsPsych = import('/runtime/v1/jspsych@8.x/index.js').JsPsych;
+const { HtmlKeyboardResponsePlugin } = await import(
+  '/runtime/v1/@jspsych/plugin-html-keyboard-response@2.x'
+);
+const { HtmlButtonResponsePlugin } = await import(
+  '/runtime/v1/@jspsych/plugin-html-button-response@2.x'
+);
+const { PreloadPlugin } = await import(
+  "/runtime/v1/@jspsych/plugin-preload@2.x"
+);
 import {
   addBootstrapScripts,
   addContinueButton,
@@ -156,7 +162,7 @@ export default async function emotionRecognitionTask() {
   ) => {
     let finalResponse: string = '';
     return {
-      type: HtmlButtonResponse,
+      type: HtmlButtonResponsePlugin,
       stimulus: function () {
         return audioHtmlGenerator(filepath);
       },
@@ -364,7 +370,7 @@ export default async function emotionRecognitionTask() {
   ) => {
     let finalResponse: string = '';
     return {
-      type: HtmlButtonResponse,
+      type: HtmlButtonResponsePlugin,
       stimulus: function () {
         return videoCoverHtmlGenerator(filepath);
       },
