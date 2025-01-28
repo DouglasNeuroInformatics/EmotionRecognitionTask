@@ -1,14 +1,3 @@
-import { initJsPsych } from '/runtime/v1/jspsych@8.x';
-type JsPsych = import('/runtime/v1/jspsych@8.x/index.js').JsPsych;
-const { HtmlKeyboardResponsePlugin } = await import(
-  '/runtime/v1/@jspsych/plugin-html-keyboard-response@2.x'
-);
-const { HtmlButtonResponsePlugin } = await import(
-  '/runtime/v1/@jspsych/plugin-html-button-response@2.x'
-);
-const { PreloadPlugin } = await import(
-  "/runtime/v1/@jspsych/plugin-preload@2.x"
-);
 import {
   addBootstrapScripts,
   addContinueButton,
@@ -20,12 +9,19 @@ import {
 import { OdcMediaContent } from './ODCMediaContent.ts';
 
 import type { Language } from '@opendatacapture/runtime-v1/@opendatacapture/runtime-core/index.js';
-import i18nSetUp from "./i18n.ts";
+import i18nSetUp from './i18n.ts';
 import { experimentSettingsJson } from './experimentSettings.ts';
 import { $Settings } from './schemas.ts';
 import { transformAndExportJson, downloadJson, transformAndDownload } from './dataMunger.ts';
 
 export default async function emotionRecognitionTask() {
+  
+  const { initJsPsych } = await import('/runtime/v1/jspsych@8.x');
+  type JsPsych = import('/runtime/v1/jspsych@8.x/index.js').JsPsych;
+  const { HtmlKeyboardResponsePlugin } = await import('/runtime/v1/@jspsych/plugin-html-keyboard-response@2.x');
+  const { HtmlButtonResponsePlugin } = await import('/runtime/v1/@jspsych/plugin-html-button-response@2.x');
+  const { PreloadPlugin } = await import('/runtime/v1/@jspsych/plugin-preload@2.x');
+
   type EmotionalTrialData = {
     correctResponse: string;
     correctResponseSelected: 1 | 0;
@@ -49,9 +45,9 @@ export default async function emotionRecognitionTask() {
 
   const i18n = i18nSetUp();
   // needed to set the language of the experiment later
-  document.addEventListener("changeLanguage", function (event) {
+  document.addEventListener('changeLanguage', function (event) {
     // @ts-expect-error the event does have a detail
-    document.documentElement.setAttribute("lang", event.detail as string);
+    document.documentElement.setAttribute('lang', event.detail as string);
   });
 
   const clickHandler = () => {
@@ -122,7 +118,7 @@ export default async function emotionRecognitionTask() {
           document.body.appendChild(continueButtonDiv);
         }
 
-        const keyboardResponseContainer = document.getElementById("jspsych-html-keyboard-response-stimulus");
+        const keyboardResponseContainer = document.getElementById('jspsych-html-keyboard-response-stimulus');
 
         if (keyboardResponseContainer && keyboardResponseContainer instanceof HTMLElement) {
           keyboardResponseContainer.style.display = 'flex';
@@ -202,7 +198,6 @@ export default async function emotionRecognitionTask() {
           buttonResponseContainer.style.alignItems = 'center';
         }
 
-
         if (audioIcon) {
           audioIcon.addEventListener('click', () => {
             if (audioContent && audioContent instanceof HTMLAudioElement && !playOnce) {
@@ -229,7 +224,7 @@ export default async function emotionRecognitionTask() {
             if (e.target instanceof HTMLButtonElement && e.target === button) {
               const val = button.innerHTML;
               finalResponse = val;
-              buttonSelections.forEach(btn => btn.classList.remove('active'));
+              buttonSelections.forEach((btn) => btn.classList.remove('active'));
               // Add active class to the clicked button
               e.target.classList.add('active');
             }
@@ -308,7 +303,7 @@ export default async function emotionRecognitionTask() {
           document.body.appendChild(continueButtonDiv);
         }
 
-        const keyboardResponseContainer = document.getElementById("jspsych-html-keyboard-response-stimulus");
+        const keyboardResponseContainer = document.getElementById('jspsych-html-keyboard-response-stimulus');
 
         if (keyboardResponseContainer && keyboardResponseContainer instanceof HTMLElement) {
           keyboardResponseContainer.style.display = 'flex';
@@ -458,7 +453,7 @@ export default async function emotionRecognitionTask() {
             if (e.target instanceof HTMLButtonElement && e.target === button) {
               const val = button.innerHTML;
               finalResponse = val;
-              buttonSelections.forEach(btn => btn.classList.remove('active'));
+              buttonSelections.forEach((btn) => btn.classList.remove('active'));
               // Add active class to the clicked button
               e.target.classList.add('active');
             }
@@ -475,7 +470,6 @@ export default async function emotionRecognitionTask() {
             response: finalResponse
           });
           continueButton.remove();
-          
         });
       },
       on_finish: function (data: EmotionalTrialData) {
