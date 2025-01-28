@@ -18,7 +18,7 @@ h1 {
 .video-container {
   position: relative;
   width: 50vw;
-  height: 40vh;
+  height: 50vh;
   overflow: hidden;
 }
 
@@ -42,10 +42,10 @@ h1 {
 /* The video element */
 video {
   position: absolute;
-  object-fit: cover;
+  object-fit: fill;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100%; 
   height: 100%;
 }
 .spacedButtons {
