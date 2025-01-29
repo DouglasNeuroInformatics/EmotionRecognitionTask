@@ -403,7 +403,7 @@ export default async function emotionRecognitionTask() {
           jsPsychContent.appendChild(continueButtonDiv);
           jsPsychContent.appendChild(examplePrompt);
         } else {
-          document.body.appendChild(examplePrompt)
+          document.body.appendChild(examplePrompt);
           document.body.appendChild(continueButtonDiv);
         }
 
