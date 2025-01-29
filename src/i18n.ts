@@ -88,6 +88,10 @@ export default function i18nSetUp() {
       en: `Please select a button`,
       fr: `Veuillez sélectionner un bouton`
     },
+    examplePrompt: {
+      en: `Click on continue to start the test`,
+      fr: `Cliquer sur "Continuer" pour débuter le test.`
+    },
     emotions: {
       Anger: {
         en: 'Anger',
