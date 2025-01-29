@@ -190,8 +190,8 @@ export default async function emotionRecognitionTask() {
           jsPsychContent.appendChild(continueButtonDiv);
           jsPsychContent.appendChild(examplePrompt);
         } else {
-          document.body.appendChild(examplePrompt);
           document.body.appendChild(continueButtonDiv);
+          document.body.appendChild(examplePrompt);
         }
 
         const buttonResponseContainer = document.getElementById('jspsych-html-button-response-stimulus');
@@ -403,8 +403,8 @@ export default async function emotionRecognitionTask() {
           jsPsychContent.appendChild(continueButtonDiv);
           jsPsychContent.appendChild(examplePrompt);
         } else {
-          document.body.appendChild(examplePrompt);
           document.body.appendChild(continueButtonDiv);
+          document.body.appendChild(examplePrompt);
         }
 
         const buttonResponseContainer = document.getElementById('jspsych-html-button-response-stimulus');
