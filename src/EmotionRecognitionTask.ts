@@ -16,7 +16,6 @@ import { $Settings } from './schemas.ts';
 import { transformAndExportJson, downloadJson, transformAndDownload } from './dataMunger.ts';
 
 export default async function emotionRecognitionTask() {
-  
   const { initJsPsych } = await import('/runtime/v1/jspsych@8.x');
   type JsPsych = import('/runtime/v1/jspsych@8.x/index.js').JsPsych;
   const { HtmlKeyboardResponsePlugin } = await import('/runtime/v1/@jspsych/plugin-html-keyboard-response@2.x');
@@ -191,7 +190,7 @@ export default async function emotionRecognitionTask() {
           jsPsychContent.appendChild(continueButtonDiv);
           jsPsychContent.appendChild(examplePrompt);
         } else {
-          document.body.appendChild(examplePrompt)
+          document.body.appendChild(examplePrompt);
           document.body.appendChild(continueButtonDiv);
         }
 
@@ -255,7 +254,7 @@ export default async function emotionRecognitionTask() {
           data.correctResponseSelected = correctAnswer === finalResponse ? 1 : 0;
           data.mediaFileType = mediaType;
           data.itemCode = mediaCode;
-          data.trialType = (!isExample) ? 'emotionChoice' : '';
+          data.trialType = !isExample ? 'emotionChoice' : '';
           data.language = language as string;
         }
       }
@@ -379,7 +378,7 @@ export default async function emotionRecognitionTask() {
       stimulus: function () {
         return videoCoverHtmlGenerator(filepath, top, left);
       },
-      
+
       choices: emotionChoices,
       button_html: (choice: string) => {
         return `<div name='custom-button-div' data-toggle="buttons" style="padding:10px; display:none; justify-content: center; align-items: center;  width: 100%"><button name="custom-button" type="button" class="btn btn-primary" style="width:100%">${choice}</button></div>`;
@@ -396,7 +395,7 @@ export default async function emotionRecognitionTask() {
         const overlay = document.getElementById('overlay');
         const cross = document.getElementById('overlay-cross');
 
-        const examplePrompt = createExamplePromptDiv(i18n.t('examplePrompt'))
+        const examplePrompt = createExamplePromptDiv(i18n.t('examplePrompt'));
         const continueButton = addContinueButton();
         const continueButtonDiv = createContinueButtonDiv(continueButton);
         const jsPsychContent = document.getElementById('jspsych-content');
@@ -405,7 +404,7 @@ export default async function emotionRecognitionTask() {
           jsPsychContent.appendChild(continueButtonDiv);
           jsPsychContent.appendChild(examplePrompt);
         } else {
-          document.body.appendChild(examplePrompt)
+          document.body.appendChild(examplePrompt);
           document.body.appendChild(continueButtonDiv);
         }
 
@@ -493,7 +492,7 @@ export default async function emotionRecognitionTask() {
           data.correctResponseSelected = correctAnswer === finalResponse ? 1 : 0;
           data.mediaFileType = mediaType;
           data.itemCode = mediaCode;
-          data.trialType = (!isExample) ? 'emotionChoice': '';
+          data.trialType = !isExample ? 'emotionChoice' : '';
           data.language = language as string;
         }
       }
@@ -504,33 +503,102 @@ export default async function emotionRecognitionTask() {
   timeline.push(taskInstructions);
   timeline.push(audioVisualInstructions);
 
-  timeline.push(videoCheck(OdcMediaContent.Content.exampleAudioVideo['05rel_Gemep'].Filepath, OdcMediaContent.Content.exampleAudioVideo['05rel_Gemep'].top, OdcMediaContent.Content.exampleAudioVideo['05rel_Gemep'].left));
-  const { emotions: translatedEmotionsAudioVideo, correctAnswer: correctAnswerAudioVideo } = getTranslatedEmotions(OdcMediaContent.Content.exampleAudioVideo['05rel_Gemep']);
-  timeline.push(videoCheckWithButtons(OdcMediaContent.Content.exampleAudioVideo['05rel_Gemep'].Filepath, '05rel_Gemep', 'VideoAndAudio', translatedEmotionsAudioVideo, correctAnswerAudioVideo, OdcMediaContent.Content.exampleAudioVideo['05rel_Gemep'].top, OdcMediaContent.Content.exampleAudioVideo['05rel_Gemep'].left, true));
-
+  timeline.push(
+    videoCheck(
+      OdcMediaContent.Content.exampleAudioVideo['05rel_Gemep'].Filepath,
+      OdcMediaContent.Content.exampleAudioVideo['05rel_Gemep'].top,
+      OdcMediaContent.Content.exampleAudioVideo['05rel_Gemep'].left
+    )
+  );
+  const { emotions: translatedEmotionsAudioVideo, correctAnswer: correctAnswerAudioVideo } = getTranslatedEmotions(
+    OdcMediaContent.Content.exampleAudioVideo['05rel_Gemep']
+  );
+  timeline.push(
+    videoCheckWithButtons(
+      OdcMediaContent.Content.exampleAudioVideo['05rel_Gemep'].Filepath,
+      '05rel_Gemep',
+      'VideoAndAudio',
+      translatedEmotionsAudioVideo,
+      correctAnswerAudioVideo,
+      OdcMediaContent.Content.exampleAudioVideo['05rel_Gemep'].top,
+      OdcMediaContent.Content.exampleAudioVideo['05rel_Gemep'].left,
+      true
+    )
+  );
 
   for (const [key, videoInfo] of Object.entries(OdcMediaContent.Content.VideoAndAudio)) {
     timeline.push(videoCheck(videoInfo.Filepath, videoInfo.top, videoInfo.left));
     const { emotions: translatedEmotions, correctAnswer } = getTranslatedEmotions(videoInfo);
-    timeline.push(videoCheckWithButtons(videoInfo.Filepath, key, 'VideoAndAudio', translatedEmotions, correctAnswer, videoInfo.top, videoInfo.left, false));
+    timeline.push(
+      videoCheckWithButtons(
+        videoInfo.Filepath,
+        key,
+        'VideoAndAudio',
+        translatedEmotions,
+        correctAnswer,
+        videoInfo.top,
+        videoInfo.left,
+        false
+      )
+    );
   }
   timeline.push(videoInstructions);
 
-  timeline.push(videoCheck(OdcMediaContent.Content.exampleVideo['02ang_Gemep-2'].Filepath, OdcMediaContent.Content.exampleVideo['02ang_Gemep-2'].top, OdcMediaContent.Content.exampleVideo['02ang_Gemep-2'].left));
-  const { emotions: translatedEmotionsVideo, correctAnswer: correctAnswerVideo } = getTranslatedEmotions(OdcMediaContent.Content.exampleVideo['02ang_Gemep-2']);
-  timeline.push(videoCheckWithButtons(OdcMediaContent.Content.exampleVideo['02ang_Gemep-2'].Filepath, '02ang_Gemep-2', 'Video', translatedEmotionsVideo, correctAnswerVideo, OdcMediaContent.Content.exampleVideo['02ang_Gemep-2'].top, OdcMediaContent.Content.exampleVideo['02ang_Gemep-2'].left, true));
+  timeline.push(
+    videoCheck(
+      OdcMediaContent.Content.exampleVideo['02ang_Gemep-2'].Filepath,
+      OdcMediaContent.Content.exampleVideo['02ang_Gemep-2'].top,
+      OdcMediaContent.Content.exampleVideo['02ang_Gemep-2'].left
+    )
+  );
+  const { emotions: translatedEmotionsVideo, correctAnswer: correctAnswerVideo } = getTranslatedEmotions(
+    OdcMediaContent.Content.exampleVideo['02ang_Gemep-2']
+  );
+  timeline.push(
+    videoCheckWithButtons(
+      OdcMediaContent.Content.exampleVideo['02ang_Gemep-2'].Filepath,
+      '02ang_Gemep-2',
+      'Video',
+      translatedEmotionsVideo,
+      correctAnswerVideo,
+      OdcMediaContent.Content.exampleVideo['02ang_Gemep-2'].top,
+      OdcMediaContent.Content.exampleVideo['02ang_Gemep-2'].left,
+      true
+    )
+  );
 
-  
   for (const [key, videoInfo] of Object.entries(OdcMediaContent.Content.Video)) {
     timeline.push(videoCheck(videoInfo.Filepath, videoInfo.top, videoInfo.left));
     const { emotions: translatedEmotions, correctAnswer } = getTranslatedEmotions(videoInfo);
-    timeline.push(videoCheckWithButtons(videoInfo.Filepath, key, 'Video', translatedEmotions, correctAnswer, videoInfo.top, videoInfo.left,false));
+    timeline.push(
+      videoCheckWithButtons(
+        videoInfo.Filepath,
+        key,
+        'Video',
+        translatedEmotions,
+        correctAnswer,
+        videoInfo.top,
+        videoInfo.left,
+        false
+      )
+    );
   }
   timeline.push(audioInstructions);
 
   timeline.push(audioHtmlTask(OdcMediaContent.Content.exampleAudio['03fea_Gemep'].Filepath));
-  const { emotions: translatedEmotionsAudio, correctAnswer: correctAnswerAudio } = getTranslatedEmotions(OdcMediaContent.Content.exampleAudio['03fea_Gemep']);
-  timeline.push(audioHtmlEmotionChoice(OdcMediaContent.Content.exampleAudio['03fea_Gemep'].Filepath, '03fea_Gemep', 'Audio', translatedEmotionsAudio, correctAnswerAudio, true));
+  const { emotions: translatedEmotionsAudio, correctAnswer: correctAnswerAudio } = getTranslatedEmotions(
+    OdcMediaContent.Content.exampleAudio['03fea_Gemep']
+  );
+  timeline.push(
+    audioHtmlEmotionChoice(
+      OdcMediaContent.Content.exampleAudio['03fea_Gemep'].Filepath,
+      '03fea_Gemep',
+      'Audio',
+      translatedEmotionsAudio,
+      correctAnswerAudio,
+      true
+    )
+  );
 
   for (const [key, audioInfo] of Object.entries(OdcMediaContent.Content.Audio)) {
     timeline.push(audioHtmlTask(audioInfo.Filepath));
