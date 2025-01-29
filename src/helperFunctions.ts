@@ -24,6 +24,18 @@ export const createContinueButtonDiv = (continueButton: HTMLButtonElement) => {
   return continueButtonDiv;
 };
 
+export const createExamplePromptDiv = (content: string) => {
+  const exampleDiv = document.createElement('div');
+  exampleDiv.style.justifyContent = 'center';
+  exampleDiv.style.alignItems = 'center';
+  exampleDiv.style.display = 'flex';
+  exampleDiv.style.paddingTop = '1%';
+  exampleDiv.style.display = 'None';
+  exampleDiv.textContent = content;
+
+  return exampleDiv
+}
+
 export const revealEmotionButtons = () => {
   const emotionButtons = document.getElementsByName('custom-button-div');
 
