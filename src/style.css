@@ -14,12 +14,40 @@ h1 {
   align-items: center;
   gap: 40px;
 }
+
+:root {
+  --video-base-width: 720px;
+  --video-base-height: 576px;
+}
+
 /* Style for the video container */
 .video-container {
   position: relative;
-  width: 50vw;
-  height: 50vh;
+  width: calc(var(--video-base-width) / 2);
+  height: calc(var(--video-base-height) / 2);
   overflow: hidden;
+}
+/* calc(--var(--video-base-width) / 1.5) */
+
+@media (min-width: 500px) {
+  .video-container {
+    width: calc(var(--video-base-width) / 1.5);
+    height: calc(var(--video-base-height) / 1.5);
+  }
+}
+
+@media (min-width: 720px) {
+  .video-container {
+    width: calc(var(--video-base-width) / 1.2);
+    height: calc(var(--video-base-height) / 1.2);
+  }
+}
+
+@media (min-width: 1700px) {
+  .video-container {
+    width: calc(var(--video-base-width)*1.1);
+    height: calc(var(--video-base-height)*1.1);
+  }
 }
 
 /* The black overlay */
@@ -42,7 +70,6 @@ h1 {
 /* The video element */
 video {
   position: absolute;
-  object-fit: fill;
   top: 0;
   left: 0;
   width: 100%; 

@@ -53,7 +53,7 @@ export const addBootstrapScripts = () => {
 export const videoCoverHtmlGenerator = (filepath: string, top: string = '40%', left: string = '48%') => {
   return `
      
-    <div class="video-container">
+    <div class="video-container" id="videoContainer">
         <div class="video-overlay" id="overlay">
           <div class="cross" id="overlay-cross" style="left: ${left};top: ${top};"> </div>
         </div>
