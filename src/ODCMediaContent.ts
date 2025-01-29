@@ -462,14 +462,13 @@ export const OdcMediaContent = {
       }
     },
     exampleVideo: {
-      '02ang_Gemep-2':{
+      '02ang_Gemep-2': {
         Emotions: ['Joy', 'Fear', 'Anger'],
         CorrectAnswer: 'Anger',
         Filepath: ang_Gemep02_2,
         top: '38%',
         left: '45%'
       }
-     
     },
     exampleAudio: {
       '03fea_Gemep': {
