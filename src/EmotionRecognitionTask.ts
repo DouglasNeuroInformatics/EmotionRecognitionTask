@@ -378,7 +378,6 @@ export default async function emotionRecognitionTask() {
       stimulus: function () {
         return videoCoverHtmlGenerator(filepath, top, left);
       },
-
       choices: emotionChoices,
       button_html: (choice: string) => {
         return `<div name='custom-button-div' data-toggle="buttons" style="padding:10px; display:none; justify-content: center; align-items: center;  width: 100%"><button name="custom-button" type="button" class="btn btn-primary" style="width:100%">${choice}</button></div>`;
@@ -404,7 +403,7 @@ export default async function emotionRecognitionTask() {
           jsPsychContent.appendChild(continueButtonDiv);
           jsPsychContent.appendChild(examplePrompt);
         } else {
-          document.body.appendChild(examplePrompt);
+          document.body.appendChild(examplePrompt)
           document.body.appendChild(continueButtonDiv);
         }
 
