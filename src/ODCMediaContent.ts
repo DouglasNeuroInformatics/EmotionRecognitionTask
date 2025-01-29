@@ -349,32 +349,44 @@ export const OdcMediaContent = {
         '03sou121': {
           Emotions: ['Relief', 'Pride', 'Pleasure'],
           CorrectAnswer: 'Relief',
-          Filepath: rel_Gemep03
+          Filepath: rel_Gemep03,
+          top: "40%",
+          left: "50%"
         },
         '08pla213': {
           Emotions: ['Pleasure', 'Joy', 'Relief'],
           CorrectAnswer: 'Pleasure',
-          Filepath: ple_Gemep08
+          Filepath: ple_Gemep08,
+          top: "38%",
+          left: "48%"
         },
         '04peu112': {
           Emotions: ['Fear', 'Sadness', 'Anger'],
           CorrectAnswer: 'Fear',
-          Filepath: fea_Gemep04
+          Filepath: fea_Gemep04,
+          top: "55%",
+          left: "40%"
         },
         '07mep': {
           Emotions: ['Contempt', 'Sadness', 'Interest'],
           CorrectAnswer: 'Contempt',
-          Filepath: con_Gemep07
+          Filepath: con_Gemep07,
+          top: "44%",
+          left: "41%"
         },
         '02fie312': {
           Emotions: ['Pride', 'Joy', 'Interest'],
           CorrectAnswer: 'Pride',
-          Filepath: pri_Gemep02
+          Filepath: pri_Gemep02,
+          top: "43%",
+          left: "55%"
         },
         '07int': {
           Emotions: ['Relief', 'Interest', 'Joy'],
           CorrectAnswer: 'Interest',
-          Filepath: int_Gemep07
+          Filepath: int_Gemep07,
+          top: "46%",
+          left: "49%"
         },
         '05deg123': {
           Emotions: ['Disgust', 'Sadness', 'Fear'],
@@ -386,12 +398,16 @@ export const OdcMediaContent = {
         '07col312': {
           Emotions: ['Fear', 'Anger', 'Disgust'],
           CorrectAnswer: 'Anger',
-          Filepath: ang_Gemep07
+          Filepath: ang_Gemep07,
+          top: "51%",
+          left: "53%"
         },
         '03int121': {
           Emotions: ['Pride', 'Pleasure', 'Interest'],
           CorrectAnswer: 'Interest',
-          Filepath: int_Gemep03
+          Filepath: int_Gemep03,
+          top: "47%",
+          left: "44%"
         }
       }
       
