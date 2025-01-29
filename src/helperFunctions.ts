@@ -50,16 +50,12 @@ export const addBootstrapScripts = () => {
   document.head.appendChild(bootstrapScript);
 };
 
-export const videoCoverHtmlGenerator = (filepath: string) => {
+export const videoCoverHtmlGenerator = (filepath: string, top: string = '40%', left: string = '48%') => {
   return `
      
-    <div class="video-container">
+    <div class="video-container" id="videoContainer">
         <div class="video-overlay" id="overlay">
-          <svg id="overlay-cross" height="100" width="100" xmlns="http://www.w3.org/2000/svg">
-            <line x1="50" y1="0" x2="50" y2="100" style="stroke:white;stroke-width:18" />
-            <line x1="0" y1="50" x2="100" y2="50" style="stroke:white;stroke-width:18" />
-            Sorry, your browser does not support inline SVG.
-          </svg>
+          <div class="cross" id="overlay-cross" style="left: ${left};top: ${top};"> </div>
         </div>
         <video id="video" preload="auto" >
           <source src=${filepath} type="video/mp4" />

@@ -44,7 +44,7 @@ export const $ExperimentImage = z.object({
 export const $EmotionRecognitionTaskResult = $LoggingTrial.extend({
   mediaFileType: z.string(),
   itemCode: z.string(),
-  correctResponseSelected: z.enum(['yes', 'no'])
+  correctResponseSelected: z.number().int().min(0).max(1)
 });
 
 export type SupportedLanguage = z.infer<typeof $Language>;
