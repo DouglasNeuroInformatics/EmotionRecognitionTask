@@ -28,7 +28,6 @@ export const createExamplePromptDiv = (content: string) => {
   const exampleDiv = document.createElement('div');
   exampleDiv.style.justifyContent = 'center';
   exampleDiv.style.alignItems = 'center';
-  exampleDiv.style.display = 'flex';
   exampleDiv.style.paddingTop = '1%';
   exampleDiv.style.display = 'None';
   exampleDiv.textContent = content;
