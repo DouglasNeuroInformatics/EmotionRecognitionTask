@@ -40,41 +40,57 @@ export default function i18nSetUp() {
             
             Vous visionnerez chaque extrait 2 fois. Après le second visionnement, vous devrez choisir le mot qui correspond le mieux à l'émotion exprimée par la personne.<br><br>
             
-            Assurez-vous que votre volume est suffisamment élevé pour entendre les sons. <br>`
+            Assurez-vous que votre volume est suffisamment élevé pour entendre les sons.`
     },
     audioInstructions: {
       en: `Snippets <span style="color:red"> <b> without images </b> </span> will now be presented.<br>
  
-      Please click on the icon to play the audio.`,
+      Please click on the icon to play the audio. <br>
+      
+      An example will be presented before the start of the test`,
       fr: `
       Des extraits <span style="color:red"> <b> sans image  </b> </span> seront maintenant présentés.<br>
  
-      Veuillez cliquer sur l'icône afin de lancer l'extrait.`
+      Veuillez cliquer sur l'icône afin de lancer l'extrait. <br>
+
+      Un exemple vous sera présenté avant de débuter le test. `
     },
     videoTaskInstructions: {
       en: `Videos <span style="color:red"> <b> without sound </b> </span> will now be presented. <br>
  
-            Please click on the video to launch it.`,
+            Please click on the video to launch it. <br>
+            
+            An example will be presented before the start of the test`,
 
       fr: ` Des vidéos <span style="color:red"> <b> sans son </b> </span> seront maintenant présentées. <br>
  
-        Veuillez cliquer sur le vidéo pour le lancer.`
+        Veuillez cliquer sur le vidéo pour le lancer. <br>
+        
+        Un exemple vous sera présenté avant de débuter le test.`
     },
     audioVisualTaskInstructions: {
       en: `The first block is about to begin. <br>
 
          Videos <span style="color:red"> <b> with image and sound </b> </span> will be presented. <br>
           
-          Please click on the video to play it`,
+          Please click on the video to play it <br>
+          
+          An example will be presented before the start of the test`,
       fr: `Le premier bloc va commencer. <br>
 
           Des vidéos <span style="color:red"> <b> avec image et son  </b> </span> seront présentées. <br>
           
-          Veuillez cliquer sur le vidéo pour le lancer.`
+          Veuillez cliquer sur le vidéo pour le lancer. <br>
+          
+          Un exemple vous sera présenté avant de débuter le test.`
     },
     buttonSelectionWarning: {
       en: `Please select a button`,
       fr: `Veuillez sélectionner un bouton`
+    },
+    examplePrompt: {
+      en: `Click on continue to start the test`,
+      fr: `Cliquer sur "Continuer" pour débuter le test.`
     },
     emotions: {
       Anger: {

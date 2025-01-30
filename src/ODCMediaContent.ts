@@ -18,6 +18,7 @@ import con_Gemep06 from './assets/Stimuli/Video-seulement/06con_Gemep.mp4';
 import dis_Gemep04 from './assets/Stimuli/Video-seulement/04dis_Gemep.mp4';
 import ple_Gemep09 from './assets/Stimuli/Video-seulement/09ple_Gemep.mp4';
 import sad_Gemep02 from './assets/Stimuli/Video-seulement/02sad_Gemep.mp4';
+import ang_Gemep02_2 from './assets/Stimuli/Video-seulement/02ang_Gemep-2.mp4';
 
 import int_Gemep06 from './assets/Stimuli/Audio-seulement/06int_Gemep.mp3';
 import rel_Gemep10 from './assets/Stimuli/Audio-seulement/10rel_Gemep.mp3';
@@ -39,6 +40,7 @@ import fea_Gemep08 from './assets/Stimuli/Audio-seulement/08fea_Gemep.mp3';
 import ple_Gemep02 from './assets/Stimuli/Audio-seulement/02ple_Gemep.mp3';
 import dis_Gemep10 from './assets/Stimuli/Audio-seulement/10dis_Gemep.mp3';
 import con_Gemep06_audio from './assets/Stimuli/Audio-seulement/06con_Gemep.mp3';
+import fea_Gemep03_audio from './assets/Stimuli/Audio-seulement/03fea_Gemep.mp3';
 
 import rel_Gemep07 from './assets/Stimuli/Audio-video/07rel_Gemep-2.mp4';
 import dis_Gemep05 from './assets/Stimuli/Audio-video/05dis_Gemep.mp4';
@@ -60,6 +62,7 @@ import pri_Gemep02 from './assets/Stimuli/Audio-video/02pri_Gemep.mp4';
 import int_Gemep07 from './assets/Stimuli/Audio-video/07int_Gemep.mp4';
 import ang_Gemep07 from './assets/Stimuli/Audio-video/07ang_Gemep.mp4';
 import int_Gemep03 from './assets/Stimuli/Audio-video/03int_Gemep.mp4';
+import rel_Gemep05 from './assets/Stimuli/Audio-video/05rel_Gemep.mp4';
 
 export const OdcMediaContent = {
   Content: {
@@ -68,141 +71,141 @@ export const OdcMediaContent = {
         Emotions: ['Anger', 'Fear', 'Contempt'],
         CorrectAnswer: 'Anger',
         Filepath: ang_Gemep06,
-        top: "57%",
-        left: "61%"
+        top: '57%',
+        left: '61%'
       },
       '07joi114': {
         Emotions: ['Interest', 'Joy', 'Pride'],
         CorrectAnswer: 'Joy',
         Filepath: joy_Gemep07,
-        top: "43%",
-        left: "50%"
+        top: '43%',
+        left: '50%'
       },
       '01sou123': {
         Emotions: ['Pleasure', 'Joy', 'Relief'],
         CorrectAnswer: 'Relief',
         Filepath: rel_Gemep01,
-        top: "45%",
-        left: "51%" 
+        top: '45%',
+        left: '51%'
       },
       '08mep': {
         Emotions: ['Contempt', 'Anger', 'Sadness'],
         CorrectAnswer: 'Contempt',
         Filepath: con_Gemep08,
-        top: "45%",
-        left: "48%"
+        top: '45%',
+        left: '48%'
       },
       '05pla121': {
         Emotions: ['Joy', 'Pleasure', 'Pride'],
         CorrectAnswer: 'Pleasure',
         Filepath: ple_Gemep05,
-        top: "49%",
-        left: "41%"
+        top: '49%',
+        left: '41%'
       },
       '02peu': {
         Emotions: ['Sadness', 'Fear', 'Anger'],
         CorrectAnswer: 'Fear',
         Filepath: fea_Gemep02,
-        top: "35%",
-        left: "48%"
+        top: '35%',
+        left: '48%'
       },
       '08fie125': {
         Emotions: ['Pride', 'Anger', 'Disgust'],
         CorrectAnswer: 'Pride',
         Filepath: pri_Gemep08,
-        top: "32%",
-        left: "40%"
+        top: '32%',
+        left: '40%'
       },
       '02deg125': {
         Emotions: ['Sadness', 'Disgust', 'Contempt'],
         CorrectAnswer: 'Disgust',
         Filepath: dis_Gemep02,
-        top: "38%",
-        left: "65%"
+        top: '38%',
+        left: '65%'
       },
       '06fie124': {
         Emotions: ['Pride', 'Joy', 'Relief'],
         CorrectAnswer: 'Pride',
         Filepath: pri_Gemep06,
-        top: "41%",
-        left: "49%"
+        top: '41%',
+        left: '49%'
       },
       '04col122': {
         Emotions: ['Interest', 'Fear', 'Anger'],
         CorrectAnswer: 'Anger',
         Filepath: ang_Gemep04,
-        top: "56%",
-        left: "38%"
+        top: '56%',
+        left: '38%'
       },
       '02int111': {
         Emotions: ['Interest', 'Pleasure', 'Relief'],
         CorrectAnswer: 'Interest',
         Filepath: int_Gemep02,
-        top: "41%",
-        left: "68%"
+        top: '41%',
+        left: '68%'
       },
       '05joi121': {
         Emotions: ['Pride', 'Joy', 'Interest'],
         CorrectAnswer: 'Joy',
         Filepath: joy_Gemep05,
-        top: "53%",
-        left: "51%"
+        top: '53%',
+        left: '51%'
       },
       '03tri123': {
         Emotions: ['Contempt', 'Disgust', 'Sadness'],
         CorrectAnswer: 'Sadness',
         Filepath: sad_Gemep03,
-        top: "41%",
-        left: "45%"
+        top: '41%',
+        left: '45%'
       },
       '09sou111': {
         Emotions: ['Disgust', 'Relief', 'Pleasure'],
         CorrectAnswer: 'Relief',
         Filepath: rel_Gemep09,
-        top: "39%",
-        left: "53%"
+        top: '39%',
+        left: '53%'
       },
       '01int212': {
         Emotions: ['Interest', 'Pleasure', 'Relief'],
         CorrectAnswer: 'Interest',
         Filepath: int_Gemep01,
-        top: "46%",
-        left: "52%"
+        top: '46%',
+        left: '52%'
       },
       '03peu125': {
         Emotions: ['Contempt', 'Fear', 'Anger'],
         CorrectAnswer: 'Fear',
         Filepath: fea_Gemep03,
-        top: "40%",
-        left: "44%"
+        top: '40%',
+        left: '44%'
       },
       '06mep': {
         Emotions: ['Interest', 'Disgust', 'Contempt'],
         CorrectAnswer: 'Contempt',
         Filepath: con_Gemep06,
-        top: "52%",
-        left: "45%"
+        top: '52%',
+        left: '45%'
       },
       '04deg': {
         Emotions: ['Sadness', 'Contempt', 'Disgust'],
         CorrectAnswer: 'Disgust',
         Filepath: dis_Gemep04,
-        top: "51%",
-        left: "32%"
+        top: '51%',
+        left: '32%'
       },
       '09pla121': {
         Emotions: ['Pleasure', 'Relief', 'Pride'],
         CorrectAnswer: 'Pleasure',
         Filepath: ple_Gemep09,
-        top: "35%",
-        left: "57%"
+        top: '35%',
+        left: '57%'
       },
       '02tri112': {
         Emotions: ['Disgust', 'Sadness', 'Fear'],
         CorrectAnswer: 'Sadness',
         Filepath: sad_Gemep02,
-        top: "38%",
-        left: "67%"
+        top: '38%',
+        left: '67%'
       }
     },
     Audio: {
@@ -308,148 +311,171 @@ export const OdcMediaContent = {
       }
     },
     VideoAndAudio: {
-        '07sou1212': {
-          Emotions: ['Pleasure', 'Pride', 'Relief'],
-          CorrectAnswer: 'Relief',
-          Filepath: rel_Gemep07,
-          top: "40%",
-          left: "48%"
-        },
-        '05tri119': {
-          Emotions: ['Sadness', 'Fear', 'Disgust'],
-          CorrectAnswer: 'Sadness',
-          Filepath: sad_Gemep05,
-          top: "51%",
-          left: "52%"  
-        },
-        '01joi114': {
-          Emotions: ['Pride', 'Joy', 'Relief'],
-          CorrectAnswer: 'Joy',
-          Filepath: joy_Gemep01,
-          top: "45%",
-          left: "47%"
-        },
-        '01mep': {
-          Emotions: ['Contempt', 'Disgust', 'Anger'],
-          CorrectAnswer: 'Contempt',
-          Filepath: con_Gemep01,
-          top: "50%",
-          left: "48%"
-        },
-        '04fie113': {
-          Emotions: ['Joy', 'Interest', 'Pride'],
-          CorrectAnswer: 'Pride',
-          Filepath: pri_Gemep04,
-          top: "45%",
-          left: "45%"
-          
-        },
-        '10peu122': {
-          Emotions: ['Fear', 'Sadness', 'Disgust'],
-          CorrectAnswer: 'Sadness',
-          Filepath: fea_Gemep10,
-          top: "38%",
-          left: "40%"
-        },
-        '06pla114': {
-          Emotions: ['Joy', 'Pleasure', 'Interest'],
-          CorrectAnswer: 'Pleasure',
-          Filepath: ple_Gemep06,
-          top: "46%",
-          left: "49%"
-        },
-        '09tri114': {
-          Emotions: ['Anger', 'Sadness', 'Contempt'],
-          CorrectAnswer: 'Sadness',
-          Filepath: sad_Gemep09,
-          top: "48%",
-          left: "52%"
-        },
-        '02joi': {
-          Emotions: ['Relief', 'Pride', 'Joy'],
-          CorrectAnswer: 'Joy',
-          Filepath: joy_Gemep02,
-          top: "37%",
-          left: "62%"
-        },
-        '01col126': {
-          Emotions: ['Contempt', 'Fear', 'Anger'],
-          CorrectAnswer: 'Anger',
-          Filepath: ang_Gemep01,
-          top: "58%",
-          left: "49%"
-        },
-        '09deg113': {
-          Emotions: ['Anger', 'Disgust', 'Contempt'],
-          CorrectAnswer: 'Disgust',
-          Filepath: dis_Gemep09,
-          top: "43%",
-          left: "55%"
-        },
-        '03sou121': {
-          Emotions: ['Relief', 'Pride', 'Pleasure'],
-          CorrectAnswer: 'Relief',
-          Filepath: rel_Gemep03,
-          top: "40%",
-          left: "50%"
-        },
-        '08pla213': {
-          Emotions: ['Pleasure', 'Joy', 'Relief'],
-          CorrectAnswer: 'Pleasure',
-          Filepath: ple_Gemep08,
-          top: "38%",
-          left: "48%"
-        },
-        '04peu112': {
-          Emotions: ['Fear', 'Sadness', 'Anger'],
-          CorrectAnswer: 'Fear',
-          Filepath: fea_Gemep04,
-          top: "55%",
-          left: "40%"
-        },
-        '07mep': {
-          Emotions: ['Contempt', 'Sadness', 'Interest'],
-          CorrectAnswer: 'Contempt',
-          Filepath: con_Gemep07,
-          top: "44%",
-          left: "41%"
-        },
-        '02fie312': {
-          Emotions: ['Pride', 'Joy', 'Interest'],
-          CorrectAnswer: 'Pride',
-          Filepath: pri_Gemep02,
-          top: "43%",
-          left: "55%"
-        },
-        '07int': {
-          Emotions: ['Relief', 'Interest', 'Joy'],
-          CorrectAnswer: 'Interest',
-          Filepath: int_Gemep07,
-          top: "46%",
-          left: "49%"
-        },
-        '05deg123': {
-          Emotions: ['Disgust', 'Sadness', 'Fear'],
-          CorrectAnswer: 'Disgust',
-          Filepath: dis_Gemep05,
-          top: "55%",
-          left: "40%"
-        },
-        '07col312': {
-          Emotions: ['Fear', 'Anger', 'Disgust'],
-          CorrectAnswer: 'Anger',
-          Filepath: ang_Gemep07,
-          top: "51%",
-          left: "53%"
-        },
-        '03int121': {
-          Emotions: ['Pride', 'Pleasure', 'Interest'],
-          CorrectAnswer: 'Interest',
-          Filepath: int_Gemep03,
-          top: "47%",
-          left: "44%"
-        }
+      '07sou1212': {
+        Emotions: ['Pleasure', 'Pride', 'Relief'],
+        CorrectAnswer: 'Relief',
+        Filepath: rel_Gemep07,
+        top: '40%',
+        left: '48%'
+      },
+      '05tri119': {
+        Emotions: ['Sadness', 'Fear', 'Disgust'],
+        CorrectAnswer: 'Sadness',
+        Filepath: sad_Gemep05,
+        top: '51%',
+        left: '52%'
+      },
+      '01joi114': {
+        Emotions: ['Pride', 'Joy', 'Relief'],
+        CorrectAnswer: 'Joy',
+        Filepath: joy_Gemep01,
+        top: '45%',
+        left: '47%'
+      },
+      '01mep': {
+        Emotions: ['Contempt', 'Disgust', 'Anger'],
+        CorrectAnswer: 'Contempt',
+        Filepath: con_Gemep01,
+        top: '50%',
+        left: '48%'
+      },
+      '04fie113': {
+        Emotions: ['Joy', 'Interest', 'Pride'],
+        CorrectAnswer: 'Pride',
+        Filepath: pri_Gemep04,
+        top: '45%',
+        left: '45%'
+      },
+      '10peu122': {
+        Emotions: ['Fear', 'Sadness', 'Disgust'],
+        CorrectAnswer: 'Sadness',
+        Filepath: fea_Gemep10,
+        top: '38%',
+        left: '40%'
+      },
+      '06pla114': {
+        Emotions: ['Joy', 'Pleasure', 'Interest'],
+        CorrectAnswer: 'Pleasure',
+        Filepath: ple_Gemep06,
+        top: '46%',
+        left: '49%'
+      },
+      '09tri114': {
+        Emotions: ['Anger', 'Sadness', 'Contempt'],
+        CorrectAnswer: 'Sadness',
+        Filepath: sad_Gemep09,
+        top: '48%',
+        left: '52%'
+      },
+      '02joi': {
+        Emotions: ['Relief', 'Pride', 'Joy'],
+        CorrectAnswer: 'Joy',
+        Filepath: joy_Gemep02,
+        top: '37%',
+        left: '62%'
+      },
+      '01col126': {
+        Emotions: ['Contempt', 'Fear', 'Anger'],
+        CorrectAnswer: 'Anger',
+        Filepath: ang_Gemep01,
+        top: '58%',
+        left: '49%'
+      },
+      '09deg113': {
+        Emotions: ['Anger', 'Disgust', 'Contempt'],
+        CorrectAnswer: 'Disgust',
+        Filepath: dis_Gemep09,
+        top: '43%',
+        left: '55%'
+      },
+      '03sou121': {
+        Emotions: ['Relief', 'Pride', 'Pleasure'],
+        CorrectAnswer: 'Relief',
+        Filepath: rel_Gemep03,
+        top: '40%',
+        left: '50%'
+      },
+      '08pla213': {
+        Emotions: ['Pleasure', 'Joy', 'Relief'],
+        CorrectAnswer: 'Pleasure',
+        Filepath: ple_Gemep08,
+        top: '38%',
+        left: '48%'
+      },
+      '04peu112': {
+        Emotions: ['Fear', 'Sadness', 'Anger'],
+        CorrectAnswer: 'Fear',
+        Filepath: fea_Gemep04,
+        top: '55%',
+        left: '40%'
+      },
+      '07mep': {
+        Emotions: ['Contempt', 'Sadness', 'Interest'],
+        CorrectAnswer: 'Contempt',
+        Filepath: con_Gemep07,
+        top: '44%',
+        left: '41%'
+      },
+      '02fie312': {
+        Emotions: ['Pride', 'Joy', 'Interest'],
+        CorrectAnswer: 'Pride',
+        Filepath: pri_Gemep02,
+        top: '43%',
+        left: '55%'
+      },
+      '07int': {
+        Emotions: ['Relief', 'Interest', 'Joy'],
+        CorrectAnswer: 'Interest',
+        Filepath: int_Gemep07,
+        top: '46%',
+        left: '49%'
+      },
+      '05deg123': {
+        Emotions: ['Disgust', 'Sadness', 'Fear'],
+        CorrectAnswer: 'Disgust',
+        Filepath: dis_Gemep05,
+        top: '55%',
+        left: '40%'
+      },
+      '07col312': {
+        Emotions: ['Fear', 'Anger', 'Disgust'],
+        CorrectAnswer: 'Anger',
+        Filepath: ang_Gemep07,
+        top: '51%',
+        left: '53%'
+      },
+      '03int121': {
+        Emotions: ['Pride', 'Pleasure', 'Interest'],
+        CorrectAnswer: 'Interest',
+        Filepath: int_Gemep03,
+        top: '47%',
+        left: '44%'
       }
-      
+    },
+    exampleAudioVideo: {
+      '05rel_Gemep': {
+        Emotions: ['Anger', 'Relief', 'Interest'],
+        CorrectAnswer: 'Interest',
+        Filepath: rel_Gemep05,
+        top: '38%',
+        left: '52%'
+      }
+    },
+    exampleVideo: {
+      '02ang_Gemep-2': {
+        Emotions: ['Joy', 'Fear', 'Anger'],
+        CorrectAnswer: 'Anger',
+        Filepath: ang_Gemep02_2,
+        top: '38%',
+        left: '45%'
+      }
+    },
+    exampleAudio: {
+      '03fea_Gemep': {
+        Emotions: ['Pleasure', 'Fear', 'Contempt'],
+        CorrectAnswer: 'Fear',
+        Filepath: fea_Gemep03_audio
+      }
+    }
   }
 };
