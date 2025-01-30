@@ -31,7 +31,7 @@ export const $Settings = z.object({
   numberOfLevels: z.coerce.number().positive().int(),
   regressionSchedule: z.coerce.number().int(),
   seed: z.coerce.number().positive().int(),
-  totalNumberOfTrialsToRun: z.coerce.number().positive().int()
+  totalNumberOfTrialsToRun: z.coerce.number().positive().int(),
 });
 
 export const $ExperimentImage = z.object({
