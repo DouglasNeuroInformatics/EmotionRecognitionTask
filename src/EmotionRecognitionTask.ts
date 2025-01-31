@@ -127,13 +127,17 @@ export default async function emotionRecognitionTask() {
           keyboardResponseContainer.style.alignItems = 'center';
         }
 
-        if (audioIcon) {
+        if (audioIcon && audioContent && audioContent instanceof HTMLAudioElement) {
           audioIcon.addEventListener('click', () => {
-            if (audioContent && audioContent instanceof HTMLAudioElement && !playOnce) {
+            if ( !playOnce) {
               audioContent.play();
+              audioIcon.style.borderStyle = 'outset'
               playOnce = true;
             }
           });
+          audioContent.addEventListener('ended', () => {
+            audioIcon.style.borderStyle = 'none'
+          })
         }
 
         if (audioContent && audioContent instanceof HTMLAudioElement) {
@@ -189,10 +193,14 @@ export default async function emotionRecognitionTask() {
 
         if (jsPsychContent && jsPsychContent instanceof HTMLElement) {
           jsPsychContent.appendChild(continueButtonDiv);
-          jsPsychContent.appendChild(examplePrompt);
+          if(isExample){
+            jsPsychContent.appendChild(examplePrompt);
+          } 
         } else {
           document.body.appendChild(continueButtonDiv);
-          document.body.appendChild(examplePrompt);
+          if(isExample){
+            document.body.appendChild(examplePrompt);
+          } 
         }
 
         const buttonResponseContainer = document.getElementById('jspsych-html-button-response-stimulus');
@@ -203,13 +211,17 @@ export default async function emotionRecognitionTask() {
           buttonResponseContainer.style.alignItems = 'center';
         }
 
-        if (audioIcon) {
+        if (audioIcon && audioContent && audioContent instanceof HTMLAudioElement) {
           audioIcon.addEventListener('click', () => {
-            if (audioContent && audioContent instanceof HTMLAudioElement && !playOnce) {
+            if ( !playOnce) {
               audioContent.play();
+              audioIcon.style.borderStyle = 'outset'
               playOnce = true;
             }
           });
+          audioContent.addEventListener('ended', () => {
+            audioIcon.style.borderStyle = 'none'
+          })
         }
 
         if (audioContent && audioContent instanceof HTMLAudioElement) {
@@ -402,10 +414,14 @@ export default async function emotionRecognitionTask() {
 
         if (jsPsychContent && jsPsychContent instanceof HTMLElement) {
           jsPsychContent.appendChild(continueButtonDiv);
-          jsPsychContent.appendChild(examplePrompt);
+          if(isExample){
+            jsPsychContent.appendChild(examplePrompt);
+          } 
         } else {
           document.body.appendChild(continueButtonDiv);
-          document.body.appendChild(examplePrompt);
+          if(isExample){
+            document.body.appendChild(examplePrompt);
+          } 
         }
 
         const buttonResponseContainer = document.getElementById('jspsych-html-button-response-stimulus');
@@ -501,6 +517,8 @@ export default async function emotionRecognitionTask() {
 
   timeline.push(preload);
   timeline.push(taskInstructions);
+  
+  //audio video section
   timeline.push(audioVisualInstructions);
 
   timeline.push(
@@ -542,6 +560,8 @@ export default async function emotionRecognitionTask() {
       )
     );
   }
+
+  //video section
   timeline.push(videoInstructions);
 
   timeline.push(
@@ -583,6 +603,7 @@ export default async function emotionRecognitionTask() {
       )
     );
   }
+  //audio section
   timeline.push(audioInstructions);
 
   timeline.push(audioHtmlTask(OdcMediaContent.Content.exampleAudio['03fea_Gemep'].Filepath));
