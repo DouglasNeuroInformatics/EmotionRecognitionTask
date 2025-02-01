@@ -10,12 +10,13 @@ import {
 import { OdcMediaContent } from './ODCMediaContent.ts';
 
 import type { Language } from '@opendatacapture/runtime-v1/@opendatacapture/runtime-core/index.js';
-import i18nSetUp from './i18n.ts';
+import { translator } from './translations.ts';
 import { experimentSettingsJson } from './experimentSettings.ts';
 import { $Settings } from './schemas.ts';
 import { transformAndExportJson, downloadJson, transformAndDownload } from './dataMunger.ts';
 
 export default async function emotionRecognitionTask() {
+  translator.init();
   const { initJsPsych } = await import('/runtime/v1/jspsych@8.x');
   type JsPsych = import('/runtime/v1/jspsych@8.x/index.js').JsPsych;
   const { HtmlKeyboardResponsePlugin } = await import('/runtime/v1/@jspsych/plugin-html-keyboard-response@2.x');
@@ -43,7 +44,7 @@ export default async function emotionRecognitionTask() {
 
   const language = experimentSettingsJson.language as Language;
 
-  const i18n = i18nSetUp();
+ 
   // needed to set the language of the experiment later
   document.addEventListener('changeLanguage', function (event) {
     // @ts-expect-error the event does have a detail
@@ -62,15 +63,15 @@ export default async function emotionRecognitionTask() {
     type: PreloadPlugin,
     auto_preload: true,
     show_progress_bar: true,
-    message: `<p> ${i18n.t('loadingStimulus')}</p>`
+    message: `<p> ${translator.t('loadingStimulus')}</p>`
   };
 
   const taskInstructions = {
     type: HtmlKeyboardResponsePlugin,
     stimulus: function () {
       return ` 
-      <h3 classname="guidelines" style="color:red;"> ${i18n.t('guidelines')} </h3>
-      <p style="text-align:center; justify-content:center; font-size: 20px">${i18n.t('initialInstructions')}</p>`;
+      <h3 classname="guidelines" style="color:red;"> ${translator.t('guidelines')} </h3>
+      <p style="text-align:center; justify-content:center; font-size: 20px">${translator.t('initialInstructions')}</p>`;
     },
     on_load: function () {
       document.addEventListener('click', clickHandler);
@@ -82,7 +83,7 @@ export default async function emotionRecognitionTask() {
 
   const audioInstructions = {
     type: HtmlKeyboardResponsePlugin,
-    stimulus: `<p style="text-align:center; justify-content:center; font-size: 20px">${i18n.t('audioInstructions')}</p>`,
+    stimulus: `<p style="text-align:center; justify-content:center; font-size: 20px">${translator.t('audioInstructions')}</p>`,
     on_load: function () {
       document.addEventListener('click', clickHandler);
     },
@@ -126,13 +127,17 @@ export default async function emotionRecognitionTask() {
           keyboardResponseContainer.style.alignItems = 'center';
         }
 
-        if (audioIcon) {
+        if (audioIcon && audioContent && audioContent instanceof HTMLAudioElement) {
           audioIcon.addEventListener('click', () => {
-            if (audioContent && audioContent instanceof HTMLAudioElement && !playOnce) {
+            if ( !playOnce) {
               audioContent.play();
+              audioIcon.style.borderStyle = 'outset'
               playOnce = true;
             }
           });
+          audioContent.addEventListener('ended', () => {
+            audioIcon.style.borderStyle = 'none'
+          })
         }
 
         if (audioContent && audioContent instanceof HTMLAudioElement) {
@@ -183,15 +188,19 @@ export default async function emotionRecognitionTask() {
 
         const continueButton = addContinueButton();
         const continueButtonDiv = createContinueButtonDiv(continueButton);
-        const examplePrompt = createExamplePromptDiv(i18n.t('examplePrompt'));
+        const examplePrompt = createExamplePromptDiv(translator.t('examplePrompt'));
         const jsPsychContent = document.getElementById('jspsych-content');
 
         if (jsPsychContent && jsPsychContent instanceof HTMLElement) {
           jsPsychContent.appendChild(continueButtonDiv);
-          jsPsychContent.appendChild(examplePrompt);
+          if(isExample){
+            jsPsychContent.appendChild(examplePrompt);
+          } 
         } else {
           document.body.appendChild(continueButtonDiv);
-          document.body.appendChild(examplePrompt);
+          if(isExample){
+            document.body.appendChild(examplePrompt);
+          } 
         }
 
         const buttonResponseContainer = document.getElementById('jspsych-html-button-response-stimulus');
@@ -202,13 +211,17 @@ export default async function emotionRecognitionTask() {
           buttonResponseContainer.style.alignItems = 'center';
         }
 
-        if (audioIcon) {
+        if (audioIcon && audioContent && audioContent instanceof HTMLAudioElement) {
           audioIcon.addEventListener('click', () => {
-            if (audioContent && audioContent instanceof HTMLAudioElement && !playOnce) {
+            if ( !playOnce) {
               audioContent.play();
+              audioIcon.style.borderStyle = 'outset'
               playOnce = true;
             }
           });
+          audioContent.addEventListener('ended', () => {
+            audioIcon.style.borderStyle = 'none'
+          })
         }
 
         if (audioContent && audioContent instanceof HTMLAudioElement) {
@@ -238,7 +251,7 @@ export default async function emotionRecognitionTask() {
         });
         continueButton.addEventListener('click', () => {
           if (!finalResponse) {
-            alert(i18n.t('buttonSelectionWarning'));
+            alert(translator.t('buttonSelectionWarning'));
             return;
           }
           jsPsych.finishTrial({
@@ -263,7 +276,7 @@ export default async function emotionRecognitionTask() {
 
   const videoInstructions = {
     type: HtmlKeyboardResponsePlugin,
-    stimulus: `<p style="text-align:center; justify-content:center; font-size: 20px">${i18n.t('videoTaskInstructions')}</p>`,
+    stimulus: `<p style="text-align:center; justify-content:center; font-size: 20px">${translator.t('videoTaskInstructions')}</p>`,
     on_load: function () {
       document.addEventListener('click', clickHandler);
     },
@@ -274,7 +287,7 @@ export default async function emotionRecognitionTask() {
 
   const audioVisualInstructions = {
     type: HtmlKeyboardResponsePlugin,
-    stimulus: `<p style="text-align:center; justify-content:center; font-size: 20px">${i18n.t('audioVisualTaskInstructions')}</p>`,
+    stimulus: `<p style="text-align:center; justify-content:center; font-size: 20px">${translator.t('audioVisualTaskInstructions')}</p>`,
     on_load: function () {
       document.addEventListener('click', clickHandler);
     },
@@ -394,17 +407,21 @@ export default async function emotionRecognitionTask() {
         const overlay = document.getElementById('overlay');
         const cross = document.getElementById('overlay-cross');
 
-        const examplePrompt = createExamplePromptDiv(i18n.t('examplePrompt'));
+        const examplePrompt = createExamplePromptDiv(translator.t('examplePrompt'));
         const continueButton = addContinueButton();
         const continueButtonDiv = createContinueButtonDiv(continueButton);
         const jsPsychContent = document.getElementById('jspsych-content');
 
         if (jsPsychContent && jsPsychContent instanceof HTMLElement) {
           jsPsychContent.appendChild(continueButtonDiv);
-          jsPsychContent.appendChild(examplePrompt);
+          if(isExample){
+            jsPsychContent.appendChild(examplePrompt);
+          } 
         } else {
           document.body.appendChild(continueButtonDiv);
-          document.body.appendChild(examplePrompt);
+          if(isExample){
+            document.body.appendChild(examplePrompt);
+          } 
         }
 
         const buttonResponseContainer = document.getElementById('jspsych-html-button-response-stimulus');
@@ -475,7 +492,7 @@ export default async function emotionRecognitionTask() {
 
         continueButton.addEventListener('click', () => {
           if (!finalResponse) {
-            alert(i18n.t('buttonSelectionWarning'));
+            alert(translator.t('buttonSelectionWarning'));
             return;
           }
           jsPsych.finishTrial({
@@ -500,6 +517,8 @@ export default async function emotionRecognitionTask() {
 
   timeline.push(preload);
   timeline.push(taskInstructions);
+  
+  //audio video section
   timeline.push(audioVisualInstructions);
 
   timeline.push(
@@ -541,6 +560,8 @@ export default async function emotionRecognitionTask() {
       )
     );
   }
+
+  //video section
   timeline.push(videoInstructions);
 
   timeline.push(
@@ -582,6 +603,7 @@ export default async function emotionRecognitionTask() {
       )
     );
   }
+  //audio section
   timeline.push(audioInstructions);
 
   timeline.push(audioHtmlTask(OdcMediaContent.Content.exampleAudio['03fea_Gemep'].Filepath));
@@ -627,7 +649,7 @@ export default async function emotionRecognitionTask() {
   }
   function translate(emotion: string) {
     try {
-      const translation = i18n.t(`emotions.${emotion}`);
+      const translation = translator.t(`emotions.${emotion}`);
       return translation;
     } catch (error) {
       console.error(`Translation error for emotion "${emotion}":`, error);

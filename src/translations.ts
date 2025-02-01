@@ -1,10 +1,6 @@
-import { createI18Next } from '/runtime/v1/@opendatacapture/runtime-core';
+import { Translator } from "/runtime/v1/@opendatacapture/runtime-core";
 
-
-
-export default function i18nSetUp() {
-  document.documentElement.setAttribute('lang', 'fr');
-  const i18n = createI18Next({
+export const translator = new Translator({
   translations: {
     welcome: {
       en: 'Welcome. Press any key to begin',
@@ -135,10 +131,9 @@ export default function i18nSetUp() {
       }
     }
   }
-});
-  return i18n
+}  
+)
 
-}
 
 
 
