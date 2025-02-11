@@ -15,7 +15,7 @@ import { experimentSettingsJson } from './experimentSettings.ts';
 import { $Settings } from './schemas.ts';
 import { transformAndExportJson, downloadJson, transformAndDownload } from './dataMunger.ts';
 
-export default async function emotionRecognitionTask() {
+export default async function emotionRecognitionTask(onFinish?: (data: any) => void) {
   translator.init();
   const { initJsPsych } = await import('/runtime/v1/jspsych@8.x');
   type JsPsych = import('/runtime/v1/jspsych@8.x/index.js').JsPsych;
