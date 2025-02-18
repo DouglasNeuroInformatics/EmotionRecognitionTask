@@ -16,7 +16,7 @@ const $LoggingTrial = $Trial.extend({
   difficultyLevel: z.coerce.number().positive().int().optional(),
   language: $Language.optional(),
   response: z.string(),
-  rt: z.coerce.number().positive().int()
+  rt: z.coerce.number().positive()
 });
 export const $ExperimentResults = $LoggingTrial.omit({ response: true, trialType: true }).extend({
   responseNotes: z.string(),
