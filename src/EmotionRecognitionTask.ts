@@ -13,9 +13,16 @@ import type { Language } from '@opendatacapture/runtime-v1/@opendatacapture/runt
 import { translator } from './translations.ts';
 import { experimentSettingsJson } from './experimentSettings.ts';
 import { $Settings } from './schemas.ts';
+import type { EmotionRecognitionTask } from './schemas.ts';
 import { transformAndExportJson, downloadJson, transformAndDownload } from './dataMunger.ts';
 
-export default async function emotionRecognitionTask(onFinish?: (data: any) => void) {
+type EmotionRecognitionTaskResult = {
+  version: string;
+  timestamp: string;
+  experimentResult: EmotionRecognitionTask[];
+};
+
+export default async function emotionRecognitionTask(onFinish?: (data: EmotionRecognitionTaskResult) => void) {
   translator.init();
   const { initJsPsych } = await import('/runtime/v1/jspsych@8.x/index.js');
   type JsPsych = import('/runtime/v1/jspsych@8.x/index.js').JsPsych;
