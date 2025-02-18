@@ -13,15 +13,22 @@ import type { Language } from '@opendatacapture/runtime-v1/@opendatacapture/runt
 import { translator } from './translations.ts';
 import { experimentSettingsJson } from './experimentSettings.ts';
 import { $Settings } from './schemas.ts';
+import type { EmotionRecognitionTask } from './schemas.ts';
 import { transformAndExportJson, downloadJson, transformAndDownload } from './dataMunger.ts';
 
-export default async function emotionRecognitionTask() {
+type EmotionRecognitionTaskResult = {
+  version: string;
+  timestamp: string;
+  experimentResult: EmotionRecognitionTask[];
+};
+
+export default async function emotionRecognitionTask(onFinish?: (data: EmotionRecognitionTaskResult) => void) {
   translator.init();
-  const { initJsPsych } = await import('/runtime/v1/jspsych@8.x');
+  const { initJsPsych } = await import('/runtime/v1/jspsych@8.x/index.js');
   type JsPsych = import('/runtime/v1/jspsych@8.x/index.js').JsPsych;
-  const { HtmlKeyboardResponsePlugin } = await import('/runtime/v1/@jspsych/plugin-html-keyboard-response@2.x');
-  const { HtmlButtonResponsePlugin } = await import('/runtime/v1/@jspsych/plugin-html-button-response@2.x');
-  const { PreloadPlugin } = await import('/runtime/v1/@jspsych/plugin-preload@2.x');
+  const { HtmlKeyboardResponsePlugin } = await import('/runtime/v1/@jspsych/plugin-html-keyboard-response@2.x/index.js');
+  const { HtmlButtonResponsePlugin } = await import('/runtime/v1/@jspsych/plugin-html-button-response@2.x/index.js');
+  const { PreloadPlugin } = await import('/runtime/v1/@jspsych/plugin-preload@2.x/index.js');
 
   type EmotionalTrialData = {
     correctResponse: string;
@@ -632,9 +639,16 @@ export default async function emotionRecognitionTask() {
     on_finish: function () {
       try {
         const filteredData = jsPsych.data.get().filter({ trialType: 'emotionChoice' });
-        const resultJson = transformAndExportJson(filteredData);
-        transformAndDownload(filteredData);
-        downloadJson(resultJson, resultJson.timestamp);
+        if(onFinish)
+        {
+          onFinish(transformAndExportJson(filteredData))
+        }
+        else {
+          const resultJson = transformAndExportJson(filteredData);
+          transformAndDownload(filteredData);
+          downloadJson(resultJson, resultJson.timestamp);
+        }
+        
       } catch (error) {
         console.error('Error collection Emotion Recognition Data:', error);
       }

@@ -21,7 +21,7 @@ export default defineInstrument({
     name: 'Emotion Recognition Task'
   },
   content: {
-    render() {
+    async render(done) {
       const settingsParseResult = $Settings.safeParse(experimentSettingsJson);
 
       // parse settings
@@ -30,7 +30,7 @@ export default defineInstrument({
       }
       // translator.init();
       translator.changeLanguage(settingsParseResult.data.language as Language);
-      emotionRecognitionTask();
+      emotionRecognitionTask(done);
     }
   },
   details: {
@@ -43,6 +43,8 @@ export default defineInstrument({
   measures: {},
 
   validationSchema: z.object({
-    message: $EmotionRecognitionTaskResult
+    version: z.string(),
+    timestamp: z.string(),
+    experimentResult: z.array($EmotionRecognitionTaskResult)
   })
 });
