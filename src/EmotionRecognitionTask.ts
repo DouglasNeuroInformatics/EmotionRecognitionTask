@@ -17,11 +17,11 @@ import { transformAndExportJson, downloadJson, transformAndDownload } from './da
 
 export default async function emotionRecognitionTask(onFinish?: (data: any) => void) {
   translator.init();
-  const { initJsPsych } = await import('/runtime/v1/jspsych@8.x');
+  const { initJsPsych } = await import('/runtime/v1/jspsych@8.x/index.js');
   type JsPsych = import('/runtime/v1/jspsych@8.x/index.js').JsPsych;
-  const { HtmlKeyboardResponsePlugin } = await import('/runtime/v1/@jspsych/plugin-html-keyboard-response@2.x');
-  const { HtmlButtonResponsePlugin } = await import('/runtime/v1/@jspsych/plugin-html-button-response@2.x');
-  const { PreloadPlugin } = await import('/runtime/v1/@jspsych/plugin-preload@2.x');
+  const { HtmlKeyboardResponsePlugin } = await import('/runtime/v1/@jspsych/plugin-html-keyboard-response@2.x/index.js');
+  const { HtmlButtonResponsePlugin } = await import('/runtime/v1/@jspsych/plugin-html-button-response@2.x/index.js');
+  const { PreloadPlugin } = await import('/runtime/v1/@jspsych/plugin-preload@2.x/index.js');
 
   type EmotionalTrialData = {
     correctResponse: string;
