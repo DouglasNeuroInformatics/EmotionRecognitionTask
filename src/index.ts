@@ -28,8 +28,7 @@ export default defineInstrument({
       if (!settingsParseResult.success) {
         throw new Error(`Validation error, check experiment settings: ${settingsParseResult.error.toString()}`)
       }
-      // translator.init();
-      translator.changeLanguage(settingsParseResult.data.language as Language);
+      translator.init();
       emotionRecognitionTask(done);
     }
   },
