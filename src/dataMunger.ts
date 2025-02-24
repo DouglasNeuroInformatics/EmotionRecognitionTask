@@ -66,7 +66,7 @@ function exportToJsonSerializable(data: EmotionRecognitionTask[]): {
   return {
     version: '1.0',
     timestamp: getLocalTime(),
-    experimentResults: data.map((result) => ({
+    experimentResult: data.map((result) => ({
       correctResponse: result.correctResponse,
       correctResponseSelected: result.correctResponseSelected,
       response: result.response,
