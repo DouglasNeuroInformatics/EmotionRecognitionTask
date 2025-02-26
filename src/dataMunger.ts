@@ -5,7 +5,7 @@ import type { DataCollection } from '/runtime/v1/jspsych@8.x';
 
 function dataMunger(data: DataCollection) {
   const trials = data.values() as EmotionRecognitionTask[];
-  const experimentResults: EmotionRecognitionTask[] = [];
+  const experimentResult: EmotionRecognitionTask[] = [];
   for (const trial of trials) {
     // parsed experimentResults go here
     try {
@@ -20,13 +20,13 @@ function dataMunger(data: DataCollection) {
         itemCode: trial.itemCode,
         selectedLanguage: trial.language
       });
-      experimentResults.push(result);
+      experimentResult.push(result);
     } catch (error) {
       console.error('Failed to parse trial:', error);
     }
   }
 
-  return experimentResults;
+  return experimentResult;
 }
 
 function arrayToCSV(array: EmotionRecognitionTask[]) {
@@ -85,7 +85,7 @@ export function transformAndDownload(data: DataCollection) {
   const currentDate = getLocalTime();
   downloadCSV(dataForCSV, `${currentDate}.csv`);
 }
-export function transformAndExportJson(data: DataCollection): any {
+export function transformAndExportJson(data: DataCollection) {
   const mungedData = dataMunger(data);
   const jsonSerializableData = exportToJsonSerializable(mungedData);
   return JSON.parse(JSON.stringify(jsonSerializableData));
