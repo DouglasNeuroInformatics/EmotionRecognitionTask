@@ -16,9 +16,9 @@ This file must be created in order to the application to run properly. The steps
 Note: the file directory structure of the content should follow these rules.   
       
     Stimuli  
-            - Video-seulement  
-            - Audio-seulement  
-            - AudioVideo  
+        ↳ Video-seulement  
+        ↳ Audio-seulement  
+        ↳ AudioVideo  
     
 
 
