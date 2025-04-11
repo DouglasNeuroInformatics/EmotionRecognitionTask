@@ -18,7 +18,7 @@ export default defineInstrument({
 
   internal: {
     edition: 1,
-    name: 'Emotion Recognition Task'
+    name: 'EMOTION_RECOGNTION_TASK'
   },
   content: {
     async render(done) {
