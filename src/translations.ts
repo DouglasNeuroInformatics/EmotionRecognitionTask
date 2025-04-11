@@ -20,21 +20,21 @@ export const translator = new Translator({
     },
     initialInstructions: {
       en: ` 
-            This test measures your ability to recognize emotions.
+            This test measures your ability to recognize emotions. <br>
 
-            Your task is to watch a series of videos with image and sound, without sound, or without image, in which a person expresses an emotion. 
+            Your task is to watch a series of videos <br> with image and sound, without sound, or without image, <br>  in which a person expresses an emotion. <br><br> 
             
-            You will watch each extract twice. After the second viewing, you will have to choose the word that best corresponds to the emotion expressed by the person.
+            You will watch each extract twice.<br>  After the second viewing, you will have to choose the word that best corresponds <br> to the emotion expressed by the person. <br><br>
             
             Make sure your volume is high enough to hear the sounds.`,
 
       fr: `  
 
-            Ce test mesure votre capacité à reconnaître les émotions. <br><br> 
+            Ce test mesure votre capacité à reconnaître les émotions. <br>
 
-            Votre tâche consiste à visionner une série de vidéos avec image et son, sans son, ou sans image, dans lesquelles une personne exprime une émotion. <br><br> 
+            Votre tâche consiste à visionner une série de vidéos <br> avec image et son, sans son, ou sans image, <br>  dans lesquelles une personne exprime une émotion. <br><br> 
             
-            Vous visionnerez chaque extrait 2 fois. Après le second visionnement, vous devrez choisir le mot qui correspond le mieux à l'émotion exprimée par la personne.<br><br>
+            Vous visionnerez chaque extrait 2 fois. <br>  Après le second visionnement, vous devrez choisir le mot qui correspond <br> le mieux à l'émotion exprimée par la personne.<br><br>
             
             Assurez-vous que votre volume est suffisamment élevé pour entendre les sons.`
     },
