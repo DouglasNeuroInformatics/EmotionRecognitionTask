@@ -1,6 +1,7 @@
 import {
   addBootstrapScripts,
   addContinueButton,
+  addInstructionContinueButton,
   audioHtmlGenerator,
   createContinueButtonDiv,
   createExamplePromptDiv,
@@ -81,10 +82,22 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
       <p style="text-align:center; justify-content:center; font-size: 20px">${translator.t('initialInstructions')}</p>`;
     },
     on_load: function () {
-      document.addEventListener('click', clickHandler);
-    },
-    on_finish: function () {
-      document.removeEventListener('click', clickHandler);
+      const continueButton = addInstructionContinueButton();
+      const continueButtonDiv = createContinueButtonDiv(continueButton);
+
+      const jsPsychContent = document.getElementById('jspsych-content');
+
+      if (jsPsychContent && jsPsychContent instanceof HTMLElement) {
+        jsPsychContent.appendChild(continueButtonDiv);
+      } else {
+        document.body.appendChild(continueButtonDiv);
+      }
+
+      continueButton.addEventListener('click', () => {
+        
+        jsPsych.finishTrial();
+        continueButton.remove();
+      });
     }
   };
 
@@ -92,10 +105,23 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
     type: HtmlKeyboardResponsePlugin,
     stimulus: `<p style="text-align:center; justify-content:center; font-size: 20px">${translator.t('audioInstructions')}</p>`,
     on_load: function () {
-      document.addEventListener('click', clickHandler);
-    },
-    on_finish: function () {
-      document.removeEventListener('click', clickHandler);
+      const continueButton = addInstructionContinueButton();
+      const continueButtonDiv = createContinueButtonDiv(continueButton);
+      continueButton.style.display = 'flex';
+
+      const jsPsychContent = document.getElementById('jspsych-content');
+
+      if (jsPsychContent && jsPsychContent instanceof HTMLElement) {
+        jsPsychContent.appendChild(continueButtonDiv);
+      } else {
+        document.body.appendChild(continueButtonDiv);
+      }
+
+      continueButton.addEventListener('click', () => {
+        
+        jsPsych.finishTrial();
+        continueButton.remove();
+      });
     }
   };
 
@@ -285,10 +311,23 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
     type: HtmlKeyboardResponsePlugin,
     stimulus: `<p style="text-align:center; justify-content:center; font-size: 20px">${translator.t('videoTaskInstructions')}</p>`,
     on_load: function () {
-      document.addEventListener('click', clickHandler);
-    },
-    on_finish: function () {
-      document.removeEventListener('click', clickHandler);
+      const continueButton = addInstructionContinueButton();
+      const continueButtonDiv = createContinueButtonDiv(continueButton);
+      continueButton.style.display = 'flex';
+
+      const jsPsychContent = document.getElementById('jspsych-content');
+
+      if (jsPsychContent && jsPsychContent instanceof HTMLElement) {
+        jsPsychContent.appendChild(continueButtonDiv);
+      } else {
+        document.body.appendChild(continueButtonDiv);
+      }
+
+      continueButton.addEventListener('click', () => {
+        
+        jsPsych.finishTrial();
+        continueButton.remove();
+      });
     }
   };
 
@@ -296,10 +335,22 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
     type: HtmlKeyboardResponsePlugin,
     stimulus: `<p style="text-align:center; justify-content:center; font-size: 20px">${translator.t('audioVisualTaskInstructions')}</p>`,
     on_load: function () {
-      document.addEventListener('click', clickHandler);
-    },
-    on_finish: function () {
-      document.removeEventListener('click', clickHandler);
+      const continueButton = addInstructionContinueButton();
+      const continueButtonDiv = createContinueButtonDiv(continueButton);
+
+      const jsPsychContent = document.getElementById('jspsych-content');
+
+      if (jsPsychContent && jsPsychContent instanceof HTMLElement) {
+        jsPsychContent.appendChild(continueButtonDiv);
+      } else {
+        document.body.appendChild(continueButtonDiv);
+      }
+
+      continueButton.addEventListener('click', () => {
+        
+        jsPsych.finishTrial();
+        continueButton.remove();
+      });
     }
   };
 
