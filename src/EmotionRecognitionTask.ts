@@ -59,12 +59,6 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
     document.documentElement.setAttribute('lang', event.detail as string);
   });
 
-  const clickHandler = () => {
-    document.addEventListener('click', () => simulateKeyPress(jsPsych, 'a'), {
-      once: true
-    });
-  };
-
   const timeline = [];
 
   const preload = {
