@@ -76,6 +76,7 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
       <p style="text-align:center; justify-content:center; font-size: 20px">${translator.t('initialInstructions')}</p>`;
     },
     on_load: function () {
+      addBootstrapScripts();
       const continueButton = addInstructionContinueButton();
       const continueButtonDiv = createContinueButtonDiv(continueButton);
 
@@ -99,6 +100,7 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
     type: HtmlKeyboardResponsePlugin,
     stimulus: `<p style="text-align:center; justify-content:center; font-size: 20px">${translator.t('audioInstructions')}</p>`,
     on_load: function () {
+      addBootstrapScripts();
       const continueButton = addInstructionContinueButton();
       const continueButtonDiv = createContinueButtonDiv(continueButton);
       continueButton.style.display = 'flex';
@@ -305,6 +307,7 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
     type: HtmlKeyboardResponsePlugin,
     stimulus: `<p style="text-align:center; justify-content:center; font-size: 20px">${translator.t('videoTaskInstructions')}</p>`,
     on_load: function () {
+      addBootstrapScripts();
       const continueButton = addInstructionContinueButton();
       const continueButtonDiv = createContinueButtonDiv(continueButton);
       continueButton.style.display = 'flex';
@@ -329,6 +332,7 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
     type: HtmlKeyboardResponsePlugin,
     stimulus: `<p style="text-align:center; justify-content:center; font-size: 20px">${translator.t('audioVisualTaskInstructions')}</p>`,
     on_load: function () {
+      addBootstrapScripts();
       const continueButton = addInstructionContinueButton();
       const continueButtonDiv = createContinueButtonDiv(continueButton);
 
