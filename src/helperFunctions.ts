@@ -13,6 +13,16 @@ export const addContinueButton = () => {
   return continueButton;
 };
 
+export const addInstructionContinueButton = () => {
+
+  const continueButton = document.createElement('button');
+  continueButton.style.margin = '1';
+  continueButton.className = 'btn btn-primary btn-lg';
+  continueButton.textContent = 'Continue';
+
+  return continueButton;
+};
+
 export const createContinueButtonDiv = (continueButton: HTMLButtonElement) => {
   const continueButtonDiv = document.createElement('div');
   continueButtonDiv.style.justifyContent = 'center';

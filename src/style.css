@@ -107,3 +107,8 @@ video {
   left: 50%;
   transform: translateX(-50%);
 }
+
+.btn.btn-primary.active,
+.btn.btn-primary:active {
+  background-color: #05347a !important;
+}
