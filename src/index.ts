@@ -13,7 +13,7 @@ export default defineInstrument({
   kind: "INTERACTIVE",
     // if multilingual experimentSettingsJson needs a language field
   language: experimentSettingsJson.language as Language,
-  tags: ["interactive", "jsPysch", "PictureNamingTask"],
+  tags: ["interactive", "jsPysch", "EmotionRecognitionTask"],
 
 
   internal: {
