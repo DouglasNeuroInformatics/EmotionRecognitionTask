@@ -5,6 +5,7 @@ import {
   audioHtmlGenerator,
   createContinueButtonDiv,
   createExamplePromptDiv,
+  createWarningText,
   revealEmotionButtons,
   videoCoverHtmlGenerator
 } from './helperFunctions.ts';
@@ -217,16 +218,19 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
 
         const continueButton = addContinueButton();
         const continueButtonDiv = createContinueButtonDiv(continueButton);
+        const warningText = createWarningText(translator.t('buttonSelectionWarning'))
         const examplePrompt = createExamplePromptDiv(translator.t('examplePrompt'));
         const jsPsychContent = document.getElementById('jspsych-content');
 
         if (jsPsychContent && jsPsychContent instanceof HTMLElement) {
           jsPsychContent.appendChild(continueButtonDiv);
+          jsPsychContent.appendChild(warningText);
           if(isExample){
             jsPsychContent.appendChild(examplePrompt);
           } 
         } else {
           document.body.appendChild(continueButtonDiv);
+          document.body.appendChild(warningText);
           if(isExample){
             document.body.appendChild(examplePrompt);
           } 
@@ -280,7 +284,7 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
         });
         continueButton.addEventListener('click', () => {
           if (!finalResponse) {
-            alert(translator.t('buttonSelectionWarning'));
+            warningText.style.display = 'flex'
             return;
           }
           jsPsych.finishTrial({
@@ -465,16 +469,19 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
 
         const examplePrompt = createExamplePromptDiv(translator.t('examplePrompt'));
         const continueButton = addContinueButton();
+        const warningText = createWarningText(translator.t('buttonSelectionWarning'))
         const continueButtonDiv = createContinueButtonDiv(continueButton);
         const jsPsychContent = document.getElementById('jspsych-content');
 
         if (jsPsychContent && jsPsychContent instanceof HTMLElement) {
           jsPsychContent.appendChild(continueButtonDiv);
+          jsPsychContent.appendChild(warningText);
           if(isExample){
             jsPsychContent.appendChild(examplePrompt);
           } 
         } else {
           document.body.appendChild(continueButtonDiv);
+          document.body.appendChild(warningText);
           if(isExample){
             document.body.appendChild(examplePrompt);
           } 
@@ -548,7 +555,7 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
 
         continueButton.addEventListener('click', () => {
           if (!finalResponse) {
-            alert(translator.t('buttonSelectionWarning'));
+            warningText.style.display = 'flex';
             return;
           }
           jsPsych.finishTrial({
