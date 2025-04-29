@@ -7,13 +7,13 @@ const { z } = await import('/runtime/v1/zod@3.23.x/index.js');
 import { $EmotionRecognitionTaskResult, $Settings } from './schemas.ts';
 import { translator } from './translations.ts';
 
-import type { Language } from "/runtime/v1/@opendatacapture/runtime-core";
-
 export default defineInstrument({
   kind: "INTERACTIVE",
-    // if multilingual experimentSettingsJson needs a language field
-  language: experimentSettingsJson.language as Language,
-  tags: ["interactive", "jsPysch", "EmotionRecognitionTask"],
+  language: ['en', 'fr'],
+  tags: {
+    en: ["interactive", "jsPysch", "EmotionRecognitionTask"],
+    fr: ["interactif", "jsPysch", "EmotionRecognitionTask"]
+  },
 
 
   internal: {
@@ -33,11 +33,20 @@ export default defineInstrument({
     }
   },
   details: {
-    description: 'A task to decipher a subjects ability to interpret emotion displayed in audio and visual mediums',
+    description: {
+      en: 'A task to decipher a subjects ability to interpret emotion displayed in audio and visual mediums',
+      fr: "Une tâche visant à déchiffrer la capacité d'un sujet à interpréter les émotions affichées dans des supports audio et visuels"
+    } ,
     estimatedDuration: 20,
-    instructions: ['Please read the instruction presented within the task carefully'],
+    instructions: {
+      en: ['Please read the instruction presented within the task carefully'],
+      fr: ['Veuillez lire attentivement les instructions présentées dans la tâche']
+    },
     license: 'UNLICENSED',
-    title: 'Emotion Recognition Task'
+    title: {
+      en: 'Emotion Recognition Task',
+      fr: 'Tâche de reconnaissance des émotions'
+    }
   },
   measures: {},
 
