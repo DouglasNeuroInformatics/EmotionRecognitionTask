@@ -34,6 +34,18 @@ export const createContinueButtonDiv = (continueButton: HTMLButtonElement) => {
   return continueButtonDiv;
 };
 
+export const createWarningText = (text: string) => {
+  const textBox = document.createElement('p') as HTMLParagraphElement
+  textBox.style.justifyContent = 'center';
+  textBox.style.alignItems = 'center';
+  textBox.style.display = 'None';
+  textBox.style.paddingTop = '1%';
+  textBox.style.color = 'red'
+  textBox.textContent = text
+
+  return textBox
+}
+
 export const createExamplePromptDiv = (content: string) => {
   const exampleDiv = document.createElement('div');
   exampleDiv.style.justifyContent = 'center';

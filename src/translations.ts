@@ -81,8 +81,8 @@ export const translator = new Translator({
           Un exemple vous sera présenté avant de débuter le test.`
     },
     buttonSelectionWarning: {
-      en: `Please select a button`,
-      fr: `Veuillez sélectionner un bouton`
+      en: `* Please select a button`,
+      fr: `* Veuillez sélectionner un bouton`
     },
     examplePrompt: {
       en: `Click on continue to start the test`,
