@@ -660,10 +660,6 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
 
   jsPsych.run(timeline);
 
-  function simulateKeyPress(jsPsych: JsPsych, key: string) {
-    jsPsych.pluginAPI.keyDown(key);
-    jsPsych.pluginAPI.keyUp(key);
-  }
   function translate(emotion: string) {
     try {
       const translation = translator.t(`emotions.${emotion}`);
