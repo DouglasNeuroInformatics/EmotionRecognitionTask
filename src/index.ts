@@ -48,7 +48,43 @@ export default defineInstrument({
       fr: 'Tâche de reconnaissance des émotions'
     }
   },
-  measures: {},
+  measures: {
+    version: {
+      kind: "const",
+      label: {
+        "en": "Version",
+        "fr": "Version"
+      },
+      ref: "version"
+    },
+    timestamp: {
+      kind: "const",
+      label: {
+        "en": "Timestamp",
+        "fr": "Horodatage"
+      },
+      ref: "timestamp"
+    },
+    experimentResult: {
+      kind: "computed",
+      label: {
+        "en": "Experiment Results",
+        "fr": "Resultats"
+      },
+      value: (data) => {
+        const val = data.experimentResult?.map((x) => x)
+        let measureOutput = ''
+        if (val) {
+          for (const info of val) {
+            measureOutput += "Correct response: " + info.correctResponse + " response: " + info.response + " Correct response collected: " + info.correctResponseSelected + " Form of media" + info.mediaFileType + " response time: " + info.rt + " item code: " 
+            + info.itemCode + '\n';
+          }
+        }
+        return measureOutput
+      }
+      
+    }
+  },
 
   validationSchema: z.object({
     version: z.string(),
