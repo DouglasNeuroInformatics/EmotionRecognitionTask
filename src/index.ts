@@ -34,8 +34,8 @@ export default defineInstrument({
   },
   details: {
     description: {
-      en: 'A task to decipher a subjects ability to interpret emotion displayed in audio and visual mediums',
-      fr: "Une tâche visant à déchiffrer la capacité d'un sujet à interpréter les émotions affichées dans des supports audio et visuels"
+      en: 'A task to decipher a subjects ability to interpret emotion displayed in audio and visual mediums. Developed by David Roper for Dr. Maxime Montembeault',
+      fr: "Une tâche visant à déchiffrer la capacité d'un sujet à interpréter les émotions affichées dans des supports audio et visuels. Développé par David Roper pour le Dr Maxime Montembeault"
     } ,
     estimatedDuration: 20,
     instructions: {
