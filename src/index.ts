@@ -18,7 +18,7 @@ export default defineInstrument({
 
   internal: {
     edition: 1,
-    name: 'EMOTION_RECOGNITION_TASK'
+    name: 'CLINICAL_EMOTION_RECOGNITION_ASSESSMENT_IN_MULTIPLE_MODALITIES'
   },
   content: {
     async render(done) {
