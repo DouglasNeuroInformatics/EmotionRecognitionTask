@@ -11,8 +11,8 @@ export default defineInstrument({
   kind: "INTERACTIVE",
   language: ['en', 'fr'],
   tags: {
-    en: ["interactive", "jsPysch", "EmotionRecognitionTask"],
-    fr: ["interactif", "jsPysch", "EmotionRecognitionTask"]
+    en: ["interactive", "jsPysch", "EmotionRecognitionTask", "CERAM"],
+    fr: ["interactif", "jsPysch", "EmotionRecognitionTask", "CERAM"]
   },
 
 
