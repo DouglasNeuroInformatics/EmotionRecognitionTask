@@ -73,13 +73,14 @@ export default defineInstrument({
       },
       value: (data) => {
         const val = data.experimentResult?.map((x) => x)
-        let measureOutput = ''
+        let measureOutput = "{"
         if (val) {
           for (const info of val) {
-            measureOutput += "Correct response: " + info.correctResponse + " response: " + info.response + " Correct response collected: " + info.correctResponseSelected + " Form of media" + info.mediaFileType + " response time: " + info.rt + " item code: " 
-            + info.itemCode + '\n';
+            measureOutput += "{\"Correct response\": \"" + info.correctResponse + "\", \"response\": \"" + info.response + "\", \"Correct response collected\": \"" + info.correctResponseSelected + "\", \"Form of media\":\"" + info.mediaFileType + "\", \"response time\": \"" + info.rt + "\", \"item code\": \"" 
+            + info.itemCode + '\"}\n';
           }
         }
+        measureOutput += "}"
         return measureOutput
       }
       
