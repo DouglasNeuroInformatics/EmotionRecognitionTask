@@ -76,7 +76,7 @@ export default defineInstrument({
         let measureOutput = "["
         if (val) {
           for (const info of val) {
-            measureOutput += "{\"Correct response\": \"" + info.correctResponse + "\", \"response\": \"" + info.response + "\", \"Correct response collected\": \"" + info.correctResponseSelected + "\", \"Form of media\":\"" + info.mediaFileType + "\", \"response time\": \"" + info.rt + "\", \"item code\": \"" 
+            measureOutput += "{\"Correct response\": \"" + info.correctResponse + "\", \"response\": \"" + info.response + "\", \"Correct response collected\": " + info.correctResponseSelected + ", \"Form of media\":\"" + info.mediaFileType + "\", \"response time\": \"" + info.rt + "\", \"item code\": \"" 
             + info.itemCode + '\"}\n';
           }
         }
