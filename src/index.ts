@@ -72,16 +72,16 @@ export default defineInstrument({
         "fr": "Resultats"
       },
       value: (data) => {
-        const val = data.experimentResult?.map((x) => x)
-        let measureOutput = "["
-        if (val) {
-          for (const info of val) {
-            measureOutput += "{\"Correct response\": \"" + info.correctResponse + "\", \"response\": \"" + info.response + "\", \"Correct response collected\": " + info.correctResponseSelected + ", \"Form of media\":\"" + info.mediaFileType + "\", \"response time\": \"" + info.rt + "\", \"item code\": \"" 
-            + info.itemCode + '\"}\n';
-          }
-        }
-        measureOutput += "]"
-        return measureOutput
+        const val = data.experimentResult || [];
+        const formattedResults = val.map(info => ({
+          "Correct response": info.correctResponse,
+          "response": info.response,
+          "Correct response collected": info.correctResponseSelected,
+          "Form of media": info.mediaFileType,
+          "response time": info.rt,
+          "item code": info.itemCode
+        }));
+        return JSON.stringify(formattedResults);
       }
       
     }
