@@ -50,7 +50,7 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
     );
   }
 
-  const language = translator.resolvedLanguage.toString()
+  const initialLanguage = translator.resolvedLanguage
 
  
   // needed to set the language of the experiment later
@@ -189,9 +189,13 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
     mediaType: string,
     emotionChoices: string[],
     correctAnswer: string,
-    isExample?: boolean
+    warningText: string,
+    examplePrompt: string,
+    isExample?: boolean,
   ) => {
     let finalResponse: string = '';
+    let thisWarningText: string = warningText
+    let examplePromptText: string = examplePrompt
     return {
       type: HtmlButtonResponsePlugin,
       stimulus: function () {
@@ -214,11 +218,12 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
         const audioContent = document.getElementById('audioContent');
 
         let start_time = 0;
-
+        
+        translator.changeLanguage(initialLanguage)
         const continueButton = addContinueButton();
         const continueButtonDiv = createContinueButtonDiv(continueButton);
-        const warningText = createWarningText(translator.t('buttonSelectionWarning'))
-        const examplePrompt = createExamplePromptDiv(translator.t('examplePrompt'));
+        const warningText = createWarningText(thisWarningText)
+        const examplePrompt = createExamplePromptDiv(examplePromptText);
         const jsPsychContent = document.getElementById('jspsych-content');
 
         if (jsPsychContent && jsPsychContent instanceof HTMLElement) {
@@ -300,7 +305,7 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
           data.mediaFileType = mediaType;
           data.itemCode = mediaCode;
           data.trialType = !isExample ? 'emotionChoice' : '';
-          data.language = language as string;
+          data.language = initialLanguage.toString();
         }
       }
     };
@@ -440,11 +445,15 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
     mediaType: string,
     emotionChoices: string[],
     correctAnswer: string,
+    warningText: string,
+    examplePrompt: string,
     top?: string,
     left?: string,
-    isExample?: boolean
+    isExample?: boolean,
   ) => {
     let finalResponse: string = '';
+    let thisWarningText: string = warningText
+    let examplePromptText: string = examplePrompt
     return {
       type: HtmlButtonResponsePlugin,
       stimulus: function () {
@@ -466,9 +475,10 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
         const overlay = document.getElementById('overlay');
         const cross = document.getElementById('overlay-cross');
 
-        const examplePrompt = createExamplePromptDiv(translator.t('examplePrompt'));
+        
+        const examplePrompt = createExamplePromptDiv(examplePromptText);
         const continueButton = addContinueButton();
-        const warningText = createWarningText(translator.t('buttonSelectionWarning'))
+        const warningText = createWarningText(thisWarningText)
         const continueButtonDiv = createContinueButtonDiv(continueButton);
         const jsPsychContent = document.getElementById('jspsych-content');
 
@@ -571,7 +581,7 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
           data.mediaFileType = mediaType;
           data.itemCode = mediaCode;
           data.trialType = !isExample ? 'emotionChoice' : '';
-          data.language = language as string;
+          data.language = initialLanguage.toString();
         }
       }
     };
@@ -600,6 +610,8 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
       'VideoAndAudio',
       translatedEmotionsAudioVideo,
       correctAnswerAudioVideo,
+      translator.t('buttonSelectionWarning'),
+      translator.t('examplePrompt'),
       OdcMediaContent.Content.exampleAudioVideo['05rel_Gemep'].top,
       OdcMediaContent.Content.exampleAudioVideo['05rel_Gemep'].left,
       true
@@ -616,6 +628,8 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
         'VideoAndAudio',
         translatedEmotions,
         correctAnswer,
+        translator.t('buttonSelectionWarning'),
+        translator.t('examplePrompt'),
         videoInfo.top,
         videoInfo.left,
         false
@@ -691,6 +705,8 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
         'Audio',
         translatedEmotionsAudio,
         correctAnswerAudio,
+        translator.t('buttonSelectionWarning'),
+        translator.t('examplePrompt'),
         true
       )
     );
@@ -698,7 +714,8 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
     for (const [key, audioInfo] of Object.entries(OdcMediaContent.Content.Audio)) {
       timeline.push(audioHtmlTask(audioInfo.Filepath));
       const { emotions: translatedEmotions, correctAnswer } = getTranslatedEmotions(audioInfo);
-      timeline.push(audioHtmlEmotionChoice(audioInfo.Filepath, key, 'Audio', translatedEmotions, correctAnswer, false));
+      timeline.push(audioHtmlEmotionChoice(audioInfo.Filepath, key, 'Audio', translatedEmotions, correctAnswer,  translator.t('buttonSelectionWarning'),
+        translator.t('examplePrompt'), false));
     }
  }
 
@@ -723,6 +740,8 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
        'Video',
        translatedEmotionsVideo,
        correctAnswerVideo,
+       translator.t('buttonSelectionWarning'),
+       translator.t('examplePrompt'),
        OdcMediaContent.Content.exampleVideo['02ang_Gemep-2'].top,
        OdcMediaContent.Content.exampleVideo['02ang_Gemep-2'].left,
        true
@@ -739,6 +758,8 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
          'Video',
          translatedEmotions,
          correctAnswer,
+         translator.t('buttonSelectionWarning'),
+         translator.t('examplePrompt'),
          videoInfo.top,
          videoInfo.left,
          false
