@@ -11,7 +11,6 @@ import {
 } from './helperFunctions.ts';
 import { OdcMediaContent } from './ODCMediaContent.ts';
 
-import type { Language } from '@opendatacapture/runtime-v1/@opendatacapture/runtime-core/index.js';
 import { translator } from './translations.ts';
 import { experimentSettingsJson } from './experimentSettings.ts';
 import { $Settings } from './schemas.ts';
@@ -51,7 +50,7 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
     );
   }
 
-  const language = experimentSettingsJson.language as Language;
+  const language = translator.resolvedLanguage.toString()
 
  
   // needed to set the language of the experiment later
