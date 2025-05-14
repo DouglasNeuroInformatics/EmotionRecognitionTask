@@ -79,7 +79,8 @@ export default defineInstrument({
           "Correct response collected": info.correctResponseSelected,
           "Form of media": info.mediaFileType,
           "response time": info.rt,
-          "item code": info.itemCode
+          "item code": info.itemCode,
+          "language selected": info.language
         }));
         return JSON.stringify(formattedResults);
       }
