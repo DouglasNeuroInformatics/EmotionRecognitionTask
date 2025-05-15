@@ -194,8 +194,8 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
     isExample?: boolean,
   ) => {
     let finalResponse: string = '';
-    let thisWarningText: string = warningText
-    let examplePromptText: string = examplePrompt
+    const thisWarningText: string = warningText
+    const examplePromptText: string = examplePrompt
     return {
       type: HtmlButtonResponsePlugin,
       stimulus: function () {
@@ -452,8 +452,8 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
     isExample?: boolean,
   ) => {
     let finalResponse: string = '';
-    let thisWarningText: string = warningText
-    let examplePromptText: string = examplePrompt
+    const thisWarningText: string = warningText
+    const examplePromptText: string = examplePrompt
     return {
       type: HtmlButtonResponsePlugin,
       stimulus: function () {
