@@ -91,7 +91,7 @@ export function transformAndExportJson(data: DataCollection): any {
   return JSON.parse(JSON.stringify(jsonSerializableData));
 }
 
-export function downloadJson(data: any, filename: string) {
+export function downloadJson(data: unknown, filename: string) {
   const blobData = JSON.stringify(data);
   const blob = new Blob([blobData], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
