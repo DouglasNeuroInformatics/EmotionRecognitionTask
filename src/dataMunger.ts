@@ -3,6 +3,21 @@ import { $EmotionRecognitionTaskResult } from './schemas.ts';
 import type { EmotionRecognitionTask } from './schemas.ts';
 import type { DataCollection } from '/runtime/v1/jspsych@8.x';
 
+type ExperimentResultExport = {
+  version: string;
+  timestamp: string;
+  experimentResult: {
+      correctResponse: string;
+      correctResponseSelected: number;
+      response: string;
+      language?: string;
+      rt: number;
+      trialType: string;
+      itemCode: string;
+      mediaFileType: string;
+  }[];
+}
+
 function dataMunger(data: DataCollection) {
   const trials = data.values() as EmotionRecognitionTask[];
   const experimentResult: EmotionRecognitionTask[] = [];
@@ -60,9 +75,7 @@ function getLocalTime() {
 }
 
 // for ODC
-function exportToJsonSerializable(data: EmotionRecognitionTask[]): {
-  [key: string]: unknown;
-} {
+function exportToJsonSerializable(data: EmotionRecognitionTask[]): ExperimentResultExport {
   return {
     version: '1.0',
     timestamp: getLocalTime(),
@@ -85,10 +98,10 @@ export function transformAndDownload(data: DataCollection) {
   const currentDate = getLocalTime();
   downloadCSV(dataForCSV, `${currentDate}.csv`);
 }
-export function transformAndExportJson(data: DataCollection): any {
+export function transformAndExportJson(data: DataCollection): ExperimentResultExport {
   const mungedData = dataMunger(data);
   const jsonSerializableData = exportToJsonSerializable(mungedData);
-  return JSON.parse(JSON.stringify(jsonSerializableData));
+  return jsonSerializableData;
 }
 
 export function downloadJson(data: unknown, filename: string) {
