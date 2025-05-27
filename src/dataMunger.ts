@@ -85,13 +85,13 @@ export function transformAndDownload(data: DataCollection) {
   const currentDate = getLocalTime();
   downloadCSV(dataForCSV, `${currentDate}.csv`);
 }
-export function transformAndExportJson(data: DataCollection) {
+export function transformAndExportJson(data: DataCollection): any {
   const mungedData = dataMunger(data);
   const jsonSerializableData = exportToJsonSerializable(mungedData);
   return JSON.parse(JSON.stringify(jsonSerializableData));
 }
 
-export function downloadJson(data: JSON, filename: string) {
+export function downloadJson(data: any, filename: string) {
   const blobData = JSON.stringify(data);
   const blob = new Blob([blobData], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
