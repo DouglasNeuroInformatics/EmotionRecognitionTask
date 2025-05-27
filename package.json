@@ -1,17 +1,17 @@
 {
   "name": "emotion-recognition-task",
-  "private": true,
-  "version": "0.0.0",
   "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "pnpm@10.10.0",
   "scripts": {
-    "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "dev": "vite",
+    "lint": "tsc && eslint --fix .",
     "preview": "vite preview"
   },
   "prettier": "@douglasneuroinformatics/prettier-config",
   "dependencies": {
-    "@douglasneuroinformatics/libui": "^3.7.3",
     "@jspsych/plugin-audio-button-response": "^2.0.1",
     "@jspsych/plugin-audio-keyboard-response": "^2.0.0",
     "@jspsych/plugin-html-button-response": "^2.0.0",
@@ -25,19 +25,19 @@
     "jspsych": "^8.0.1"
   },
   "devDependencies": {
-    "@douglasneuroinformatics/eslint-config": "^4.3.0",
-    "@douglasneuroinformatics/prettier-config": "^0.0.1",
-    "@douglasneuroinformatics/tsconfig": "^1.0.1",
-    "@types/node": "^20.14.12",
-    "@typescript-eslint/eslint-plugin": "^7.15.0",
-    "@typescript-eslint/parser": "^7.15.0",
-    "@vitejs/plugin-react": "^4.3.1",
-    "eslint": "^8.57.0",
-    "eslint-plugin-react-hooks": "^4.6.2",
-    "eslint-plugin-react-refresh": "^0.4.7",
+    "@douglasneuroinformatics/eslint-config": "^5.3.4",
+    "@douglasneuroinformatics/prettier-config": "^0.0.2",
+    "@douglasneuroinformatics/tsconfig": "^1.0.3",
+    "@types/node": "22.x",
+    "eslint": "^9.27.0",
     "prettier": "^3.4.2",
-    "typescript": "^5.2.2",
+    "typescript": "5.6.x",
     "vite": "^5.3.4"
   },
-  "packageManager": "pnpm@9.11.0+sha512.0a203ffaed5a3f63242cd064c8fb5892366c103e328079318f78062f24ea8c9d50bc6a47aa3567cabefd824d170e78fa2745ed1f16b132e16436146b7688f19b"
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "docsify",
+      "esbuild"
+    ]
+  }
 }
