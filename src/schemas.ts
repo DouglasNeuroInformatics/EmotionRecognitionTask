@@ -4,10 +4,7 @@ const $Language = z.enum(['en', 'fr']);
 
 //  below are some examples of zod object used both creating types and zod validation
 
-const $ParticipantResponse = z.object({
-  notes: z.string(),
-  result: z.string()
-});
+
 const $Trial = z.object({
   trialType: z.string()
 });
@@ -48,7 +45,6 @@ export const $EmotionRecognitionTaskResult = $LoggingTrial.extend({
 });
 
 export type SupportedLanguage = z.infer<typeof $Language>;
-export type ParticipantResponse = z.infer<typeof $ParticipantResponse>;
 export type Trial = z.infer<typeof $Trial>;
 export type LoggingTrial = z.infer<typeof $LoggingTrial>;
 export type ExperimentResults = z.infer<typeof $ExperimentResults>;

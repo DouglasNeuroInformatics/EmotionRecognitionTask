@@ -41,12 +41,19 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
     language: string;
   };
 
+  type EmotionRange = "correctResponse" | "welcome" | "loadingStimulus" | "guidelines" | "initialInstructions" | "audioInstructions" | "videoTaskInstructions" | "audioVisualTaskInstructions" | "buttonSelectionWarning" | "examplePrompt" | "emotions.Anger" | "emotions.Fear" | "emotions.Contempt" | "emotions.Interest" | "emotions.Joy" | "emotions.Pride" | "emotions.Pleasure" | "emotions.Relief" | "emotions.Sadness" | "emotions.Disgust"
+
+  type JsonResult = {
+    timestamp: string;
+    [key: string]: any; // or define other known properties instead of `any`
+  }
   // parse settings
   const settingsParseResult = $Settings.safeParse(experimentSettingsJson);
+ 
 
   if (!settingsParseResult.success) {
     throw new Error(
-      `validation error, check experiment settings \n error can be seen below: \n ${settingsParseResult.error}`
+      `validation error, check experiment settings \n error can be seen below: \n ${settingsParseResult.error.message}`
     );
   }
 
@@ -193,7 +200,7 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
     examplePrompt: string,
     isExample?: boolean,
   ) => {
-    let finalResponse: string = '';
+    let finalResponse = '';
     const thisWarningText: string = warningText
     const examplePromptText: string = examplePrompt
     return {
@@ -249,7 +256,7 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
         }
 
         if (audioIcon && audioContent && audioContent instanceof HTMLAudioElement) {
-          audioIcon.addEventListener('click', () => {
+           audioIcon.addEventListener('click', () => {
             if ( !playOnce) {
               audioContent.play();
               audioIcon.style.borderStyle = 'outset'
@@ -451,7 +458,7 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
     left?: string,
     isExample?: boolean,
   ) => {
-    let finalResponse: string = '';
+    let finalResponse = '';
     const thisWarningText: string = warningText
     const examplePromptText: string = examplePrompt
     return {
@@ -656,12 +663,16 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
           const filteredData = jsPsych.data.get().filter({ trialType: 'emotionChoice' });
           if(onFinish)
           {
-            onFinish(transformAndExportJson(filteredData))
+            onFinish(transformAndExportJson(filteredData) as EmotionRecognitionTaskResult)
           }
           else {
-            const resultJson = transformAndExportJson(filteredData);
+            const resultJson = transformAndExportJson(filteredData) as JsonResult;
+
             transformAndDownload(filteredData);
-            downloadJson(resultJson, resultJson.timestamp);
+
+            const value: string = resultJson.timestamp
+            downloadJson(resultJson, value);
+            
           }
           
         } catch (error) {
@@ -671,11 +682,11 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
     });
  
 
-  jsPsych.run(timeline);
+  await jsPsych.run(timeline);
 
   function translate(emotion: string) {
     try {
-      const translation = translator.t(`emotions.${emotion}`);
+      const translation = translator.t(`emotions.${emotion}` as EmotionRange);
       return translation;
     } catch (error) {
       console.error(`Translation error for emotion "${emotion}":`, error);
