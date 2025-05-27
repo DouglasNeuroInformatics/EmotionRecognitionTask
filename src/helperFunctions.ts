@@ -34,8 +34,8 @@ export const createContinueButtonDiv = (continueButton: HTMLButtonElement) => {
   return continueButtonDiv;
 };
 
-export const createWarningText = (text: string) => {
-  const textBox = document.createElement('p') as HTMLParagraphElement
+export const createWarningText = (text: string): HTMLParagraphElement => {
+  const textBox = document.createElement('p')
   textBox.style.justifyContent = 'center';
   textBox.style.alignItems = 'center';
   textBox.style.display = 'None';
@@ -46,7 +46,7 @@ export const createWarningText = (text: string) => {
   return textBox
 }
 
-export const createExamplePromptDiv = (content: string) => {
+export const createExamplePromptDiv = (content: string): HTMLDivElement => {
   const exampleDiv = document.createElement('div');
   exampleDiv.style.justifyContent = 'center';
   exampleDiv.style.alignItems = 'center';
@@ -60,8 +60,8 @@ export const createExamplePromptDiv = (content: string) => {
 export const revealEmotionButtons = () => {
   const emotionButtons = document.getElementsByName('custom-button-div');
 
-  for (let i = 0; i < emotionButtons.length; i++) {
-    emotionButtons[i].style.display = 'flex';
+  for (const emotionButton of emotionButtons) {
+    emotionButton.style.display = 'flex';
   }
 };
 
@@ -83,7 +83,7 @@ export const addBootstrapScripts = () => {
   document.head.appendChild(bootstrapScript);
 };
 
-export const videoCoverHtmlGenerator = (filepath: string, top: string = '40%', left: string = '48%') => {
+export const videoCoverHtmlGenerator = (filepath: string, top = '40%', left = '48%') => {
   return `
      
     <div class="video-container" id="videoContainer">

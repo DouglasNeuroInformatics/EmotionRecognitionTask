@@ -11,7 +11,6 @@ import {
 } from './helperFunctions.ts';
 import { OdcMediaContent } from './ODCMediaContent.ts';
 
-import type { Language } from '@opendatacapture/runtime-v1/@opendatacapture/runtime-core/index.js';
 import { translator } from './translations.ts';
 import { experimentSettingsJson } from './experimentSettings.ts';
 import { $Settings } from './schemas.ts';
@@ -27,7 +26,6 @@ type EmotionRecognitionTaskResult = {
 export default async function emotionRecognitionTask(onFinish?: (data: EmotionRecognitionTaskResult) => void) {
   translator.init();
   const { initJsPsych } = await import('/runtime/v1/jspsych@8.x/index.js');
-  type JsPsych = import('/runtime/v1/jspsych@8.x/index.js').JsPsych;
   const { HtmlKeyboardResponsePlugin } = await import('/runtime/v1/@jspsych/plugin-html-keyboard-response@2.x/index.js');
   const { HtmlButtonResponsePlugin } = await import('/runtime/v1/@jspsych/plugin-html-button-response@2.x/index.js');
   const { PreloadPlugin } = await import('/runtime/v1/@jspsych/plugin-preload@2.x/index.js');
@@ -42,16 +40,23 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
     language: string;
   };
 
+  type EmotionRange = "Anger" | "Fear" | "Contempt" | "Interest" | "Joy" | "Pride" | "Pleasure" | "Relief" | "Sadness" | "Disgust"
+
+  type JsonResult = {
+    timestamp: string;
+    [key: string]: any; // or define other known properties instead of `any`
+  }
   // parse settings
   const settingsParseResult = $Settings.safeParse(experimentSettingsJson);
+ 
 
   if (!settingsParseResult.success) {
     throw new Error(
-      `validation error, check experiment settings \n error can be seen below: \n ${settingsParseResult.error}`
+      `validation error, check experiment settings \n error can be seen below: \n ${settingsParseResult.error.message}`
     );
   }
 
-  const language = experimentSettingsJson.language as Language;
+  const initialLanguage = translator.resolvedLanguage
 
  
   // needed to set the language of the experiment later
@@ -160,7 +165,7 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
         if (audioIcon && audioContent && audioContent instanceof HTMLAudioElement) {
           audioIcon.addEventListener('click', () => {
             if ( !playOnce) {
-              audioContent.play();
+              void audioContent.play();
               audioIcon.style.borderStyle = 'outset'
               playOnce = true;
             }
@@ -190,9 +195,13 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
     mediaType: string,
     emotionChoices: string[],
     correctAnswer: string,
-    isExample?: boolean
+    warningText: string,
+    examplePrompt: string,
+    isExample?: boolean,
   ) => {
-    let finalResponse: string = '';
+    let finalResponse = '';
+    const thisWarningText = warningText
+    const examplePromptText = examplePrompt
     return {
       type: HtmlButtonResponsePlugin,
       stimulus: function () {
@@ -214,12 +223,13 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
         const audioIcon = document.getElementById('audioIcon');
         const audioContent = document.getElementById('audioContent');
 
-        let start_time = 0;
-
+        let startTime = 0;
+        
+        translator.changeLanguage(initialLanguage)
         const continueButton = addContinueButton();
         const continueButtonDiv = createContinueButtonDiv(continueButton);
-        const warningText = createWarningText(translator.t('buttonSelectionWarning'))
-        const examplePrompt = createExamplePromptDiv(translator.t('examplePrompt'));
+        const warningText = createWarningText(thisWarningText)
+        const examplePrompt = createExamplePromptDiv(examplePromptText);
         const jsPsychContent = document.getElementById('jspsych-content');
 
         if (jsPsychContent && jsPsychContent instanceof HTMLElement) {
@@ -245,9 +255,9 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
         }
 
         if (audioIcon && audioContent && audioContent instanceof HTMLAudioElement) {
-          audioIcon.addEventListener('click', () => {
+           audioIcon.addEventListener('click', () => {
             if ( !playOnce) {
-              audioContent.play();
+              void audioContent.play();
               audioIcon.style.borderStyle = 'outset'
               playOnce = true;
             }
@@ -265,7 +275,7 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
             continueButton.style.display = 'flex';
 
             //set start time
-            start_time = performance.now();
+            startTime = performance.now();
           });
         }
 
@@ -288,7 +298,7 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
             return;
           }
           jsPsych.finishTrial({
-            rt: performance.now() - start_time,
+            rt: performance.now() - startTime,
             response: finalResponse
           });
           continueButton.remove();
@@ -301,7 +311,7 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
           data.mediaFileType = mediaType;
           data.itemCode = mediaCode;
           data.trialType = !isExample ? 'emotionChoice' : '';
-          data.language = language as string;
+          data.language = initialLanguage.toString();
         }
       }
     };
@@ -441,11 +451,15 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
     mediaType: string,
     emotionChoices: string[],
     correctAnswer: string,
+    warningText: string,
+    examplePrompt: string,
     top?: string,
     left?: string,
-    isExample?: boolean
+    isExample?: boolean,
   ) => {
-    let finalResponse: string = '';
+    let finalResponse = '';
+    const thisWarningText = warningText
+    const examplePromptText = examplePrompt
     return {
       type: HtmlButtonResponsePlugin,
       stimulus: function () {
@@ -467,9 +481,10 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
         const overlay = document.getElementById('overlay');
         const cross = document.getElementById('overlay-cross');
 
-        const examplePrompt = createExamplePromptDiv(translator.t('examplePrompt'));
+        
+        const examplePrompt = createExamplePromptDiv(examplePromptText);
         const continueButton = addContinueButton();
-        const warningText = createWarningText(translator.t('buttonSelectionWarning'))
+        const warningText = createWarningText(thisWarningText)
         const continueButtonDiv = createContinueButtonDiv(continueButton);
         const jsPsychContent = document.getElementById('jspsych-content');
 
@@ -496,7 +511,7 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
         }
 
         let videoCount = false;
-        let start_time = 0;
+        let startTime = 0;
 
         // Add a click event listener to the overlay
         if (overlay && cross) {
@@ -534,7 +549,7 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
               continueButton.style.display = 'block';
 
               //set start time
-              start_time = performance.now();
+              startTime = performance.now();
             });
           }
         }
@@ -559,7 +574,7 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
             return;
           }
           jsPsych.finishTrial({
-            rt: performance.now() - start_time,
+            rt: performance.now() - startTime,
             response: finalResponse
           });
           continueButton.remove();
@@ -572,7 +587,7 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
           data.mediaFileType = mediaType;
           data.itemCode = mediaCode;
           data.trialType = !isExample ? 'emotionChoice' : '';
-          data.language = language as string;
+          data.language = initialLanguage.toString();
         }
       }
     };
@@ -601,6 +616,8 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
       'VideoAndAudio',
       translatedEmotionsAudioVideo,
       correctAnswerAudioVideo,
+      translator.t('buttonSelectionWarning'),
+      translator.t('examplePrompt'),
       OdcMediaContent.Content.exampleAudioVideo['05rel_Gemep'].top,
       OdcMediaContent.Content.exampleAudioVideo['05rel_Gemep'].left,
       true
@@ -617,6 +634,8 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
         'VideoAndAudio',
         translatedEmotions,
         correctAnswer,
+        translator.t('buttonSelectionWarning'),
+        translator.t('examplePrompt'),
         videoInfo.top,
         videoInfo.left,
         false
@@ -643,12 +662,14 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
           const filteredData = jsPsych.data.get().filter({ trialType: 'emotionChoice' });
           if(onFinish)
           {
-            onFinish(transformAndExportJson(filteredData))
+            onFinish(transformAndExportJson(filteredData) as EmotionRecognitionTaskResult)
           }
           else {
-            const resultJson = transformAndExportJson(filteredData);
+            const resultJson = transformAndExportJson(filteredData) as JsonResult;
+
             transformAndDownload(filteredData);
             downloadJson(resultJson, resultJson.timestamp);
+            
           }
           
         } catch (error) {
@@ -658,11 +679,12 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
     });
  
 
-  jsPsych.run(timeline);
+  await jsPsych.run(timeline);
 
   function translate(emotion: string) {
     try {
-      const translation = translator.t(`emotions.${emotion}`);
+      type EmotionTranslations = `emotions.${EmotionRange}`
+      const translation = translator.t(`emotions.${emotion}` as EmotionTranslations);
       return translation;
     } catch (error) {
       console.error(`Translation error for emotion "${emotion}":`, error);
@@ -692,6 +714,8 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
         'Audio',
         translatedEmotionsAudio,
         correctAnswerAudio,
+        translator.t('buttonSelectionWarning'),
+        translator.t('examplePrompt'),
         true
       )
     );
@@ -699,7 +723,8 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
     for (const [key, audioInfo] of Object.entries(OdcMediaContent.Content.Audio)) {
       timeline.push(audioHtmlTask(audioInfo.Filepath));
       const { emotions: translatedEmotions, correctAnswer } = getTranslatedEmotions(audioInfo);
-      timeline.push(audioHtmlEmotionChoice(audioInfo.Filepath, key, 'Audio', translatedEmotions, correctAnswer, false));
+      timeline.push(audioHtmlEmotionChoice(audioInfo.Filepath, key, 'Audio', translatedEmotions, correctAnswer,  translator.t('buttonSelectionWarning'),
+        translator.t('examplePrompt'), false));
     }
  }
 
@@ -724,6 +749,8 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
        'Video',
        translatedEmotionsVideo,
        correctAnswerVideo,
+       translator.t('buttonSelectionWarning'),
+       translator.t('examplePrompt'),
        OdcMediaContent.Content.exampleVideo['02ang_Gemep-2'].top,
        OdcMediaContent.Content.exampleVideo['02ang_Gemep-2'].left,
        true
@@ -740,6 +767,8 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
          'Video',
          translatedEmotions,
          correctAnswer,
+         translator.t('buttonSelectionWarning'),
+         translator.t('examplePrompt'),
          videoInfo.top,
          videoInfo.left,
          false

@@ -1,4 +1,12 @@
-import FileServerConfig from './FileServerConfig.json'
+import rawConfig from './FileServerConfig.json';
+
+type FileServerConfigType = {
+  FileServerPath: string
+}
+
+const FileServerConfig = rawConfig as FileServerConfigType;
+
+
 
 const ang_Gemep06 = FileServerConfig.FileServerPath + '/Stimuli/Video-seulement/06ang_Gemep.mp4';
 const joy_Gemep07 = FileServerConfig.FileServerPath + '/Stimuli/Video-seulement/07joy_Gemep.mp4';

@@ -86,7 +86,7 @@ export const translator = new Translator({
     },
     examplePrompt: {
       en: `Click on continue to start the test`,
-      fr: `Cliquer sur "Continuer" pour débuter le test.`
+      fr: `Cliquer sur "Continue" pour débuter le test.`
     },
     emotions: {
       Anger: {
