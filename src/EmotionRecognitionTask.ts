@@ -26,7 +26,6 @@ type EmotionRecognitionTaskResult = {
 export default async function emotionRecognitionTask(onFinish?: (data: EmotionRecognitionTaskResult) => void) {
   translator.init();
   const { initJsPsych } = await import('/runtime/v1/jspsych@8.x/index.js');
-  type JsPsych = import('/runtime/v1/jspsych@8.x/index.js').JsPsych;
   const { HtmlKeyboardResponsePlugin } = await import('/runtime/v1/@jspsych/plugin-html-keyboard-response@2.x/index.js');
   const { HtmlButtonResponsePlugin } = await import('/runtime/v1/@jspsych/plugin-html-button-response@2.x/index.js');
   const { PreloadPlugin } = await import('/runtime/v1/@jspsych/plugin-preload@2.x/index.js');
@@ -166,7 +165,7 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
         if (audioIcon && audioContent && audioContent instanceof HTMLAudioElement) {
           audioIcon.addEventListener('click', () => {
             if ( !playOnce) {
-              audioContent.play();
+              void audioContent.play();
               audioIcon.style.borderStyle = 'outset'
               playOnce = true;
             }
@@ -258,7 +257,7 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
         if (audioIcon && audioContent && audioContent instanceof HTMLAudioElement) {
            audioIcon.addEventListener('click', () => {
             if ( !playOnce) {
-              audioContent.play();
+              void audioContent.play();
               audioIcon.style.borderStyle = 'outset'
               playOnce = true;
             }
