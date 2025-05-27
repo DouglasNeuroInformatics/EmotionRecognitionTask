@@ -34,7 +34,7 @@ export const createContinueButtonDiv = (continueButton: HTMLButtonElement) => {
   return continueButtonDiv;
 };
 
-export const createWarningText = (text: string) => {
+export const createWarningText = (text: string): HTMLParagraphElement => {
   const textBox = document.createElement('p')
   textBox.style.justifyContent = 'center';
   textBox.style.alignItems = 'center';
@@ -46,7 +46,7 @@ export const createWarningText = (text: string) => {
   return textBox
 }
 
-export const createExamplePromptDiv = (content: string) => {
+export const createExamplePromptDiv = (content: string): HTMLDivElement => {
   const exampleDiv = document.createElement('div');
   exampleDiv.style.justifyContent = 'center';
   exampleDiv.style.alignItems = 'center';
