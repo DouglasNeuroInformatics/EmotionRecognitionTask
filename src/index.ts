@@ -29,7 +29,7 @@ export default defineInstrument({
         throw new Error(`Validation error, check experiment settings: ${settingsParseResult.error.toString()}`)
       }
       translator.init();
-      emotionRecognitionTask(done);
+      await emotionRecognitionTask(done);
     }
   },
   details: {
