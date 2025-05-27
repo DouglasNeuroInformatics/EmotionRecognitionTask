@@ -40,7 +40,7 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
     language: string;
   };
 
-  type EmotionRange = "correctResponse" | "welcome" | "loadingStimulus" | "guidelines" | "initialInstructions" | "audioInstructions" | "videoTaskInstructions" | "audioVisualTaskInstructions" | "buttonSelectionWarning" | "examplePrompt" | "emotions.Anger" | "emotions.Fear" | "emotions.Contempt" | "emotions.Interest" | "emotions.Joy" | "emotions.Pride" | "emotions.Pleasure" | "emotions.Relief" | "emotions.Sadness" | "emotions.Disgust"
+  type EmotionRange = "Anger" | "Fear" | "Contempt" | "Interest" | "Joy" | "Pride" | "Pleasure" | "Relief" | "Sadness" | "Disgust"
 
   type JsonResult = {
     timestamp: string;
@@ -683,7 +683,8 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
 
   function translate(emotion: string) {
     try {
-      const translation = translator.t(`emotions.${emotion}` as EmotionRange);
+      type EmotionTranslations = `emotions.${EmotionRange}`
+      const translation = translator.t(`emotions.${emotion}` as EmotionTranslations);
       return translation;
     } catch (error) {
       console.error(`Translation error for emotion "${emotion}":`, error);
