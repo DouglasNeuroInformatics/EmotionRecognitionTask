@@ -223,7 +223,7 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
         const audioIcon = document.getElementById('audioIcon');
         const audioContent = document.getElementById('audioContent');
 
-        let start_time = 0;
+        let startTime = 0;
         
         translator.changeLanguage(initialLanguage)
         const continueButton = addContinueButton();
@@ -275,7 +275,7 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
             continueButton.style.display = 'flex';
 
             //set start time
-            start_time = performance.now();
+            startTime = performance.now();
           });
         }
 
@@ -298,7 +298,7 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
             return;
           }
           jsPsych.finishTrial({
-            rt: performance.now() - start_time,
+            rt: performance.now() - startTime,
             response: finalResponse
           });
           continueButton.remove();
@@ -511,7 +511,7 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
         }
 
         let videoCount = false;
-        let start_time = 0;
+        let startTime = 0;
 
         // Add a click event listener to the overlay
         if (overlay && cross) {
@@ -549,7 +549,7 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
               continueButton.style.display = 'block';
 
               //set start time
-              start_time = performance.now();
+              startTime = performance.now();
             });
           }
         }
@@ -574,7 +574,7 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
             return;
           }
           jsPsych.finishTrial({
-            rt: performance.now() - start_time,
+            rt: performance.now() - startTime,
             response: finalResponse
           });
           continueButton.remove();
