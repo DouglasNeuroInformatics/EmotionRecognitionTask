@@ -10,7 +10,6 @@
     "lint": "tsc && eslint --fix .",
     "preview": "vite preview"
   },
-  "prettier": "@douglasneuroinformatics/prettier-config",
   "dependencies": {
     "@jspsych/plugin-audio-button-response": "^2.0.1",
     "@jspsych/plugin-audio-keyboard-response": "^2.0.0",
@@ -20,17 +19,18 @@
     "@jspsych/plugin-survey-html-form": "^2.0.0",
     "@jspsych/plugin-video-button-response": "^2.0.0",
     "@jspsych/plugin-video-keyboard-response": "^2.0.0",
-    "@opendatacapture/runtime-v1": "^1.8.2",
+    "@opendatacapture/runtime-v1": "^1.8.4",
     "docsify": "^4.13.1",
     "jspsych": "^8.0.1"
   },
   "devDependencies": {
     "@douglasneuroinformatics/eslint-config": "^5.3.4",
-    "@douglasneuroinformatics/prettier-config": "^0.0.2",
+    "@douglasneuroinformatics/prettier-config": "^0.3.0",
     "@douglasneuroinformatics/tsconfig": "^1.0.3",
     "@types/node": "22.x",
     "eslint": "^9.27.0",
     "prettier": "^3.4.2",
+    "prettier-plugin-css-order": "^2.1.2",
     "typescript": "5.6.x",
     "vite": "^5.3.4"
   },
