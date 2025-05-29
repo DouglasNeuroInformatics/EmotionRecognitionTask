@@ -16,6 +16,7 @@ import { experimentSettingsJson } from './experimentSettings.ts';
 import { $Settings } from './schemas.ts';
 import type { EmotionRecognitionTask } from './schemas.ts';
 import { transformAndExportJson, downloadJson, transformAndDownload } from './dataMunger.ts';
+import { addNotification } from '@opendatacapture/runtime-v1/@opendatacapture/runtime-core/index.js';
 
 type EmotionRecognitionTaskResult = {
   version: string;
@@ -51,6 +52,10 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
  
 
   if (!settingsParseResult.success) {
+    addNotification({
+      type: "error",
+      message: `validation error, check experiment settings \n error can be seen below: \n ${settingsParseResult.error.message}`
+    })
     throw new Error(
       `validation error, check experiment settings \n error can be seen below: \n ${settingsParseResult.error.message}`
     );
@@ -415,7 +420,10 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
               setTimeout(() => {
                 if (video && video instanceof HTMLVideoElement) {
                   video.play().catch((err) => {
-                    console.error('Error playing video:', err);
+                    addNotification({
+                      type: "error",
+                      message: `Error playing video: ${err}`
+                    })
                   });
                 }
               }, 550);
@@ -525,7 +533,10 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
               setTimeout(() => {
                 if (video && video instanceof HTMLVideoElement) {
                   video.play().catch((err) => {
-                    console.error('Error playing video:', err);
+                    addNotification({
+                      type: "error",
+                      message: `Error playing video: ${err}`
+                    })
                   });
                 }
               }, 550);
@@ -673,7 +684,10 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
           }
           
         } catch (error) {
-          console.error('Error collection Emotion Recognition Data:', error);
+          addNotification({
+            type: "error",
+            message: `'Error collection Emotion Recognition Data:',${error as Error}`
+          })
         }
       }
     });
@@ -687,7 +701,10 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
       const translation = translator.t(`emotions.${emotion}` as EmotionTranslations);
       return translation;
     } catch (error) {
-      console.error(`Translation error for emotion "${emotion}":`, error);
+      addNotification({
+        type: "error",
+        message: `Translation error for emotion "${emotion}": ${error as Error}`
+      })
       return emotion;
     }
   }
