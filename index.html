@@ -4,9 +4,36 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Emotion Recognition Task</title>
+    <link rel="stylesheet" href="src/notifications.css" />
   </head>
   <body>
     <div id="root"></div>
+    <div id="notification-modal-container" data-state="closed">
+      <div id="notification-modal-content">
+        <div id="notification-modal-header">
+          <h5 id="notification-modal-title"></h5>
+          <button id="notification-close-button" type="button">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="black"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M18 6 6 18" />
+              <path d="m6 6 12 12" />
+            </svg>
+          </button>
+        </div>
+        <div id="notification-modal-content">
+          <p id="notification-modal-message"></p>
+        </div>
+      </div>
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
