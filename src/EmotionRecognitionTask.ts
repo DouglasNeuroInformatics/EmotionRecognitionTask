@@ -422,7 +422,7 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
                   video.play().catch((err) => {
                     addNotification({
                       type: "error",
-                      message: `Error playing video: ${err}`
+                      message: `Error playing video: ${err.message}`
                     })
                   });
                 }
@@ -535,7 +535,7 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
                   video.play().catch((err) => {
                     addNotification({
                       type: "error",
-                      message: `Error playing video: ${err}`
+                      message: `Error playing video: ${err.message}`
                     })
                   });
                 }
