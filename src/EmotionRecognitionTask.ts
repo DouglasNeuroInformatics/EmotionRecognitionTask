@@ -54,10 +54,10 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
   if (!settingsParseResult.success) {
     addNotification({
       type: "error",
-      message: `validation error, check experiment settings \n error can be seen below: \n ${settingsParseResult.error.message}`
+      message: `validation error, check experiment settings  error can be seen below:  ${settingsParseResult.error.message}`
     })
     throw new Error(
-      `validation error, check experiment settings \n error can be seen below: \n ${settingsParseResult.error.message}`
+      `validation error, check experiment settings \n error can be seen below: \n  ${settingsParseResult.error.message}`
     );
   }
 
