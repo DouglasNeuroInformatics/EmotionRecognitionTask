@@ -1,0 +1,13 @@
+site_name: Emotion Recognition Task
+site_description: Documentation for Emotion Recognition Task
+site_url: https://emotionRecognitionTask.readthedocs.io/
+repo_url: https://github.com/DouglasNeuroInformatics/EmotionRecognitionTask
+repo_name: DouglasNeuroInformatics/EmotionRecognitionTask
+
+nav:
+  - index.md
+theme:
+  name: readthedocs
+markdown_extensions:
+  - admonition
+  - footnotes
