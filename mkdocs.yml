@@ -7,7 +7,7 @@ repo_name: DouglasNeuroInformatics/EmotionRecognitionTask
 nav:
   - index.md
 theme:
-  name: readthedocs
+  name: material
 markdown_extensions:
   - admonition
   - footnotes
