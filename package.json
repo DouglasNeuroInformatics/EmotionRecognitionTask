@@ -19,7 +19,7 @@
     "@jspsych/plugin-survey-html-form": "^2.0.0",
     "@jspsych/plugin-video-button-response": "^2.0.0",
     "@jspsych/plugin-video-keyboard-response": "^2.0.0",
-    "@opendatacapture/runtime-v1": "^1.8.4",
+    "@opendatacapture/runtime-v1": "^1.8.7",
     "docsify": "^4.13.1",
     "jspsych": "^8.0.1"
   },
