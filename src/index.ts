@@ -82,7 +82,7 @@ export default defineInstrument({
           "item code": info.itemCode,
           "language selected": info.language
         }));
-        return JSON.stringify(formattedResults);
+        return formattedResults;
       }
       
     }
