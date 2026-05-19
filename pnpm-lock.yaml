@@ -9,62 +9,62 @@ importers:
   .:
     dependencies:
       '@jspsych/plugin-audio-button-response':
-        specifier: ^2.0.1
+        specifier: ^2.1.1
         version: 2.1.1(jspsych@8.2.3)
       '@jspsych/plugin-audio-keyboard-response':
-        specifier: ^2.0.0
+        specifier: ^2.1.1
         version: 2.1.1(jspsych@8.2.3)
       '@jspsych/plugin-html-button-response':
-        specifier: ^2.0.0
+        specifier: ^2.1.0
         version: 2.1.0(jspsych@8.2.3)
       '@jspsych/plugin-html-keyboard-response':
-        specifier: ^2.0.0
+        specifier: ^2.1.0
         version: 2.1.0(jspsych@8.2.3)
       '@jspsych/plugin-preload':
-        specifier: ^2.0.0
+        specifier: ^2.1.0
         version: 2.1.0(jspsych@8.2.3)
       '@jspsych/plugin-survey-html-form':
-        specifier: ^2.0.0
+        specifier: ^2.1.0
         version: 2.1.0(jspsych@8.2.3)
       '@jspsych/plugin-video-button-response':
-        specifier: ^2.0.0
+        specifier: ^2.1.1
         version: 2.1.1(jspsych@8.2.3)
       '@jspsych/plugin-video-keyboard-response':
-        specifier: ^2.0.0
+        specifier: ^2.1.1
         version: 2.1.1(jspsych@8.2.3)
       '@opendatacapture/runtime-v1':
-        specifier: ^1.8.7
+        specifier: ^1.8.10
         version: 1.8.10
       docsify:
         specifier: ^4.13.1
         version: 4.13.1
       jspsych:
-        specifier: ^8.0.1
+        specifier: ^8.2.3
         version: 8.2.3
     devDependencies:
       '@douglasneuroinformatics/eslint-config':
-        specifier: ^5.3.4
+        specifier: ^5.3.7
         version: 5.3.7(@typescript-eslint/parser@8.59.3(eslint@9.39.4(jiti@1.21.7))(typescript@5.6.3))(eslint@9.39.4(jiti@1.21.7))(typescript@5.6.3)
       '@douglasneuroinformatics/prettier-config':
         specifier: ^0.3.0
         version: 0.3.0(prettier@3.8.3)
       '@douglasneuroinformatics/tsconfig':
-        specifier: ^1.0.3
+        specifier: ^1.0.5
         version: 1.0.5(typescript@5.6.3)
       '@types/node':
-        specifier: 22.x
+        specifier: ~22.19.19
         version: 22.19.19
       eslint:
-        specifier: ^9.27.0
+        specifier: ^9.39.4
         version: 9.39.4(jiti@1.21.7)
       prettier:
-        specifier: ^3.4.2
+        specifier: ^3.8.3
         version: 3.8.3
       prettier-plugin-css-order:
-        specifier: ^2.1.2
+        specifier: ^2.2.0
         version: 2.2.0(postcss@8.5.14)(prettier@3.8.3)
       typescript:
-        specifier: 5.6.x
+        specifier: 5.6.3
         version: 5.6.3
       vite:
         specifier: ^6.4.2
@@ -714,9 +714,6 @@ packages:
   balanced-match@4.0.4:
     resolution: {integrity: sha512-BLrgEcRTwX2o6gGxGOCNyMvGSp35YofuYzw9h1IMTRmKqttAZZVU67bdb9Pr2vUHA8+j3i2tJfjO6C6+4myGTA==}
     engines: {node: 18 || 20 || >=22}
-
-  brace-expansion@1.1.11:
-    resolution: {integrity: sha512-iCuPHDFgrHX7H2vEI/5xpz07zSHB00TpugqhmYtVmMO6518mCuRMoOYFldEBl0g187ufozdaHgWKcYFb61qGiA==}
 
   brace-expansion@1.1.14:
     resolution: {integrity: sha512-MWPGfDxnyzKU7rNOW9SP/c50vi3xrmrua/+6hfPbCS2ABNWfx24vPidzvC7krjU/RTo235sV776ymlsMtGKj8g==}
@@ -1435,9 +1432,6 @@ packages:
   minimatch@10.2.5:
     resolution: {integrity: sha512-MULkVLfKGYDFYejP07QOurDLLQpcjk7Fw+7jXS2R2czRQzR56yHRveU5NDJEOviH+hETZKSkIk5c+T23GjFUMg==}
     engines: {node: 18 || 20 || >=22}
-
-  minimatch@3.1.2:
-    resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}
 
   minimatch@3.1.5:
     resolution: {integrity: sha512-VgjWUsnnT6n+NUk6eZq77zeFdpW2LWDzP6zFGrCbHXiYNul5Dzqk2HHQ5uFH2DNW5Xbp8+jVzaeNt94ssEEl4w==}
@@ -2523,11 +2517,6 @@ snapshots:
 
   balanced-match@4.0.4: {}
 
-  brace-expansion@1.1.11:
-    dependencies:
-      balanced-match: 1.0.2
-      concat-map: 0.0.1
-
   brace-expansion@1.1.14:
     dependencies:
       balanced-match: 1.0.2
@@ -2974,7 +2963,7 @@ snapshots:
       hasown: 2.0.2
       jsx-ast-utils: 3.3.5
       language-tags: 1.0.9
-      minimatch: 3.1.2
+      minimatch: 3.1.5
       object.fromentries: 2.0.8
       safe-regex-test: 1.1.0
       string.prototype.includes: 2.0.1
@@ -3001,7 +2990,7 @@ snapshots:
       estraverse: 5.3.0
       hasown: 2.0.2
       jsx-ast-utils: 3.3.5
-      minimatch: 3.1.2
+      minimatch: 3.1.5
       object.entries: 1.1.9
       object.fromentries: 2.0.8
       object.values: 1.2.1
@@ -3483,10 +3472,6 @@ snapshots:
   minimatch@10.2.5:
     dependencies:
       brace-expansion: 5.0.6
-
-  minimatch@3.1.2:
-    dependencies:
-      brace-expansion: 1.1.11
 
   minimatch@3.1.5:
     dependencies:
