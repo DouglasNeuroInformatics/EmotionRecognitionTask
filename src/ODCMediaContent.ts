@@ -74,7 +74,17 @@ const ang_Gemep07 = FileServerConfig.FileServerPath + '/Stimuli/Audio-video/07an
 const int_Gemep03 = FileServerConfig.FileServerPath + '/Stimuli/Audio-video/03int_Gemep.mp4';
 const rel_Gemep05 = FileServerConfig.FileServerPath + '/Stimuli/Audio-video/05rel_Gemep.mp4';
 
+// Sound check (volume calibration) reference clip, level-matched to the quietest stimulus (-31.8 LUFS).
+// Only a French recording exists for now, so English sessions use it too.
+// To add an English recording: upload it to Stimuli/Calibration/ and point soundCheck_en at it.
+const soundCheck_fr = FileServerConfig.FileServerPath + '/Stimuli/Calibration/CERAM_verification_son_fr-CA.mp3';
+const soundCheck_en = soundCheck_fr;
+
 export const OdcMediaContent = {
+  SoundCheck: {
+    en: soundCheck_en,
+    fr: soundCheck_fr
+  },
   Content: {
     Video: {
       '06col313': {

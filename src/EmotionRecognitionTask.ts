@@ -17,6 +17,7 @@ import { $Settings } from './schemas.ts';
 import type { EmotionRecognitionTask } from './schemas.ts';
 import { transformAndExportJson, downloadJson, transformAndDownload } from './dataMunger.ts';
 import { addNotification } from '@opendatacapture/runtime-v1/@opendatacapture/runtime-core/index.js';
+import { createSoundCheckTrial } from './soundCheck.ts';
 
 type EmotionRecognitionTaskResult = {
   version: string;
@@ -605,6 +606,8 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
   };
 
   timeline.push(preload);
+  // volume calibration: once per session, before the general instructions
+  timeline.push(createSoundCheckTrial(HtmlKeyboardResponsePlugin, () => jsPsych.finishTrial()));
   timeline.push(taskInstructions);
   
   //audio video section
