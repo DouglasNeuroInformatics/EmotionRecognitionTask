@@ -83,8 +83,10 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
     type: HtmlKeyboardResponsePlugin,
     stimulus: function () {
       return ` 
-      <h3 classname="guidelines" style="color:red;"> ${translator.t('guidelines')} </h3>
-      <p style="text-align:center; justify-content:center; font-size: 20px">${translator.t('initialInstructions')}</p>`;
+      <div class="task-guidelines">
+        <h3 classname="guidelines" style="color:red;"> ${translator.t('guidelines')} </h3>
+        <p class="task-guidelines-text">${translator.t('initialInstructions')}</p>
+      </div>`;
     },
     on_load: function () {
       addBootstrapScripts();
@@ -109,7 +111,7 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
 
   const audioInstructions = {
     type: HtmlKeyboardResponsePlugin,
-    stimulus: `<p style="text-align:center; justify-content:center; font-size: 20px">${translator.t('audioInstructions')}</p>`,
+    stimulus: `<div class="task-guidelines"><p class="task-guidelines-text">${translator.t('audioInstructions')}</p></div>`,
     on_load: function () {
       addBootstrapScripts();
       const continueButton = addInstructionContinueButton();
@@ -324,7 +326,7 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
 
   const videoInstructions = {
     type: HtmlKeyboardResponsePlugin,
-    stimulus: `<p style="text-align:center; justify-content:center; font-size: 20px">${translator.t('videoTaskInstructions')}</p>`,
+    stimulus: `<div class="task-guidelines"><p class="task-guidelines-text">${translator.t('videoTaskInstructions')}</p></div>`,
     on_load: function () {
       addBootstrapScripts();
       const continueButton = addInstructionContinueButton();
@@ -349,7 +351,7 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
 
   const audioVisualInstructions = {
     type: HtmlKeyboardResponsePlugin,
-    stimulus: `<p style="text-align:center; justify-content:center; font-size: 20px">${translator.t('audioVisualTaskInstructions')}</p>`,
+    stimulus: `<div class="task-guidelines"><p class="task-guidelines-text">${translator.t('audioVisualTaskInstructions')}</p></div>`,
     on_load: function () {
       addBootstrapScripts();
       const continueButton = addInstructionContinueButton();

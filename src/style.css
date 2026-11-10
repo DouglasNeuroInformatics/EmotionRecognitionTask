@@ -112,3 +112,44 @@ video {
 .btn.btn-primary:active {
   background-color: #05347a !important;
 }
+/* Instruction screens (general guidelines + audio / video / audio-video block intros) */
+.task-guidelines {
+  padding: 0 0.75rem;
+}
+
+.task-guidelines-text {
+  font-size: 20px;
+  text-align: center;
+}
+
+/* Phones (portrait or landscape): let the text wrap naturally instead of following the desktop line breaks */
+@media (max-width: 700px), (max-height: 500px) {
+  .task-guidelines br.wide-only {
+    display: none;
+  }
+
+  .task-guidelines h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .task-guidelines-text {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* Very short screens (small phones in landscape) */
+@media (max-height: 400px) {
+  .task-guidelines h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .task-guidelines-text {
+    font-size: 15px;
+    line-height: 1.4;
+    margin-bottom: 0.25rem;
+  }
+}
