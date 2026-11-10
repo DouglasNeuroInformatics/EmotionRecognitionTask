@@ -11,9 +11,9 @@ import { translator } from './translations.ts';
 // The trial sets no trialType, so it is excluded from the exported data like the other non-scored trials.
 
 const speakerIcon = `
-  <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="120" height="108" viewBox="15 -12 40 100" aria-hidden="true">
-    <path d="M39.389,13.769 L22.235,28.606 L6,28.606 L6,47.699 L21.989,47.699 L39.389,62.75 L39.389,13.769z" style="stroke:#111;stroke-width:5;stroke-linejoin:round;fill:#111;"/>
-    <path d="M48,27.6a19.5,19.5 0 0 1 0,21.4M55.1,20.5a30,30 0 0 1 0,35.6M61.6,14a38.8,38.8 0 0 1 0,48.6" style="fill:none;stroke:#111;stroke-width:5;stroke-linecap:round"/>
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="80" height="72" viewBox="15 -12 40 100" aria-hidden="true">
+    <path d="M39.389,13.769 L22.235,28.606 L6,28.606 L6,47.699 L21.989,47.699 L39.389,62.75 L39.389,13.769z" style="stroke:currentColor;stroke-width:5;stroke-linejoin:round;fill:currentColor;"/>
+    <path d="M48,27.6a19.5,19.5 0 0 1 0,21.4M55.1,20.5a30,30 0 0 1 0,35.6M61.6,14a38.8,38.8 0 0 1 0,48.6" style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round"/>
   </svg>`;
 
 function getSoundCheckAudioPath(): string {
@@ -22,6 +22,15 @@ function getSoundCheckAudioPath(): string {
 
 function soundCheckHtml(audioPath: string): string {
   return `
+    <style>
+      @keyframes sound-check-pulse {
+        0% { box-shadow: 0 0 0 0 rgba(13, 110, 253, 0.6); }
+        70% { box-shadow: 0 0 0 20px rgba(13, 110, 253, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(13, 110, 253, 0); }
+      }
+      .sound-check-pulse { animation: sound-check-pulse 1.6s infinite; }
+      @media (prefers-reduced-motion: reduce) { .sound-check-pulse { animation: none; } }
+    </style>
     <div style="max-width: 700px; margin: 0 auto; text-align: left; font-size: 20px">
       <section id="sound-check-view">
         <h3 style="text-align: center">${translator.t('soundCheck.title')}</h3>
@@ -31,7 +40,13 @@ function soundCheckHtml(audioPath: string): string {
           <li>${translator.t('soundCheck.instructions')}</li>
         </ul>
         <div style="display: flex; justify-content: center; padding: 1rem 0">
-          <button id="sound-check-play" type="button" class="btn btn-light" aria-label="${translator.t('soundCheck.title')}">
+          <button
+            id="sound-check-play"
+            type="button"
+            class="btn btn-primary rounded-circle sound-check-pulse"
+            style="width: 140px; height: 140px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(13, 110, 253, 0.4)"
+            aria-label="${translator.t('soundCheck.title')}"
+          >
             ${speakerIcon}
           </button>
         </div>
@@ -115,6 +130,8 @@ export function createSoundCheckTrial<TPlugin>(plugin: TPlugin, finishTrial: () 
         'playing',
         () => {
           continueButton.disabled = false;
+          // stop drawing attention to the play button once the clip has been heard
+          playButton.classList.remove('sound-check-pulse');
         },
         { once: true }
       );
