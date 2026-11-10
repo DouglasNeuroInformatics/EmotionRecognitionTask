@@ -181,6 +181,9 @@ export function createSoundCheckTrial<TPlugin>(plugin: TPlugin, finishTrial: () 
         audio.currentTime = 0;
         audio.play().catch((err: Error) => {
           showPlaying(false);
+          // AbortError: playback was interrupted on purpose (Continue / "can't hear" pauses the clip
+          // while play() is still pending). Not a failure, so don't alarm the participant.
+          if (err.name === 'AbortError') return;
           addNotification({
             type: 'error',
             message: `Error playing sound check audio: ${err.message}`
