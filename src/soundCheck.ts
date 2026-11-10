@@ -41,36 +41,78 @@ function soundCheckHtml(audioPath: string): string {
         .sound-check-active .sound-check-waves { animation: none; }
         #sound-check-play { transition: none; }
       }
+
+      /* layout: desktop/tablet by default, compacted below for phones */
+      .sound-check [hidden] { display: none !important; }
+      .sound-check { max-width: 700px; margin: 0 auto; text-align: justify; hyphens: auto; font-size: 20px; }
+      .sound-check h3 { text-align: center; }
+      .sound-check-play-row { display: flex; justify-content: center; padding: 1rem 0; }
+      #sound-check-play {
+        width: 140px; height: 140px; padding: 0;
+        display: flex; align-items: center; justify-content: center;
+        box-shadow: 0 4px 12px rgba(13, 110, 253, 0.4);
+      }
+      #sound-check-play svg { width: 57%; height: auto; }
+      .sound-check-actions { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+
+      /* phones in portrait: smaller type and play button, buttons stacked full width */
+      @media (max-width: 576px) and (orientation: portrait) {
+        .sound-check { font-size: 15px; line-height: 1.45; text-align: left; hyphens: manual; padding: 0 0.75rem; }
+        .sound-check h3 { font-size: 1.4rem; margin-bottom: 0.5rem; }
+        .sound-check ul { padding-left: 1.25rem; margin-bottom: 0.5rem; }
+        .sound-check-play-row { padding: 0.5rem 0 0.75rem; }
+        #sound-check-play { width: 88px; height: 88px; }
+        .sound-check-actions { flex-direction: column; align-items: stretch; gap: 0.5rem; }
+        .sound-check .btn-lg { font-size: 1rem; min-height: 44px; }
+      }
+
+      /* phones in landscape (short screens): text on the left, controls on the right */
+      @media (max-height: 500px) and (orientation: landscape) {
+        .sound-check { max-width: 760px; font-size: 15px; line-height: 1.45; text-align: left; hyphens: manual; padding: 0 0.75rem; }
+        .sound-check h3 { font-size: 1.4rem; margin-bottom: 0.5rem; }
+        .sound-check ul { padding-left: 1.25rem; margin-bottom: 0; }
+        .sound-check p { margin-bottom: 0.5rem; }
+        #sound-check-view {
+          display: grid; grid-template-columns: 1fr auto; column-gap: 1.5rem; align-items: center;
+        }
+        .sound-check-play-row { padding: 0 0 0.75rem; }
+        #sound-check-play { width: 80px; height: 80px; }
+        #sound-check-view .sound-check-actions { flex-direction: column; align-items: stretch; gap: 0.5rem; }
+        .sound-check .btn-lg { font-size: 1rem; min-height: 44px; }
+      }
     </style>
-    <div style="max-width: 700px; margin: 0 auto; text-align: justify; hyphens: auto; font-size: 20px">
+    <div class="sound-check">
       <section id="sound-check-view">
-        <h3 style="text-align: center">${translator.t('soundCheck.title')}</h3>
-        <ul>
-          <li>${translator.t('soundCheck.intro')}</li>
-          <li>${translator.t('soundCheck.headphones')}</li>
-          <li>${translator.t('soundCheck.instructions')}</li>
-        </ul>
-        <div style="display: flex; justify-content: center; padding: 1rem 0">
-          <button
-            id="sound-check-play"
-            type="button"
-            class="btn btn-primary rounded-circle sound-check-pulse"
-            style="width: 140px; height: 140px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(13, 110, 253, 0.4)"
-            aria-label="${translator.t('soundCheck.title')}"
-          >
-            ${speakerIcon}
-          </button>
+        <div class="sound-check-text">
+          <h3>${translator.t('soundCheck.title')}</h3>
+          <ul>
+            <li>${translator.t('soundCheck.intro')}</li>
+            <li>${translator.t('soundCheck.headphones')}</li>
+            <li>${translator.t('soundCheck.instructions')}</li>
+          </ul>
         </div>
-        <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap">
-          <button id="sound-check-cant-hear" type="button" class="btn btn-outline-secondary btn-lg">
-            ${translator.t('soundCheck.cantHearButton')}
-          </button>
-          <button id="sound-check-continue" type="button" class="btn btn-primary btn-lg" disabled>
-            ${translator.t('soundCheck.continueButton')}
-          </button>
+        <div class="sound-check-controls">
+          <div class="sound-check-play-row">
+            <button
+              id="sound-check-play"
+              type="button"
+              class="btn btn-primary rounded-circle sound-check-pulse"
+              aria-label="${translator.t('soundCheck.title')}"
+            >
+              ${speakerIcon}
+            </button>
+          </div>
+          <div class="sound-check-actions">
+            <button id="sound-check-cant-hear" type="button" class="btn btn-outline-secondary btn-lg">
+              ${translator.t('soundCheck.cantHearButton')}
+            </button>
+            <button id="sound-check-continue" type="button" class="btn btn-primary btn-lg" disabled>
+              ${translator.t('soundCheck.continueButton')}
+            </button>
+          </div>
         </div>
       </section>
-      <section id="sound-check-troubleshooting" style="display: none">
+      <section id="sound-check-troubleshooting" hidden>
         <p><b>${translator.t('troubleshooting.heading')}</b> ${translator.t('troubleshooting.intro')}</p>
         <ul>
           <li>${translator.t('troubleshooting.mute')}</li>
@@ -79,7 +121,7 @@ function soundCheckHtml(audioPath: string): string {
           <li>${translator.t('troubleshooting.otherApplication')}</li>
         </ul>
         <p>${translator.t('troubleshooting.contact')}</p>
-        <div style="display: flex; justify-content: center">
+        <div class="sound-check-actions">
           <button id="sound-check-try-again" type="button" class="btn btn-primary btn-lg">
             ${translator.t('troubleshooting.tryAgainButton')}
           </button>
@@ -158,13 +200,13 @@ export function createSoundCheckTrial<TPlugin>(plugin: TPlugin, finishTrial: () 
 
       cantHearButton.addEventListener('click', () => {
         audio.pause();
-        soundCheckView.style.display = 'none';
-        troubleshootingView.style.display = 'block';
+        soundCheckView.hidden = true;
+        troubleshootingView.hidden = false;
       });
 
       tryAgainButton.addEventListener('click', () => {
-        troubleshootingView.style.display = 'none';
-        soundCheckView.style.display = 'block';
+        troubleshootingView.hidden = true;
+        soundCheckView.hidden = false;
       });
 
       continueButton.addEventListener('click', () => {
