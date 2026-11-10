@@ -374,6 +374,8 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
   const videoCheck = (filepath: string, top?: string, left?: string) => {
     return {
       type: HtmlKeyboardResponsePlugin,
+      // top-anchors the layout (see style.css) so the video sits in the same place on both viewings
+      css_classes: ['video-trial'],
       stimulus: function () {
         return videoCoverHtmlGenerator(filepath, top, left);
       },
@@ -470,6 +472,8 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
     const examplePromptText = examplePrompt
     return {
       type: HtmlButtonResponsePlugin,
+      // top-anchors the layout (see style.css) so the video sits in the same place on both viewings
+      css_classes: ['video-trial'],
       stimulus: function () {
         return videoCoverHtmlGenerator(filepath, top, left);
       },

@@ -112,3 +112,26 @@ video {
 .btn.btn-primary:active {
   background-color: #05347a !important;
 }
+
+/* Video trials: the first viewing (video + Continue) and the second viewing
+   (video + 3 emotion buttons + Continue + warning line) have different heights,
+   so centring each one made the video jump between them. Instead, both use the
+   same top margin: the one that centres the taller second-viewing layout.
+   --video-response-height approximates that block below the video
+   (3 x 58px buttons + Continue + warning line). */
+:root {
+  --video-height: calc(var(--video-base-height) / 2);
+  --video-response-height: 17rem;
+}
+@media (min-width: 500px) {
+  :root { --video-height: calc(var(--video-base-height) / 1.5); }
+}
+@media (min-width: 720px) {
+  :root { --video-height: calc(var(--video-base-height) / 1.2); }
+}
+@media (min-width: 1700px) {
+  :root { --video-height: calc(var(--video-base-height) * 1.1); }
+}
+.video-trial .jspsych-content {
+  margin: max(2vh, calc((100vh - var(--video-height) - var(--video-response-height)) / 2)) auto auto;
+}
