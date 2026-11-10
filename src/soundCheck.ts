@@ -13,7 +13,7 @@ import { translator } from './translations.ts';
 const speakerIcon = `
   <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="80" height="72" viewBox="15 -12 40 100" aria-hidden="true">
     <path d="M39.389,13.769 L22.235,28.606 L6,28.606 L6,47.699 L21.989,47.699 L39.389,62.75 L39.389,13.769z" style="stroke:currentColor;stroke-width:5;stroke-linejoin:round;fill:currentColor;"/>
-    <path d="M48,27.6a19.5,19.5 0 0 1 0,21.4M55.1,20.5a30,30 0 0 1 0,35.6M61.6,14a38.8,38.8 0 0 1 0,48.6" style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round"/>
+    <path class="sound-check-waves" d="M48,27.6a19.5,19.5 0 0 1 0,21.4M55.1,20.5a30,30 0 0 1 0,35.6M61.6,14a38.8,38.8 0 0 1 0,48.6" style="fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round"/>
   </svg>`;
 
 function getSoundCheckAudioPath(): string {
@@ -28,8 +28,19 @@ function soundCheckHtml(audioPath: string): string {
         70% { box-shadow: 0 0 0 20px rgba(13, 110, 253, 0); }
         100% { box-shadow: 0 0 0 0 rgba(13, 110, 253, 0); }
       }
+      @keyframes sound-check-waves {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.25; }
+      }
       .sound-check-pulse { animation: sound-check-pulse 1.6s infinite; }
-      @media (prefers-reduced-motion: reduce) { .sound-check-pulse { animation: none; } }
+      #sound-check-play { transition: transform 80ms ease-out, filter 80ms ease-out; }
+      #sound-check-play.sound-check-active { transform: scale(0.94); filter: brightness(0.85); }
+      .sound-check-active .sound-check-waves { animation: sound-check-waves 0.8s ease-in-out infinite; }
+      @media (prefers-reduced-motion: reduce) {
+        .sound-check-pulse,
+        .sound-check-active .sound-check-waves { animation: none; }
+        #sound-check-play { transition: none; }
+      }
     </style>
     <div style="max-width: 700px; margin: 0 auto; text-align: justify; hyphens: auto; font-size: 20px">
       <section id="sound-check-view">
@@ -115,10 +126,19 @@ export function createSoundCheckTrial<TPlugin>(plugin: TPlugin, finishTrial: () 
         return;
       }
 
+      // Instant feedback on tap: the button looks pressed and the sound waves animate until the clip stops.
+      // The clip itself starts with a short silence, so without this the tap feels unanswered.
+      const showPlaying = (isPlaying: boolean) => playButton.classList.toggle('sound-check-active', isPlaying);
+      audio.addEventListener('ended', () => showPlaying(false));
+      audio.addEventListener('pause', () => showPlaying(false));
+
       playButton.addEventListener('click', () => {
+        showPlaying(true);
+        playButton.classList.remove('sound-check-pulse');
         // restart from the beginning on every click so the clip can be replayed freely
         audio.currentTime = 0;
         audio.play().catch((err: Error) => {
+          showPlaying(false);
           addNotification({
             type: 'error',
             message: `Error playing sound check audio: ${err.message}`
