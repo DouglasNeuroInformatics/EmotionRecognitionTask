@@ -182,7 +182,7 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
 
         if (audioContent && audioContent instanceof HTMLAudioElement) {
           audioContent.addEventListener('ended', () => {
-            continueButton.style.display = 'flex';
+            continueButton.style.visibility = 'visible';
           });
         }
 
@@ -214,7 +214,7 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
       },
       choices: emotionChoices,
       button_html: (choice: string) => {
-        return `<div name='custom-button-div' data-toggle="buttons" style="padding:10px;  display:none; justify-content: center; align-items: center;  width: 100%"><button name="custom-button" type="button" class="btn btn-primary" aria-label="emotionButtons" style="width:100%">${choice}</button></div>`;
+        return `<div name='custom-button-div' data-toggle="buttons" style="padding:10px;  display:flex; visibility:hidden; justify-content: center; align-items: center;  width: 100%"><button name="custom-button" type="button" class="btn btn-primary" aria-label="emotionButtons" style="width:100%">${choice}</button></div>`;
       },
 
       response_allowed_while_playing: false,
@@ -276,8 +276,8 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
           audioContent.addEventListener('ended', () => {
             revealEmotionButtons();
 
-            examplePrompt.style.display = 'flex';
-            continueButton.style.display = 'flex';
+            examplePrompt.style.visibility = 'visible';
+            continueButton.style.visibility = 'visible';
 
             //set start time
             startTime = performance.now();
@@ -299,7 +299,7 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
         });
         continueButton.addEventListener('click', () => {
           if (!finalResponse) {
-            warningText.style.display = 'flex'
+            warningText.style.visibility = 'visible';
             return;
           }
           jsPsych.finishTrial({
@@ -440,7 +440,7 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
               overlay.style.opacity = '1';
               cross.style.display = 'none';
               video.style.display = 'none';
-              continueButton.style.display = 'flex';
+              continueButton.style.visibility = 'visible';
             });
           }
         }
@@ -475,7 +475,7 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
       },
       choices: emotionChoices,
       button_html: (choice: string) => {
-        return `<div name='custom-button-div' data-toggle="buttons" style="padding:10px; display:none; justify-content: center; align-items: center;  width: 100%"><button name="custom-button" type="button" class="btn btn-primary" style="width:100%">${choice}</button></div>`;
+        return `<div name='custom-button-div' data-toggle="buttons" style="padding:10px; display:flex; visibility:hidden; justify-content: center; align-items: center;  width: 100%"><button name="custom-button" type="button" class="btn btn-primary" style="width:100%">${choice}</button></div>`;
       },
       correct_answer: correctAnswer,
 
@@ -556,8 +556,8 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
               revealEmotionButtons();
 
               //reveal continue button
-              examplePrompt.style.display = 'block';
-              continueButton.style.display = 'block';
+              examplePrompt.style.visibility = 'visible';
+              continueButton.style.visibility = 'visible';
 
               //set start time
               startTime = performance.now();
@@ -581,7 +581,7 @@ export default async function emotionRecognitionTask(onFinish?: (data: EmotionRe
 
         continueButton.addEventListener('click', () => {
           if (!finalResponse) {
-            warningText.style.display = 'flex';
+            warningText.style.visibility = 'visible';
             return;
           }
           jsPsych.finishTrial({

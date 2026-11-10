@@ -5,7 +5,9 @@ export const addContinueButton = () => {
   continueButton.style.alignContent = 'center';
   continueButton.style.justifyContent = 'center';
   continueButton.style.position = 'flex';
-  continueButton.style.display = 'None';
+  // hidden with visibility (not display) so its space is reserved and the layout does not jump when it appears
+  continueButton.style.display = 'flex';
+  continueButton.style.visibility = 'hidden';
   continueButton.style.margin = '1';
   continueButton.className = 'btn btn-primary btn-lg';
   continueButton.textContent = 'Continue';
@@ -38,7 +40,8 @@ export const createWarningText = (text: string): HTMLParagraphElement => {
   const textBox = document.createElement('p')
   textBox.style.justifyContent = 'center';
   textBox.style.alignItems = 'center';
-  textBox.style.display = 'None';
+  textBox.style.display = 'flex';
+  textBox.style.visibility = 'hidden';
   textBox.style.paddingTop = '1%';
   textBox.style.color = 'red'
   textBox.textContent = text
@@ -51,7 +54,8 @@ export const createExamplePromptDiv = (content: string): HTMLDivElement => {
   exampleDiv.style.justifyContent = 'center';
   exampleDiv.style.alignItems = 'center';
   exampleDiv.style.paddingTop = '1%';
-  exampleDiv.style.display = 'None';
+  exampleDiv.style.display = 'flex';
+  exampleDiv.style.visibility = 'hidden';
   exampleDiv.textContent = content;
 
   return exampleDiv
@@ -61,7 +65,7 @@ export const revealEmotionButtons = () => {
   const emotionButtons = document.getElementsByName('custom-button-div');
 
   for (const emotionButton of emotionButtons) {
-    emotionButton.style.display = 'flex';
+    emotionButton.style.visibility = 'visible';
   }
 };
 
