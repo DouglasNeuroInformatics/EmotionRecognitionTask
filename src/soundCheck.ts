@@ -31,7 +31,7 @@ function soundCheckHtml(audioPath: string): string {
       .sound-check-pulse { animation: sound-check-pulse 1.6s infinite; }
       @media (prefers-reduced-motion: reduce) { .sound-check-pulse { animation: none; } }
     </style>
-    <div style="max-width: 700px; margin: 0 auto; text-align: left; font-size: 20px">
+    <div style="max-width: 700px; margin: 0 auto; text-align: justify; hyphens: auto; font-size: 20px">
       <section id="sound-check-view">
         <h3 style="text-align: center">${translator.t('soundCheck.title')}</h3>
         <ul>
