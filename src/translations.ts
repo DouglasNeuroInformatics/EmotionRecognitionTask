@@ -84,6 +84,68 @@ export const translator = new Translator({
       en: `* Please select a button`,
       fr: `* Veuillez sélectionner un bouton`
     },
+    // Sound check and troubleshooting wording approved by the Montembeault lab (scope of work 2026-001).
+    soundCheck: {
+      title: {
+        en: 'Sound check',
+        fr: 'Vérification du son'
+      },
+      intro: {
+        en: 'Before we begin, let’s make sure you can hear the sounds clearly.',
+        fr: 'Avant de commencer, assurons-nous que vous entendez bien les sons.'
+      },
+      headphones: {
+        en: 'If you have headphones, please put them on now.',
+        fr: 'Si vous avez des écouteurs, veuillez les mettre maintenant.'
+      },
+      instructions: {
+        en: 'Click the speaker icon to play a short voice recording. Adjust the volume on your computer, tablet, or headphones until the voice is clear and comfortable: not too quiet, not too loud. You can play the sound as many times as you need.',
+        fr: 'Cliquez sur l’icône du haut-parleur pour écouter un court enregistrement de voix. Réglez le volume de votre ordinateur, de votre tablette ou de vos écouteurs jusqu’à ce que la voix soit claire et confortable : ni trop faible, ni trop forte. Vous pouvez écouter le son autant de fois que nécessaire.'
+      },
+      // TODO: French button labels not yet approved by the lab.
+      continueButton: {
+        en: 'Sounds good, continue',
+        fr: 'Le son est bon, continuer'
+      },
+      cantHearButton: {
+        en: 'I can’t hear anything',
+        fr: 'Je n’entends rien'
+      }
+    },
+    troubleshooting: {
+      heading: {
+        en: 'Can’t hear the sound?',
+        fr: 'Vous n’entendez pas le son?'
+      },
+      intro: {
+        en: 'Please check the following, then try playing the sound again:',
+        fr: 'Veuillez vérifier les points suivants, puis essayez d’écouter le son à nouveau :'
+      },
+      mute: {
+        en: 'Your device is not muted, and the volume is turned up.',
+        fr: 'Votre appareil n’est pas en mode silencieux et le volume est monté.'
+      },
+      headphones: {
+        en: 'If you are using headphones, they are fully plugged in or connected via Bluetooth.',
+        fr: 'Si vous utilisez des écouteurs, ils sont bien branchés ou connectés par Bluetooth.'
+      },
+      outputDevice: {
+        en: 'Sound is coming out of the right device (for example, headphones rather than the computer’s speakers).',
+        fr: 'Le son sort du bon appareil (par exemple, les écouteurs plutôt que les haut-parleurs de l’ordinateur).'
+      },
+      otherApplication: {
+        en: 'No other application is blocking sound.',
+        fr: 'Aucune autre application ne bloque le son.'
+      },
+      contact: {
+        en: 'If you still cannot hear anything, please contact the research team before continuing.',
+        fr: 'Si vous n’entendez toujours rien, veuillez communiquer avec l’équipe de recherche avant de continuer.'
+      },
+      tryAgainButton: {
+        en: 'Try again',
+        fr: 'Réessayer'
+      }
+    },
     examplePrompt: {
       en: `Click on continue to start the test`,
       fr: `Cliquer sur "Continue" pour débuter le test.`
