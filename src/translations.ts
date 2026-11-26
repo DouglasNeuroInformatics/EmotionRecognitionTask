@@ -102,7 +102,6 @@ export const translator = new Translator({
         en: 'Click the speaker icon to play a short voice recording. Adjust the volume on your computer, tablet, or headphones until the voice is clear and comfortable: not too quiet, not too loud. You can play the sound as many times as you need.',
         fr: 'Cliquez sur l’icône du haut-parleur pour écouter un court enregistrement de voix. Réglez le volume de votre ordinateur, de votre tablette ou de vos écouteurs jusqu’à ce que la voix soit claire et confortable : ni trop faible, ni trop forte. Vous pouvez écouter le son autant de fois que nécessaire.'
       },
-      // TODO: French button labels not yet approved by the lab.
       continueButton: {
         en: 'Sounds good, continue',
         fr: 'Le son est bon, continuer'
