@@ -67,19 +67,14 @@ export const revealEmotionButtons = () => {
 
 export const addBootstrapScripts = () => {
   const link = document.createElement('link');
-  const cssLink = document.createElement('link');
   const bootstrapScript = document.createElement('script');
 
   link.rel = 'stylesheet';
   link.href = 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css';
 
-  cssLink.rel = 'stylesheet';
-  cssLink.href = 'src/style.css';
-
   bootstrapScript.src = 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js';
 
   document.head.appendChild(link);
-  document.head.appendChild(cssLink);
   document.head.appendChild(bootstrapScript);
 };
 
