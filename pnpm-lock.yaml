@@ -9,62 +9,62 @@ importers:
   .:
     dependencies:
       '@jspsych/plugin-audio-button-response':
-        specifier: ^2.0.1
+        specifier: ^2.1.1
         version: 2.1.1(jspsych@8.2.3)
       '@jspsych/plugin-audio-keyboard-response':
-        specifier: ^2.0.0
+        specifier: ^2.1.1
         version: 2.1.1(jspsych@8.2.3)
       '@jspsych/plugin-html-button-response':
-        specifier: ^2.0.0
+        specifier: ^2.1.0
         version: 2.1.0(jspsych@8.2.3)
       '@jspsych/plugin-html-keyboard-response':
-        specifier: ^2.0.0
+        specifier: ^2.1.0
         version: 2.1.0(jspsych@8.2.3)
       '@jspsych/plugin-preload':
-        specifier: ^2.0.0
+        specifier: ^2.1.0
         version: 2.1.0(jspsych@8.2.3)
       '@jspsych/plugin-survey-html-form':
-        specifier: ^2.0.0
+        specifier: ^2.1.0
         version: 2.1.0(jspsych@8.2.3)
       '@jspsych/plugin-video-button-response':
-        specifier: ^2.0.0
+        specifier: ^2.1.1
         version: 2.1.1(jspsych@8.2.3)
       '@jspsych/plugin-video-keyboard-response':
-        specifier: ^2.0.0
+        specifier: ^2.1.1
         version: 2.1.1(jspsych@8.2.3)
       '@opendatacapture/runtime-v1':
-        specifier: ^1.8.7
+        specifier: ^1.8.10
         version: 1.8.10
       docsify:
         specifier: ^4.13.1
         version: 4.13.1
       jspsych:
-        specifier: ^8.0.1
+        specifier: ^8.2.3
         version: 8.2.3
     devDependencies:
       '@douglasneuroinformatics/eslint-config':
-        specifier: ^5.3.4
+        specifier: ^5.3.7
         version: 5.3.7(@typescript-eslint/parser@8.59.3(eslint@9.39.4(jiti@1.21.7))(typescript@5.6.3))(eslint@9.39.4(jiti@1.21.7))(typescript@5.6.3)
       '@douglasneuroinformatics/prettier-config':
         specifier: ^0.3.0
         version: 0.3.0(prettier@3.8.3)
       '@douglasneuroinformatics/tsconfig':
-        specifier: ^1.0.3
+        specifier: ^1.0.5
         version: 1.0.5(typescript@5.6.3)
       '@types/node':
-        specifier: 22.x
+        specifier: ~22.19.19
         version: 22.19.19
       eslint:
-        specifier: ^9.27.0
+        specifier: ^9.39.4
         version: 9.39.4(jiti@1.21.7)
       prettier:
-        specifier: ^3.4.2
+        specifier: ^3.8.3
         version: 3.8.3
       prettier-plugin-css-order:
-        specifier: ^2.1.2
+        specifier: ^2.2.0
         version: 2.2.0(postcss@8.5.14)(prettier@3.8.3)
       typescript:
-        specifier: 5.6.x
+        specifier: 5.6.3
         version: 5.6.3
       vite:
         specifier: ^6.4.2
@@ -1107,8 +1107,8 @@ packages:
     resolution: {integrity: sha512-f7ccFPK3SXFHpx15UIGyRJ/FJQctuKZ0zVuN3frBo4HnK3cay9VEW0R6yPYFHC0AgqhukPzKjq22t5DmAyqGyw==}
     engines: {node: '>=16'}
 
-  flatted@3.3.3:
-    resolution: {integrity: sha512-GX+ysw4PBCz0PzosHDepZGANEuFCMLrnRTiEy9McGjmkCQYwRq4A/X786G/fjM/+OjsWSU1ZrY5qyARZmO/uwg==}
+  flatted@3.4.2:
+    resolution: {integrity: sha512-PjDse7RzhcPkIJwy5t7KPWQSZ9cAbzQXcafsetQoD7sOJRQlGikNbx7yZp2OotDnJyrDcbyRq3Ttb18iYOqkxA==}
 
   for-each@0.3.5:
     resolution: {integrity: sha512-dKx12eRCVIzqCxFGplyFKJMPvLEWgmNtUrpTiJIR5u97zEhRG8ySrtboPHZXx7daLxQVrl643cTzbab2tkQjxg==}
@@ -3156,10 +3156,10 @@ snapshots:
 
   flat-cache@4.0.1:
     dependencies:
-      flatted: 3.3.3
+      flatted: 3.4.2
       keyv: 4.5.4
 
-  flatted@3.3.3: {}
+  flatted@3.4.2: {}
 
   for-each@0.3.5:
     dependencies:
