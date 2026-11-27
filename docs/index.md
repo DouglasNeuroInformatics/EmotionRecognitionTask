@@ -44,11 +44,36 @@ The application takes to filepath given by the FileServerConfig.json file in ord
 2. Copy the contents of FileServerConfigExample.json
 3. Replace the string "pathToMediaContent" with your path of media files
 
-Note: the file directory structure of the content should follow these rules.   
-      
-    Stimuli  
-        ↳ Video-seulement  
-        ↳ Audio-seulement  
-        ↳ AudioVideo  
-    
+Note: the file directory structure of the content should follow these rules.
 
+    Stimuli
+        ↳ Video-seulement
+        ↳ Audio-seulement
+        ↳ Audio-video
+        ↳ Calibration
+            ↳ CERAM_verification_son_en-CA.mp3
+            ↳ CERAM_verification_son_fr-CA.mp3
+
+## Sound Check (Volume Calibration)
+
+Before the general instructions, participants see a sound check screen. They are asked to put on headphones if available, play a short reference voice recording, and adjust their device volume until the voice is clear and comfortable.
+
+- The recording can be replayed as many times as needed.
+- "Sounds good, continue" is enabled once the recording has started playing at least once, and proceeds to the task.
+- "I can't hear anything" shows troubleshooting steps, and "Try again" returns to the sound check.
+- The screen cannot be skipped (keyboard input is disabled).
+- The screen is not recorded in the exported data; the data format is unchanged.
+
+The task plays the reference recording in the session's language (`Stimuli/Calibration/CERAM_verification_son_en-CA.mp3` or `CERAM_verification_son_fr-CA.mp3`). Both are level-matched to the quietest stimulus (-31.8 LUFS integrated loudness) so that a participant who can hear it comfortably will hear every stimulus. The stimuli themselves are not normalised: loudness differences between them are part of the emotional signal.
+
+To level-match a new reference recording, measure it and apply plain gain (no compression or limiting) with ffmpeg:
+
+```sh
+# measure integrated loudness (I) of the recording
+ffmpeg -nostats -i input.mp3 -af ebur128 -f null - 2>&1 | grep "I:"
+# apply the difference to -31.8 LUFS as gain, e.g. -2.8 dB, then re-measure
+# (resampling to 24 kHz lowers loudness slightly: adjust the gain and repeat)
+ffmpeg -i input.mp3 -af volume=-2.8dB -ar 24000 -ac 1 -c:a libmp3lame -b:a 96k output.mp3
+```
+
+The file paths are set in `soundCheck_en` and `soundCheck_fr` in `src/ODCMediaContent.ts`.

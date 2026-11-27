@@ -74,7 +74,16 @@ const ang_Gemep07 = FileServerConfig.FileServerPath + '/Stimuli/Audio-video/07an
 const int_Gemep03 = FileServerConfig.FileServerPath + '/Stimuli/Audio-video/03int_Gemep.mp4';
 const rel_Gemep05 = FileServerConfig.FileServerPath + '/Stimuli/Audio-video/05rel_Gemep.mp4';
 
+// Sound check (volume calibration) reference clips, one per language,
+// level-matched to the quietest stimulus (-31.8 LUFS).
+const soundCheck_en = FileServerConfig.FileServerPath + '/Stimuli/Calibration/CERAM_verification_son_en-CA.mp3';
+const soundCheck_fr = FileServerConfig.FileServerPath + '/Stimuli/Calibration/CERAM_verification_son_fr-CA.mp3';
+
 export const OdcMediaContent = {
+  SoundCheck: {
+    en: soundCheck_en,
+    fr: soundCheck_fr
+  },
   Content: {
     Video: {
       '06col313': {
