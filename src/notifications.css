@@ -31,7 +31,7 @@
   transition-duration: 200ms;
   transition-property: opacity, transform;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  width: 400px;
+  width: min(400px, calc(100vw - 2rem));
   will-change: opacity, transform;
 }
 
