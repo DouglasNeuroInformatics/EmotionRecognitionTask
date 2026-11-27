@@ -82,9 +82,9 @@ const soundCheck_fr = FileServerConfig.FileServerPath + '/Stimuli/Calibration/CE
 /*
  * ANSWER KEYS (CorrectAnswer) FOLLOW THE STIMULUS FILE NAME.
  * The emotion code in each file name (e.g. 09pri_Gemep.mp3 -> pri -> Pride) is treated as the
- * correct answer. In 2026-11, 6 items disagreed between item code, file name and key; the clips could
- * not be judged reliably by listening, so the file name was used. Those items are marked inline with
- * "KEY FROM FILE NAME" and still need confirming with the lab.
+ * correct answer. In 2026-11, 6 items disagreed between item code, file name and key, so the file name
+ * was used. Those items are marked inline with "KEY FROM FILE NAME"; each key was then confirmed by
+ * listening to / watching the clip (2026-11-27). Two items' codes still disagree with their files.
  */
 export const OdcMediaContent = {
   SoundCheck: {
@@ -257,12 +257,12 @@ export const OdcMediaContent = {
       },
       '09fie315': {
         Emotions: ['Interest', 'Joy', 'Pride'],
-        CorrectAnswer: 'Pride', // KEY FROM FILE NAME: 09pri_Gemep -> Pride (was 'Interest'). Not verified by listening; confirm with the lab.
+        CorrectAnswer: 'Pride', // KEY FROM FILE NAME: 09pri_Gemep -> Pride (was 'Interest'). Confirmed by listening/watching (2026-11-27).
         Filepath: pri_Gemep09
       },
       '01pla113': {
         Emotions: ['Relief', 'Interest', 'Pleasure'],
-        CorrectAnswer: 'Pleasure', // KEY FROM FILE NAME: 01ple_Gemep -> Pleasure (was 'Relief'). Not verified by listening; confirm with the lab.
+        CorrectAnswer: 'Pleasure', // KEY FROM FILE NAME: 01ple_Gemep -> Pleasure (was 'Relief'). Confirmed by listening/watching (2026-11-27).
         Filepath: ple_Gemep01
       },
       '07peu125': {
@@ -317,7 +317,7 @@ export const OdcMediaContent = {
       },
       '05fie115': {
         Emotions: ['Pride', 'Fear', 'Relief'],
-        CorrectAnswer: 'Fear', // KEY FROM FILE NAME: 08fea_Gemep -> Fear (unchanged). NOTE: item code '05fie' (Pride) and number disagree with the file; confirm with the lab.
+        CorrectAnswer: 'Fear', // KEY FROM FILE NAME: 08fea_Gemep -> Fear (unchanged). NOTE: item code '05fie' (Pride) and number disagree with the file; key confirmed by listening (2026-11-27), item code still to check with the lab.
         Filepath: fea_Gemep08
       },
       '02pla213': {
@@ -327,7 +327,7 @@ export const OdcMediaContent = {
       },
       '10tri321': {
         Emotions: ['Fear', 'Disgust', 'Sadness'],
-        CorrectAnswer: 'Disgust', // KEY FROM FILE NAME: 10dis_Gemep -> Disgust (unchanged). NOTE: item code '10tri' (Sadness) disagrees with the file; confirm with the lab.
+        CorrectAnswer: 'Disgust', // KEY FROM FILE NAME: 10dis_Gemep -> Disgust (unchanged). NOTE: item code '10tri' (Sadness) disagrees with the file; key confirmed by listening (2026-11-27), item code still to check with the lab.
         Filepath: dis_Gemep10
       },
       '06mep316': {
@@ -374,7 +374,7 @@ export const OdcMediaContent = {
       },
       '10peu122': {
         Emotions: ['Fear', 'Sadness', 'Disgust'],
-        CorrectAnswer: 'Fear', // KEY FROM FILE NAME: 10fea_Gemep -> Fear (was 'Sadness'). Not verified by listening; confirm with the lab.
+        CorrectAnswer: 'Fear', // KEY FROM FILE NAME: 10fea_Gemep -> Fear (was 'Sadness'). Confirmed by listening/watching (2026-11-27).
         Filepath: fea_Gemep10,
         top: '38%',
         left: '40%'
@@ -481,7 +481,7 @@ export const OdcMediaContent = {
     exampleAudioVideo: {
       '05rel_Gemep': {
         Emotions: ['Anger', 'Relief', 'Interest'],
-        CorrectAnswer: 'Relief', // KEY FROM FILE NAME: 05rel_Gemep -> Relief (was 'Interest'). Not verified by listening; confirm with the lab.
+        CorrectAnswer: 'Relief', // KEY FROM FILE NAME: 05rel_Gemep -> Relief (was 'Interest'). Confirmed by listening/watching (2026-11-27).
         Filepath: rel_Gemep05,
         top: '38%',
         left: '52%'
