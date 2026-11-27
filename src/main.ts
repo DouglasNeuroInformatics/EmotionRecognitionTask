@@ -6,4 +6,5 @@ import { configureNotifications } from './notifications';
 
 configureNotifications();
 
-await emotionRecognitionTask();
+// no top-level await: the default build target (es2020 / Safari 14) does not support it
+void emotionRecognitionTask();
