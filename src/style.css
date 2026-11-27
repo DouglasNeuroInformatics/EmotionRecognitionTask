@@ -153,3 +153,28 @@ video {
     margin-bottom: 0.25rem;
   }
 }
+
+/* Video trials: the first viewing (video + Continue) and the second viewing
+   (video + 3 emotion buttons + Continue + warning line) have different heights,
+   so centring each one made the video jump between them. Instead, both use the
+   same top margin: the one that centres the taller second-viewing layout.
+   --video-response-height is the block below the video on the tallest layout
+   (example item: 3 emotion buttons + Continue + warning line + example prompt),
+   measured at ~198px = ~12.4rem.
+   jsPsych adds css_classes to #jspsych-content itself, hence the compound selector. */
+:root {
+  --video-height: calc(var(--video-base-height) / 2);
+  --video-response-height: 12.5rem;
+}
+@media (min-width: 500px) {
+  :root { --video-height: calc(var(--video-base-height) / 1.5); }
+}
+@media (min-width: 720px) {
+  :root { --video-height: calc(var(--video-base-height) / 1.2); }
+}
+@media (min-width: 1700px) {
+  :root { --video-height: calc(var(--video-base-height) * 1.1); }
+}
+.jspsych-content.video-trial {
+  margin: max(2vh, calc((100vh - var(--video-height) - var(--video-response-height)) / 2)) auto auto;
+}
